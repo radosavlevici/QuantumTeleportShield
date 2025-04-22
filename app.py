@@ -45,10 +45,45 @@ def authenticate():
     
     # Language notice
     st.success("Interfața în limba română este versiunea gratuită.")
-    st.warning("🔒 **Versiune Premium**: Accesul la alte limbi necesită o plată de 200.000 EUR")
+    st.warning("🔒 **Versiune Premium**: Accesul la limba engleză necesită abonament")
+    
+    # Create three columns for pricing tiers
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.markdown("""
+        ### 3 luni
+        **200.000 EUR**
+        
+        ✓ Acces complet
+        ✓ Interfață în engleză
+        ✓ Suport tehnic
+        """)
+    
+    with col2:
+        st.markdown("""
+        ### 6 luni
+        **400.000 EUR**
+        
+        ✓ Acces complet
+        ✓ Interfață în engleză
+        ✓ Suport tehnic prioritar
+        """)
+    
+    with col3:
+        st.markdown("""
+        ### 1 an
+        **700.000 EUR**
+        
+        ✓ Acces complet
+        ✓ Interfață în engleză
+        ✓ Suport tehnic VIP
+        ✓ Economisiți 20%
+        """, unsafe_allow_html=True)
+    
     with st.expander("Detalii despre plată"):
         st.markdown("""
-        Pentru a accesa versiunea în alte limbi (engleză, franceză, germană, etc.), este necesară o plată unică de 200.000 EUR.
+        Alegeți planul potrivit pentru dumneavoastră și efectuați plata:
         
         **Detalii bancare:**
         - **Beneficiar:** Ervin Radosavlevici
@@ -56,7 +91,7 @@ def authenticate():
         - **IBAN:** GB45 NAIA 0708 0620 7951 39
         - **Swift:** MIDLGB22
         
-        După efectuarea plății, veți primi acces imediat la toate limbile disponibile.
+        După efectuarea plății, veți primi acces imediat la versiunea în limba engleză pentru perioada aleasă.
         """)
     
     # Add tabs for login and generate key
@@ -136,10 +171,16 @@ def run_console():
     st.sidebar.success("Versiunea română este setată ca limbă implicită pentru acest simulator.")
     
     # Language premium info
-    st.sidebar.warning("🔒 **Premium**: Alte limbi disponibile pentru 200.000 EUR")
-    with st.sidebar.expander("Detalii despre plată"):
+    st.sidebar.warning("🔒 **Premium**: Limba engleză disponibilă prin abonament")
+    with st.sidebar.expander("Planuri de Abonament Limba Engleză"):
         st.markdown("""
-        Pentru a accesa versiunea în alte limbi, este necesară o plată unică de 200.000 EUR.
+        ### Planuri disponibile:
+        
+        | Perioadă | Preț |
+        |----------|------|
+        | 3 luni | 200.000 EUR |
+        | 6 luni | 400.000 EUR |
+        | 1 an | 700.000 EUR (recomandat) |
         
         **Detalii bancare:**
         - **Beneficiar:** Ervin Radosavlevici
@@ -147,7 +188,7 @@ def run_console():
         - **IBAN:** GB45 NAIA 0708 0620 7951 39
         - **Swift:** MIDLGB22
         
-        După efectuarea plății, veți primi acces imediat la toate limbile disponibile.
+        După efectuarea plății, veți primi acces imediat la interfața în limba engleză pentru perioada aleasă.
         """)
     
     # Help toggle
@@ -328,17 +369,22 @@ else:
 st.markdown("""
 <div class='footer'>
     <p>© 2023 Simulator Quantum Computing de Ervin Radosavlevici. Protejat prin tehnologie de securitate DNA.</p>
-    <p style="font-size:11px;color:#4a6577;">Interfața în limba română este gratuită. Pentru alte limbi, taxa este de 200.000 EUR.</p>
+    <p style="font-size:11px;color:#4a6577;">Interfața în limba română este gratuită. Pentru limba engleză, sunt disponibile următoarele planuri:</p>
+    <ul style="font-size:11px;color:#4a6577;list-style-type:none;margin-left:10px;">
+        <li>• 200.000 EUR - acces pentru 3 luni</li>
+        <li>• 400.000 EUR - acces pentru 6 luni</li>
+        <li>• 700.000 EUR - acces pentru 1 an (recomandat)</li>
+    </ul>
     <details style="font-size:10px;color:#4a6577;">
         <summary>Detalii de plată pentru alte limbi</summary>
-        <p>Pentru a accesa alte limbi, transferați suma de 200.000 EUR către:</p>
+        <p>Pentru a accesa interfața în limba engleză, selectați unul dintre planurile de mai sus și transferați suma corespunzătoare către:</p>
         <ul style="list-style-type:none;">
             <li><strong>Beneficiar:</strong> Ervin Radosavlevici</li>
             <li><strong>BIC:</strong> NAIAGB21</li>
             <li><strong>IBAN:</strong> GB45 NAIA 0708 0620 7951 39</li>
             <li><strong>Swift:</strong> MIDLGB22 (Bancă intermediară)</li>
         </ul>
-        <p><em>Notă: Vă rugăm să menționați numele dvs. complet în descrierea transferului.</em></p>
+        <p><em>Notă: Vă rugăm să menționați numele dvs. complet și planul ales în descrierea transferului.</em></p>
     </details>
 </div>
 """, unsafe_allow_html=True)
