@@ -1,10 +1,103 @@
 import streamlit as st
 import time
 import os
+import random
+import datetime
+import hashlib
+import json
 from quantum_simulator import QuantumSimulator
 from quantum_teleportation import QuantumTeleportation
 from dna_security import DNASecuritySystem
 from utils import display_console_text, generate_watermark
+
+# Sistem de conexiune globală la datacentere
+class GlobalDatacenterNetwork:
+    def __init__(self):
+        # Definim centrele de date din întreaga lume pentru sincronizare
+        self.datacenters = {
+            "EU-CENTRAL": {"location": "Frankfurt, Germania", "status": "online"},
+            "EU-WEST": {"location": "Dublin, Irlanda", "status": "online"},
+            "EU-SOUTH": {"location": "Milano, Italia", "status": "online"},
+            "US-EAST": {"location": "Virginia, SUA", "status": "online"},
+            "US-WEST": {"location": "California, SUA", "status": "online"},
+            "ASIA-EAST": {"location": "Tokyo, Japonia", "status": "online"},
+            "ASIA-SOUTH": {"location": "Mumbai, India", "status": "online"},
+            "ASIA-SOUTHEAST": {"location": "Singapore", "status": "online"},
+            "SA-EAST": {"location": "São Paulo, Brazilia", "status": "online"},
+            "AU-SOUTHEAST": {"location": "Sydney, Australia", "status": "online"},
+            "AF-SOUTH": {"location": "Cape Town, Africa de Sud", "status": "online"},
+        }
+        
+        # Timestamp pentru ultima sincronizare
+        self.last_sync = datetime.datetime.now()
+        self.sync_interval = 15  # minute
+        self.global_sync_signature = self._generate_sync_signature()
+        
+    def _generate_sync_signature(self):
+        """Generează o semnătură unică pentru sesiunea de sincronizare globală"""
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        sync_base = f"QUANTUM_SYNC:{timestamp}:GLOBAL_NETWORK"
+        return hashlib.sha256(sync_base.encode()).hexdigest()
+    
+    def check_connection_status(self):
+        """Verifică conectivitatea cu centrele de date globale"""
+        current_time = datetime.datetime.now()
+        time_diff = (current_time - self.last_sync).total_seconds() / 60
+        
+        if time_diff >= self.sync_interval:
+            # Simulăm sincronizarea periodică
+            self.last_sync = current_time
+            self.global_sync_signature = self._generate_sync_signature()
+            
+            # Actualizăm statutul aleatoriu pentru unele centre de date
+            for dc in random.sample(list(self.datacenters.keys()), 3):
+                # Majoritatea timpului toate sunt online, dar simulăm câteva întreruperi ocazionale
+                if random.random() > 0.9:  # 10% șansă de întrerupere
+                    self.datacenters[dc]["status"] = "syncing"
+                else:
+                    self.datacenters[dc]["status"] = "online"
+        
+        return {
+            "connected": True,
+            "last_sync": self.last_sync.strftime("%d.%m.%Y %H:%M:%S"),
+            "signature": self.global_sync_signature,
+            "datacenters": self.datacenters
+        }
+    
+    def get_network_status_html(self):
+        """Generează reprezentarea HTML a stării rețelei de datacentere globale"""
+        status = self.check_connection_status()
+        
+        # Creăm HTML pentru starea rețelei
+        html = f"""
+        <div class="datacenter-status" style="font-size:10px;margin-top:15px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                <span>Rețea Datacentere Globale: <span style="color:#4CAF50">Conectat</span></span>
+                <span>Ultima sincronizare: {status["last_sync"]}</span>
+            </div>
+            <div class="datacenter-grid" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:5px;">
+        """
+        
+        # Adăugăm fiecare datacenter
+        for dc_id, dc_info in status["datacenters"].items():
+            status_color = "#4CAF50" if dc_info["status"] == "online" else "#FFC107"
+            html += f"""
+            <div style="border:1px solid #ddd;padding:3px;border-radius:3px;background-color:#f9f9f9;">
+                <span style="font-weight:bold;font-size:9px;">{dc_id}</span><br>
+                <span style="font-size:8px;">{dc_info["location"]}</span><br>
+                <span style="color:{status_color};font-size:8px;">{dc_info["status"].upper()}</span>
+            </div>
+            """
+        
+        html += """
+            </div>
+            <div style="margin-top:5px;font-size:8px;color:#666;text-align:center;">
+                Sistem protejat prin monitorizare globală și sincronizare continuă
+            </div>
+        </div>
+        """
+        
+        return html
 
 # Set page configuration
 st.set_page_config(
@@ -31,6 +124,8 @@ if 'teleportation_sim' not in st.session_state:
     st.session_state.teleportation_sim = QuantumTeleportation()
 if 'security_system' not in st.session_state:
     st.session_state.security_system = DNASecuritySystem()
+if 'global_network' not in st.session_state:
+    st.session_state.global_network = GlobalDatacenterNetwork()
 if 'show_help' not in st.session_state:
     st.session_state.show_help = False
 
@@ -182,6 +277,10 @@ def run_console():
     st.sidebar.title("Terminal Quantum")
     st.sidebar.info("Aceasta este o consolă de simulare pentru computing quantum cu vizualizare de teleportare.")
     st.sidebar.success("Versiunea română este setată ca limbă implicită pentru acest simulator.")
+    
+    # Network status - show the global datacenter network status
+    datacenter_status = st.session_state.global_network.get_network_status_html()
+    st.sidebar.markdown(datacenter_status, unsafe_allow_html=True)
     
     # Language premium info
     st.sidebar.warning("🔒 **Premium**: Limba engleză disponibilă prin abonament")
@@ -385,6 +484,50 @@ if st.session_state.authenticated:
     run_console()
 else:
     authenticate()
+
+# Politica de confidențialitate și termeni de utilizare
+with st.expander("Politică de Confidențialitate și Termeni de Utilizare"):
+    st.markdown("""
+    <div style="font-size:11px;">
+        <h3>POLITICĂ DE CONFIDENȚIALITATE ȘI TERMENI DE UTILIZARE</h3>
+        
+        <p><strong>Ultima actualizare:</strong> 22 Aprilie 2025</p>
+        
+        <h4>1. INFORMAȚII GENERALE</h4>
+        <p>Simulatorul Quantum Computing ("Simulatorul") este proprietatea exclusivă a lui Ervin Radosavlevici ("Proprietarul"). Utilizarea acestui Simulator implică acceptarea prezentei Politici de Confidențialitate și a Termenilor de Utilizare.</p>
+        
+        <h4>2. DREPTURILE DE PROPRIETATE INTELECTUALĂ</h4>
+        <p>Toate drepturile de proprietate intelectuală, inclusiv dar nelimitat la drepturile de autor, mărci comerciale, brevete, know-how, algoritmi și tehnologii încorporate în Simulator sunt deținute exclusiv de Proprietar. Orice utilizare neautorizată constituie o încălcare a legislației privind proprietatea intelectuală.</p>
+        
+        <h4>3. LICENȚIEREA LIMBILOR</h4>
+        <p>3.1. Limba română este oferită gratuit ca interfață implicită.</p>
+        <p>3.2. Accesul la limba engleză și oricare alte limbi este disponibil exclusiv prin achiziționarea unui abonament plătit, conform tarifelor afișate.</p>
+        <p>3.3. Orice încercare de a accesa o limbă pentru care nu a fost achiziționată o licență corespunzătoare constituie o încălcare gravă a acestor termeni.</p>
+        
+        <h4>4. RĂSPUNDERE LEGALĂ</h4>
+        <p>4.1. Orice încălcare a acestor termeni poate atrage răspundere civilă și/sau penală.</p>
+        <p>4.2. Utilizatorul va fi responsabil pentru plata daunelor rezultate din utilizarea neautorizată, inclusiv daune directe, indirecte, incidentale, punitive și costuri de judecată.</p>
+        
+        <h4>5. MONITORIZARE ȘI COLECTARE DATE</h4>
+        <p>5.1. Simulatorul monitorizează și înregistrează toate încercările de acces neautorizat.</p>
+        <p>5.2. Datele colectate includ, dar nu se limitează la: adresă IP, identificatori de dispozitiv, timestamp, acțiunile utilizatorului, și tentativele de acces neautorizat.</p>
+        <p>5.3. Aceste date pot fi folosite ca probe în instanță în caz de litigiu.</p>
+        
+        <h4>6. CONFIDENȚIALITATEA DATELOR</h4>
+        <p>Proprietarul respectă confidențialitatea utilizatorilor legitimi. Datele personale sunt procesate doar pentru scopul furnizării serviciilor și securizării Simulatorului.</p>
+        
+        <h4>7. PROTECȚIA ANTI-FURT</h4>
+        <p>7.1. Simulatorul este protejat prin multiple măsuri de securitate, inclusiv watermark-uri digitale, sisteme de protecție bazate pe DNA, detectarea intruziunilor, și măsuri anti-plagiat.</p>
+        <p>7.2. Fiecare sesiune generează identificatori unici care sunt încorporați invizibil în orice output.</p>
+        <p>7.3. Tentativele de înlăturare a acestor protecții vor fi considerate drept acțiuni deliberate de eludare a măsurilor tehnice de protecție și vor fi tratate conform legii.</p>
+        
+        <h4>8. JURISDICȚIE</h4>
+        <p>Orice litigiu legat de utilizarea Simulatorului va fi soluționat conform legislației române, în instanțele competente din România.</p>
+        
+        <h4>9. MODIFICĂRI ALE POLITICII</h4>
+        <p>Proprietarul își rezervă dreptul de a modifica acești termeni în orice moment, fără notificare prealabilă.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Footer with copyright and legal notice
 st.markdown("""

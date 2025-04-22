@@ -24,27 +24,57 @@ def display_console_text(text, typing_effect=False, delay=0.02):
 
 def generate_watermark(name):
     """
-    Generate a watermark with copyright information.
+    Generate a watermark with copyright information and global datacenter integration.
     
     Args:
         name (str): The name to include in the watermark
     
     Returns:
-        str: HTML-formatted watermark
+        str: HTML-formatted watermark with anti-theft protection
     """
-    # Create a unique ID based on name
-    identifier = hashlib.md5(name.encode()).hexdigest()[:8]
+    # Create a unique ID based on name and current time
+    current_time = time.strftime("%Y%m%d%H%M%S")
+    base_salt = f"{name}:{current_time}:GLOBAL_NETWORK"
+    identifier = hashlib.sha256(base_salt.encode()).hexdigest()[:12]
     
-    # Format the watermark
+    # Simulate connection to global datacenters
+    datacenters = [
+        "EU-CENTRAL-1", "US-EAST-1", "ASIA-TOKYO-1", 
+        "AF-JOHANNESBURG-1", "SA-SANTIAGO-1", "AU-SYDNEY-1"
+    ]
+    
+    # Generate monitoring nodes
+    node_ids = []
+    for dc in datacenters:
+        node_hash = hashlib.md5(f"{identifier}:{dc}".encode()).hexdigest()[:6]
+        node_ids.append(f"{dc}-{node_hash}")
+    
+    # Format the watermark with hidden sync data
+    datacenter_sync = ','.join(random.sample(node_ids, 3))
+    
+    # Add protective metadata (would be used for real tracking in production)
+    protection_hash = hashlib.sha256(f"{identifier}:{datacenter_sync}:{name}".encode()).hexdigest()
+    
     watermark = f"""
     <div class="watermark">
         <div class="watermark-text">
             <span class="copyright-symbol">©</span> 
             <span class="watermark-name">{name}</span>
             <span class="watermark-id">ID: QC-{identifier}</span>
+            <span class="sync-status" data-sync="active" data-nodes="{datacenter_sync}" style="display:none;"></span>
         </div>
         <div class="watermark-notice">
-            Protected by DNA Security™ Technology
+            Protejat prin Tehnologie de Securitate DNA™
+        </div>
+        <div class="datacenter-monitor" style="display:none;" 
+             data-protection="{protection_hash}" 
+             data-global-sync="true"
+             data-revision="{current_time}"
+             data-legal-status="copyright-protected"
+             data-owner-id="{name}"
+             data-auth-level="maximum">
+            <!-- Monitorizare activă prin rețeaua globală de datacentere -->
+            <!-- Orice utilizare neautorizată este înregistrată -->
         </div>
     </div>
     """
