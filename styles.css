@@ -1,0 +1,202 @@
+/* Base styling */
+body {
+    background-color: #0a1929;
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+}
+
+/* Console styling */
+.stTextInput input {
+    background-color: #0d2537;
+    color: #00ff9d;
+    font-family: 'Courier New', monospace;
+    border: 1px solid #1e5c85;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.stButton>button {
+    background-color: #1e5c85;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.stButton>button:hover {
+    background-color: #0d4b6f;
+}
+
+/* Console output styling */
+.console-prompt {
+    color: #00ff9d;
+    font-family: 'Courier New', monospace;
+    padding: 5px;
+    margin: 0;
+    white-space: pre-wrap;
+    font-weight: bold;
+}
+
+.console-output {
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    padding: 5px;
+    margin: 0 0 10px 0;
+    white-space: pre-wrap;
+}
+
+/* Typing effect */
+.typing-effect {
+    overflow: hidden;
+    border-right: .15em solid #00ff9d;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00ff9d }
+}
+
+/* Help and info sections */
+.help-text, .info-text {
+    background-color: #0d2537;
+    border: 1px solid #1e5c85;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.help-text h3, .info-text h3 {
+    color: #36a1ff;
+    margin-top: 0;
+}
+
+.help-text code {
+    background-color: #1a3c5a;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.circuit-output, .teleportation-output {
+    background-color: #0d2537;
+    border-left: 4px solid #00a8e8;
+    padding: 10px 15px;
+    margin: 10px 0;
+}
+
+.circuit-output h4, .teleportation-output h4 {
+    color: #00a8e8;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+/* Watermark styling */
+.watermark {
+    background-color: #0d2537;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #1e5c85;
+    opacity: 0.9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.watermark-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #00a8e8;
+    margin-bottom: 5px;
+}
+
+.copyright-symbol {
+    font-size: 16px;
+    margin-right: 4px;
+}
+
+.watermark-id {
+    font-size: 12px;
+    color: #6c8eaf;
+    margin-left: 10px;
+}
+
+.watermark-notice {
+    font-size: 11px;
+    color: #6c8eaf;
+    font-style: italic;
+}
+
+/* Footer styling */
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #051018;
+    color: #6c8eaf;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    border-top: 1px solid #1e5c85;
+}
+
+/* DNA Security visualization */
+.dna-visualization {
+    background-color: #0d2537;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid #1e5c85;
+}
+
+.dna-helix pre {
+    color: #00a8e8;
+    margin: 15px 0;
+    text-align: center;
+}
+
+/* Streamlit components override */
+div.stPlotlyChart > div {
+    border: 1px solid #1e5c85;
+    border-radius: 4px;
+    background-color: #0d2537 !important;
+}
+
+/* Authentication styling */
+div.stTextInput[data-baseweb="input"] > div {
+    background-color: #0d2537;
+}
+
+/* Light up effect for quantum operations */
+@keyframes quantum-glow {
+    0% { box-shadow: 0 0 5px #00a8e8; }
+    50% { box-shadow: 0 0 20px #00a8e8; }
+    100% { box-shadow: 0 0 5px #00a8e8; }
+}
+
+.quantum-active {
+    animation: quantum-glow 2s infinite;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .watermark, .dna-visualization {
+        padding: 10px;
+    }
+    
+    .circuit-output, .teleportation-output {
+        padding: 8px 12px;
+    }
+}
