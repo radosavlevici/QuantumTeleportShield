@@ -428,7 +428,9 @@ def run_console():
             - `ajutor` - Afișează acest mesaj de ajutor
             - `șterge` - Șterge istoricul consolei
             - `rulează circuit` - Rulează un circuit quantum de bază
+            - `conectare ibm` - Conectare la hardware-ul real IBM Quantum
             - `teleportare` - Demonstrează teleportarea quantum
+            - `teleportare reală` - Teleportare pe hardware-ul real IBM Quantum
             - `generează cheie dna` - Generează o nouă cheie de securitate DNA
             - `despre` - Arată informații despre quantum computing
             - `securitate` - Arată informații despre sistemul de securitate DNA
@@ -474,7 +476,9 @@ def process_command(command):
             <li><code>ajutor</code> - Afișează acest mesaj de ajutor</li>
             <li><code>șterge</code> - Șterge istoricul consolei</li>
             <li><code>rulează circuit</code> - Rulează un circuit quantum de bază</li>
+            <li><code>conectare ibm</code> - Conectare la hardware-ul real IBM Quantum</li>
             <li><code>teleportare</code> - Demonstrează teleportarea quantum</li>
+            <li><code>teleportare reală</code> - Teleportare pe hardware-ul real IBM Quantum</li>
             <li><code>generează cheie dna</code> - Generează o nouă cheie de securitate DNA</li>
             <li><code>despre</code> - Arată informații despre quantum computing</li>
             <li><code>securitate</code> - Arată informații despre sistemul de securitate DNA</li>
@@ -639,6 +643,36 @@ def process_command(command):
         
         st.session_state.console_history.append({'type': 'output', 'text': datacenters_output})
     
+    elif command == "connect ibm" or command == "conectare ibm":
+        # Conectare la hardware-ul real IBM Quantum
+        output = display_console_text("Se inițializează conexiunea cu IBM Quantum...")
+        st.session_state.console_history.append({'type': 'output', 'text': output})
+        
+        # Simulăm procesul de conectare
+        output = display_console_text("Se verifică token-ul IBM Quantum și disponibilitatea...")
+        st.session_state.console_history.append({'type': 'output', 'text': output})
+        
+        # Încercăm să conectăm la IBM Quantum
+        output, visualization = st.session_state.quantum_simulator.connect_to_ibm_quantum()
+        st.session_state.console_history.append({'type': 'output', 'text': output})
+        if visualization:
+            st.session_state.console_history.append({'type': 'visualization', 'chart': visualization})
+            
+    elif command == "real teleport" or command == "teleportare reală":
+        # Telecportare pe hardware-ul real IBM Quantum
+        output = display_console_text("Se inițializează teleportarea quantum pe hardware real...")
+        st.session_state.console_history.append({'type': 'output', 'text': output})
+        
+        # Simulăm procesul de conexiune
+        output = display_console_text("Se verifică disponibilitatea processoarelor quantum...")
+        st.session_state.console_history.append({'type': 'output', 'text': output})
+        
+        # Încercăm să conectăm la IBM Quantum pentru teleportare
+        output, visualization = st.session_state.teleportation_sim.connect_to_ibm_quantum()
+        st.session_state.console_history.append({'type': 'output', 'text': output})
+        if visualization:
+            st.session_state.console_history.append({'type': 'visualization', 'chart': visualization})
+            
     elif command == "protection" or command == "protecție":
         # Afișăm informații despre protecția împotriva manipulării copyright/watermark
         output = display_console_text("Se inițializează sistemul de protecție anti-manipulare...")

@@ -25,12 +25,135 @@ class QuantumSimulator:
     
     def connect_to_ibm_quantum(self):
         """
-        This is a placeholder for future IBM Quantum connection.
-        Currently disabled due to compatibility issues with Qiskit 2.0
+        Connect to IBM Quantum hardware
+        Uses IBM_QUANTUM_TOKEN for authentication
         """
-        print("Direct connection to IBM Quantum hardware is currently unavailable.")
-        print("Using high-performance local simulator with 32+ qubit capacity instead.")
-        return False
+        import os
+        
+        # Verificăm dacă avem token IBM Quantum disponibil
+        ibm_token = os.environ.get('IBM_QUANTUM_TOKEN')
+        
+        if not ibm_token:
+            result_text = """
+            <div class='warning-text'>
+            <h3>Token IBM Quantum lipsă</h3>
+            <p>Nu s-a găsit token-ul IBM Quantum. Conexiunea la hardware-ul real IBM Quantum necesită un token de acces valid.</p>
+            <p>Contactați administratorul pentru configurarea token-ului.</p>
+            </div>
+            """
+            return result_text, None
+        
+        try:
+            # Încercăm să ne conectăm la IBM Quantum
+            from qiskit_ibm_provider import IBMProvider
+            
+            # Inițializăm provider-ul cu token-ul
+            provider = IBMProvider(token=ibm_token)
+            
+            # Obținem lista de backend-uri disponibile
+            backends = provider.backends()
+            backend_names = [backend.name for backend in backends]
+            
+            # Alegem backend-ul cu cele mai multe qubits disponibile
+            max_qubits = 0
+            max_qubit_backend = None
+            
+            for backend in backends:
+                # Verificăm doar backend-urile disponibile (de simulator sau hardware)
+                if not backend.operational:
+                    continue
+                    
+                # Obținem configurația backend-ului
+                config = backend.configuration()
+                num_qubits = config.n_qubits
+                
+                if num_qubits > max_qubits:
+                    max_qubits = num_qubits
+                    max_qubit_backend = backend
+            
+            # Verificăm dacă am găsit un backend valid
+            if max_qubit_backend is None:
+                result_text = """
+                <div class='warning-text'>
+                <h3>Nu s-au găsit procesoare quantum disponibile</h3>
+                <p>Conexiunea la IBM Quantum a reușit, dar nu s-au găsit procesoare quantum operaționale.</p>
+                <p>Vă rugăm să încercați mai târziu când procesoarele quantum vor fi disponibile.</p>
+                </div>
+                """
+                return result_text, None
+            
+            # Creăm un circuit de test simplu pentru a demonstra conexiunea
+            from qiskit import QuantumCircuit
+            qc = QuantumCircuit(2, 2)
+            qc.h(0)
+            qc.cx(0, 1)
+            qc.measure([0, 1], [0, 1])
+            
+            # Rulăm pe simulator pentru a verifica circuitul
+            from qiskit_aer import AerSimulator
+            simulator = AerSimulator()
+            compiled_circuit = qc.decompose()
+            result = simulator.run(compiled_circuit, shots=1024).result()
+            counts = result.get_counts(compiled_circuit)
+            
+            # Creăm reprezentarea vizuală a circuitului
+            from qiskit.visualization import plot_histogram
+            import plotly.graph_objects as go
+            
+            # Convertim histograma într-un obiect plotly
+            labels = list(counts.keys())
+            values = list(counts.values())
+            
+            fig = go.Figure(data=[go.Bar(x=labels, y=values)])
+            fig.update_layout(
+                title="Rezultate Circuit Bell State (Simulator)",
+                xaxis_title="Stare",
+                yaxis_title="Frecvență",
+                width=700,
+                height=500,
+            )
+            
+            # Actualizăm state tracking
+            self.ibm_available = True
+            self.max_qubits = max_qubits
+            
+            # Generăm textul rezultatului
+            result_text = f"""
+            <div class='success-text'>
+            <h3>Conectare la IBM Quantum reușită!</h3>
+            <p>S-a stabilit conexiunea cu IBM Quantum. Detalii:</p>
+            
+            <ul>
+                <li><strong>Total backend-uri disponibile:</strong> {len(backends)}</li>
+                <li><strong>Backend cu cele mai multe qubits:</strong> {max_qubit_backend.name}</li>
+                <li><strong>Număr qubits disponibile:</strong> {max_qubits}</li>
+            </ul>
+            
+            <p>Backend-uri disponibile:</p>
+            <div style="max-height:150px;overflow-y:auto;margin:10px 0;padding:10px;background-color:#f5f5f5;border-radius:5px;font-family:monospace;font-size:12px;">
+                {', '.join(backend_names)}
+            </div>
+            
+            <p>A fost rulat un circuit Bell State pe simulator pentru a demonstra funcționalitatea.</p>
+            <p>Pentru a continua cu rularea pe hardware real, utilizați comanda <code>rulează circuit real</code>.</p>
+            </div>
+            """
+            
+            return result_text, fig
+            
+        except Exception as e:
+            # În caz de eroare la conectare
+            result_text = f"""
+            <div class='error-text'>
+            <h3>Eroare la conectarea cu IBM Quantum</h3>
+            <p>S-a produs o eroare în timpul conectării la serviciile IBM Quantum:</p>
+            <div style="margin:10px 0;padding:10px;background-color:#fff0f0;border-radius:5px;font-family:monospace;font-size:12px;">
+                {str(e)}
+            </div>
+            <p>Verificați dacă token-ul IBM Quantum este valid și actualizat.</p>
+            </div>
+            """
+            return result_text, None
     
     def run_basic_circuit(self):
         """Run a basic quantum circuit with common gates using optimized simulator."""
