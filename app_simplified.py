@@ -173,11 +173,10 @@ def run_console():
         **Notă importantă:** Prețurile pot fi modificate oricând, fără notificare prealabilă. 
         Suma plătită nu este rambursabilă în nicio circumstanță.
         
-        **Sistem de distribuție venituri:**
-        - 52% - Ervin Radosavlevici
-        - 48% - Dezvoltatori asociați
+        **Sistem de distribuție venituri pentru limba engleză:**
+        - 100% - Ervin Radosavlevici
         
-        Sistemul include monitorizare automată și distribuție automată a veniturilor conform procentajelor stabilite.
+        Sistemul include monitorizare automată și distribuție automată a veniturilor din licențiere limbă.
         
         **Detalii bancare:**
         - **Beneficiar:** Ervin Radosavlevici
@@ -185,6 +184,7 @@ def run_console():
         - **IBAN:** GB45 NAIA 0708 0620 7951 39
         - **Swift:** MIDLGB22
         - **Bancă intermediară:** MIDLGB22
+
         """)
     
     # Copyright and legal
