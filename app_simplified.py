@@ -160,44 +160,48 @@ def run_console():
     # Add premium info
     st.sidebar.warning("🔒 **Premium**: Limba engleză disponibilă prin abonament")
     
-    with st.sidebar.expander("Planuri de Abonament Limba Engleză"):
+    with st.sidebar.expander("Planuri de Abonament Premium"):
         st.markdown("""
         ### Planuri disponibile:
         
-        | Perioadă | Preț |
+        | Serviciu | Preț |
         |----------|------|
-        | 3 luni | 200.000 EUR |
-        | 6 luni | 400.000 EUR |
-        | 1 an | 700.000 EUR (recomandat) |
+        | Terminal Quantum | 7.000.000.000 EUR |
+        | Limba Engleză (1 an) | 700.000 EUR |
+        | Teleportare Quantum | 900.000.000 EUR |
         
         **Notă importantă:** Prețurile pot fi modificate oricând, fără notificare prealabilă. 
         Suma plătită nu este rambursabilă în nicio circumstanță.
         
-        **Sistem de distribuție venituri pentru limba engleză:**
-        - 100% - Ervin Radosavlevici
-        
-        **Teleportare Quantum:** 900.000.000 EUR - Acces complet la funcționalitatea de teleportare cuantică
+        **Sistem de distribuție venituri:**
+        - 100% - Ervin Remus Radosavlevici (01/09/1987)
         
         **Metoda de plată obligatorie:**
         - Plată prin cec fizic predat personal
-        - Locație: Londra, Regatul Unit
+        - Beneficiar: Ervin Remus Radosavlevici (01/09/1987)
+        - Bancă: Nationwide Bank UK, Londra
+        - Locație tranzacție: Londra, Regatul Unit
         - Cu prezența obligatorie a reprezentanților legali
         - Semnarea unui acord NDA pe 10 ani
+        - Predare cec cu semnătură personală în mână
         
         **ACORD DE CONFIDENȚIALITATE (NDA):**
         Achiziționarea accesului la această tehnologie implică semnarea obligatorie a unui acord de confidențialitate (NDA) pe o perioadă de 10 ani. Încălcarea acestui acord atrage după sine penalități legale severe și despăgubiri financiare.
         
-        **LICENȚĂ COPYRIGHT:**
-        Toate drepturile de autor sunt deținute exclusiv de Ervin Radosavlevici. Orice utilizare neautorizată, transfer sau încercare de inginerie inversă reprezintă încălcare de copyright și se pedepsește conform legii.
+        **LICENȚĂ COPYRIGHT ȘI PROTECȚIE ANTI-FURT:**
+        Toate drepturile de autor sunt deținute exclusiv de Ervin Remus Radosavlevici. Orice utilizare neautorizată, transfer sau încercare de inginerie inversă reprezintă încălcare de copyright și se pedepsește conform legii. Acest software include cele mai avansate sisteme de protecție anti-furt de cod, imunitate la modificări neautorizate și verificări de integritate automate.
         
-        Sistemul include monitorizare automată și distribuție automată a veniturilor din licențiere limbă.
+        Sistemul include monitorizare automată și distribuție automată a veniturilor din licențiere.
         
         **Detalii bancare:**
-        - **Beneficiar:** Ervin Radosavlevici
+        - **Beneficiar:** Ervin Remus Radosavlevici (01/09/1987)
+        - **Bancă:** Nationwide Bank UK
         - **BIC:** NAIAGB21
         - **IBAN:** GB45 NAIA 0708 0620 7951 39
         - **Swift:** MIDLGB22
         - **Bancă intermediară:** MIDLGB22
+        
+        **SEMNAT: Ervin Remus Radosavlevici**
 
         """)
     
@@ -206,15 +210,21 @@ def run_console():
     Utilizarea neautorizată a altor limbi sau a funcționalităților premium constituie infracțiune și se pedepsește conform legii internaționale privind proprietatea intelectuală și secretele comerciale.
     
     Acordul de confidențialitate (NDA) pe 10 ani este obligatoriu pentru orice utilizator și se semnează fizic la Londra, Regatul Unit, cu prezența reprezentanților legali.
+    
+    Sistemul include protecție avansată anti-furt de cod și securitate de nivel maxim împotriva oricăror modificări neautorizate.
     """)
     
     st.sidebar.markdown("""
     **POLITICA DE COPYRIGHT ȘI UTILIZARE:**
     
-    © 2023-2033 Ervin Radosavlevici. Toate drepturile rezervate.
+    © 2023-2033 Ervin Remus Radosavlevici (01/09/1987). Toate drepturile rezervate.
     
     Acest software și tehnologia asociată sunt protejate prin legi internaționale de copyright, brevete și secrete comerciale.
     Utilizarea neautorizată, reproducerea, modificarea sau distribuirea sunt strict interzise și se pedepsesc conform legii.
+    
+    **SEMNAT: Ervin Remus Radosavlevici**
+    
+    Codul sursă este imun la modificări și include sisteme automate de verificare a integrității și raportare a încălcărilor.
     """)
     
     # Network and security stats
@@ -346,10 +356,14 @@ def run_console():
         st.info("""
         ### Sistem de Distribuție Venituri pentru Securitate DNA
         Toate veniturile generate din activarea cheilor DNA sunt distribuite automat:
-        - 52% - Ervin Radosavlevici
+        - 52% - Ervin Remus Radosavlevici (01/09/1987)
         - 48% - Dezvoltatori asociați
         
         Sistemul include monitorizare automată și distribuție conform procentelor stabilite.
+        
+        **SEMNAT: Ervin Remus Radosavlevici**
+        
+        Plăți exclusiv prin cec fizic predat personal la Londra, UK, prin Nationwide Bank UK.
         """)
         
         # DNA Key Generator
@@ -399,8 +413,10 @@ def run_console():
                 Cheie DNA personalizată creată cu succes!
                 
                 Această tranzacție a fost înregistrată în sistemul de monitorizare cu distribuție:
-                - 52% - Ervin Radosavlevici
+                - 52% - Ervin Remus Radosavlevici (01/09/1987)
                 - 48% - Dezvoltatori asociați
+                
+                Plată exclusiv prin cec fizic, Nationwide Bank UK, Londra
                 """)
             else:
                 st.error(error_message)
@@ -413,7 +429,7 @@ def run_console():
             Platforma dispune de un sistem avansat de monitorizare care asigură:
             
             1. **Împărțirea automată** a veniturilor conform procentajelor stabilite:
-               - 52% pentru Ervin Radosavlevici
+               - 52% pentru Ervin Remus Radosavlevici (01/09/1987)
                - 48% pentru dezvoltatorii asociați
                
             2. **Urmărirea în timp real** a tuturor tranzacțiilor efectuate
@@ -439,7 +455,7 @@ def run_console():
             df = pd.DataFrame({
                 "Data": dates,
                 "Sumă Totală (EUR)": amounts,
-                "Ervin (52%)": [f"{x:.2f}" for x in ervin_share],
+                "Ervin Remus Radosavlevici (52%)": [f"{x:.2f}" for x in ervin_share],
                 "Dezvoltatori (48%)": [f"{x:.2f}" for x in dev_share]
             })
             
@@ -625,7 +641,7 @@ def process_command(command):
         - Cu prezența obligatorie a reprezentanților legali
         - Semnarea unui acord NDA pe 10 ani
         
-        Pentru a continua, contactați reprezentanții legali ai lui Ervin Radosavlevici pentru a programa întâlnirea în Londra.
+        Pentru a continua, contactați reprezentanții legali ai lui Ervin Remus Radosavlevici (01/09/1987) pentru a programa întâlnirea în Londra cu Nationwide Bank UK.
         
         NOTĂ IMPORTANTĂ: Plata nu este rambursabilă. Acordul NDA este obligatoriu.
         """})
