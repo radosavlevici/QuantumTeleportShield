@@ -207,8 +207,50 @@ st.set_page_config(
 )
 
 # Apply custom CSS
-with open("styles.css") as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+# Load CSS
+local_css("styles.css")
+
+# Set up default container CSS
+st.markdown("""
+<style>
+.console-output, .console-prompt, .help-text, .info-text, .warning-text, .error-text, .success-text, .circuit-output, .teleportation-output, .code-block {
+    background-color: #0d2537;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px 0;
+    font-family: 'Courier New', monospace;
+}
+.console-prompt {
+    color: #00ff9d;
+    font-weight: bold;
+}
+.console-output {
+    color: #e0e0e0;
+}
+.help-text h3, .info-text h3 {
+    color: #36a1ff;
+}
+.code-block {
+    border-left: 4px solid #00ff9d;
+}
+.code-block code {
+    color: #00ff9d;
+}
+.error-text {
+    border-left: 4px solid #ff5252;
+}
+.success-text {
+    border-left: 4px solid #4CAF50;
+}
+.warning-text {
+    border-left: 4px solid #FFC107;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # Initialize session state
 if 'authenticated' not in st.session_state:
@@ -455,9 +497,19 @@ def run_console():
             if entry['type'] == 'command':
                 st.markdown(f"<div class='console-prompt'>&gt; {entry['text']}</div>", unsafe_allow_html=True)
             elif entry['type'] == 'output':
-                st.markdown(f"<div class='console-output'>{entry['text']}</div>", unsafe_allow_html=True)
+                # Asigurăm-ne că HTML-ul este interpretat corect
+                try:
+                    if isinstance(entry['text'], str):
+                        st.markdown(f"<div class='console-output'>{entry['text']}</div>", unsafe_allow_html=True)
+                    else:
+                        st.markdown(f"<div class='console-output'>Eroare: output invalid</div>", unsafe_allow_html=True)
+                except Exception as e:
+                    st.error(f"Eroare la afișarea textului: {str(e)}")
             elif entry['type'] == 'visualization':
-                st.plotly_chart(entry['chart'], use_container_width=True)
+                try:
+                    st.plotly_chart(entry['chart'], use_container_width=True)
+                except Exception as e:
+                    st.error(f"Eroare la afișarea vizualizării: {str(e)}")
     
     # Command input
     command = st.text_input("Introduceți comanda:", key="command_input")
@@ -473,6 +525,11 @@ def run_console():
 def process_command(command):
     # Add command to history
     st.session_state.console_history.append({'type': 'command', 'text': command})
+    
+    # Clear console after too many entries to avoid performance issues
+    if len(st.session_state.console_history) > 50:
+        st.session_state.console_history = st.session_state.console_history[-30:]
+        st.session_state.console_history.insert(0, {'type': 'output', 'text': "Consola a fost curățată automat pentru performanță optimă."})
     
     # Process command
     command = command.lower().strip()

@@ -16,11 +16,18 @@ def display_console_text(text, typing_effect=False, delay=0.02):
     Returns:
         str: HTML-formatted text for display
     """
+    # Verificăm dacă textul este valid
+    if not isinstance(text, str):
+        text = str(text)
+    
+    # Sanitizăm textul pentru a preveni probleme de afișare HTML
+    text = text.replace("<", "&lt;").replace(">", "&gt;")
+    
+    # Adăugăm clasa corespunzătoare
     if typing_effect:
-        # Add span with typing effect class
-        return f"<span class='typing-effect'>{text}</span>"
+        return f"<div class='console-text typing-effect'>{text}</div>"
     else:
-        return f"<span class='console-text'>{text}</span>"
+        return f"<div class='console-text'>{text}</div>"
 
 def generate_watermark(name):
     """
