@@ -152,6 +152,24 @@ if 'show_help' not in st.session_state:
 def run_console():
     st.title("Consolă de Simulare Quantum Computing")
     
+    # Add premium terminal info
+    st.error("""
+    ### TERMINAL QUANTUM - FUNCȚIONALITATE PREMIUM
+    
+    **Preț pentru acces Terminal Quantum Complet: 7.000.000.000 EUR**
+    
+    **Metodă de plată obligatorie:**
+    - Cec fizic predat personal în Londra, Regatul Unit
+    - Beneficiar: Ervin Remus Radosavlevici (01/09/1987)
+    - Bancă: Nationwide Bank UK
+    - Cu prezența obligatorie a reprezentanților legali
+    - Semnarea unui acord NDA pe 10 ani
+    
+    **NOTĂ: Folosiți versiunea DEMO gratuită. Acces limitat.**
+    
+    SEMNAT: Ervin Remus Radosavlevici
+    """)
+    
     # Sidebar with info and controls
     st.sidebar.title("Terminal Quantum")
     st.sidebar.info("Aceasta este o consolă de simulare pentru computing quantum cu vizualizare de teleportare.")
