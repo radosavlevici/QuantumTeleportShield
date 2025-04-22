@@ -37,79 +37,95 @@ if 'show_help' not in st.session_state:
 # Display watermark and copyright
 watermark = generate_watermark("Ervin Radosavlevici")
 st.sidebar.markdown(watermark, unsafe_allow_html=True)
-st.sidebar.markdown("© 2023 Quantum Computing Simulator. All Rights Reserved.")
+st.sidebar.markdown("© 2023 Simulator Quantum Computing. Toate drepturile rezervate.")
 
 def authenticate():
-    st.title("DNA-Based Security Authentication")
-    st.markdown("Enter your DNA security pattern to access the quantum computing console.")
+    st.title("Autentificare cu Securitate Bazată pe DNA")
+    st.markdown("Introduceți modelul de securitate DNA pentru a accesa consola de computing quantum.")
+    
+    # Language notice
+    st.success("Interfața în limba română este versiunea gratuită.")
+    st.warning("🔒 **Versiune Premium**: Accesul la alte limbi necesită o plată de 200.000 EUR")
+    with st.expander("Detalii despre plată"):
+        st.markdown("""
+        Pentru a accesa versiunea în alte limbi (engleză, franceză, germană, etc.), este necesară o plată unică de 200.000 EUR.
+        
+        **Detalii bancare:**
+        - **Beneficiar:** Ervin Radosavlevici
+        - **BIC:** NAIAGB21
+        - **IBAN:** GB45 NAIA 0708 0620 7951 39
+        - **Swift:** MIDLGB22
+        
+        După efectuarea plății, veți primi acces imediat la toate limbile disponibile.
+        """)
     
     # Add tabs for login and generate key
-    login_tab, generate_tab = st.tabs(["Login", "Generate DNA Key"])
+    login_tab, generate_tab = st.tabs(["Autentificare", "Generare Cheie DNA"])
     
     with login_tab:
-        dna_key = st.text_input("DNA Security Key", type="password", key="login_key")
+        dna_key = st.text_input("Cheie de Securitate DNA", type="password", key="login_key")
         
-        if st.button("Authenticate"):
+        if st.button("Autentificare"):
             if st.session_state.security_system.authenticate(dna_key):
                 st.session_state.authenticated = True
-                st.success("Authentication successful!")
+                st.success("Autentificare reușită!")
                 time.sleep(1)
                 st.rerun()
             else:
-                st.error("Authentication failed! Invalid DNA pattern.")
+                st.error("Autentificare eșuată! Model DNA invalid.")
     
     with generate_tab:
-        st.markdown("Generate a new DNA security key or use the custom form below.")
+        st.markdown("Generați o nouă cheie de securitate DNA sau utilizați formularul de mai jos.")
         
         # Option to generate a key automatically
-        if st.button("Generate Random DNA Key"):
+        if st.button("Generează Cheie DNA Aleatorie"):
             new_key = st.session_state.security_system.generate_dna_key()
             st.code(new_key)
-            st.info("Copy this key for future logins. The default key will still work for demo purposes.")
+            st.info("Copiați această cheie pentru autentificări viitoare. Cheia implicită va funcționa în continuare în scop demonstrativ.")
         
         # Or create a custom key with user input
-        st.markdown("### Create Custom DNA Key")
-        st.markdown("DNA keys must have A, T, G, C bases and can include numbers and hyphens.")
+        st.markdown("### Creează Cheie DNA Personalizată")
+        st.markdown("Cheile DNA trebuie să conțină bazele A, T, G, C și pot include numere și cratime.")
         
         col1, col2 = st.columns(2)
         with col1:
-            prefix = st.text_input("DNA Prefix (e.g., ATGC)", max_chars=4, 
+            prefix = st.text_input("Prefix DNA (ex., ATGC)", max_chars=4, 
                                   placeholder="ATGC", key="prefix")
-            middle = st.text_input("DNA Middle (e.g., TCGA)", max_chars=4, 
+            middle = st.text_input("Mijloc DNA (ex., TCGA)", max_chars=4, 
                                   placeholder="TCGA", key="middle")
         
         with col2:
-            numeric1 = st.text_input("First Number Code (e.g., 1234)", max_chars=4, 
+            numeric1 = st.text_input("Primul Cod Numeric (ex., 1234)", max_chars=4, 
                                     placeholder="1234", key="num1")
-            numeric2 = st.text_input("Second Number Code (e.g., 5678)", max_chars=4, 
+            numeric2 = st.text_input("Al Doilea Cod Numeric (ex., 5678)", max_chars=4, 
                                     placeholder="5678", key="num2")
         
-        if st.button("Create Custom Key"):
+        if st.button("Creează Cheie Personalizată"):
             # Validate each part
             is_valid = True
             error_message = ""
             
             # Check prefix and middle for valid DNA bases
-            for part, name in [(prefix, "Prefix"), (middle, "Middle")]:
+            for part, name in [(prefix, "Prefixul"), (middle, "Mijlocul")]:
                 if not part or not all(base in "ATGC" for base in part):
                     is_valid = False
-                    error_message += f"{name} must contain only A, T, G, C bases. "
+                    error_message += f"{name} trebuie să conțină doar bazele A, T, G, C. "
             
             # Check numeric parts
-            for part, name in [(numeric1, "First number code"), (numeric2, "Second number code")]:
+            for part, name in [(numeric1, "Primul cod numeric"), (numeric2, "Al doilea cod numeric")]:
                 if not part or not part.isdigit():
                     is_valid = False
-                    error_message += f"{name} must contain only digits. "
+                    error_message += f"{name} trebuie să conțină doar cifre. "
             
             if is_valid:
                 custom_key = f"{prefix.upper()}-{numeric1}-{middle.upper()}-{numeric2}"
                 st.code(custom_key)
-                st.success("Custom DNA key created successfully! You can use this key to log in right away.")
+                st.success("Cheie DNA personalizată creată cu succes! Puteți folosi această cheie pentru autentificare imediată.")
                 
                 # Option to save as default for demo (normally would encrypt and store securely)
-                if st.button("Set as Default Key (Demo Only)"):
+                if st.button("Setează ca Cheie Implicită (Doar Demo)"):
                     st.session_state.security_system._default_key = custom_key
-                    st.success(f"Default key updated to: {custom_key}")
+                    st.success(f"Cheia implicită a fost actualizată la: {custom_key}")
             else:
                 st.error(error_message)
 
@@ -118,6 +134,21 @@ def run_console():
     st.sidebar.title("Terminal Quantum")
     st.sidebar.info("Aceasta este o consolă de simulare pentru computing quantum cu vizualizare de teleportare.")
     st.sidebar.success("Versiunea română este setată ca limbă implicită pentru acest simulator.")
+    
+    # Language premium info
+    st.sidebar.warning("🔒 **Premium**: Alte limbi disponibile pentru 200.000 EUR")
+    with st.sidebar.expander("Detalii despre plată"):
+        st.markdown("""
+        Pentru a accesa versiunea în alte limbi, este necesară o plată unică de 200.000 EUR.
+        
+        **Detalii bancare:**
+        - **Beneficiar:** Ervin Radosavlevici
+        - **BIC:** NAIAGB21
+        - **IBAN:** GB45 NAIA 0708 0620 7951 39
+        - **Swift:** MIDLGB22
+        
+        După efectuarea plății, veți primi acces imediat la toate limbile disponibile.
+        """)
     
     # Help toggle
     if st.sidebar.button("Comutare Ajutor"):
@@ -297,6 +328,17 @@ else:
 st.markdown("""
 <div class='footer'>
     <p>© 2023 Simulator Quantum Computing de Ervin Radosavlevici. Protejat prin tehnologie de securitate DNA.</p>
-    <p style="font-size:11px;color:#4a6577;">Interfața în limba română este gratuită. Pentru alte limbi, vă rugăm să contactați pentru detalii de plată.</p>
+    <p style="font-size:11px;color:#4a6577;">Interfața în limba română este gratuită. Pentru alte limbi, taxa este de 200.000 EUR.</p>
+    <details style="font-size:10px;color:#4a6577;">
+        <summary>Detalii de plată pentru alte limbi</summary>
+        <p>Pentru a accesa alte limbi, transferați suma de 200.000 EUR către:</p>
+        <ul style="list-style-type:none;">
+            <li><strong>Beneficiar:</strong> Ervin Radosavlevici</li>
+            <li><strong>BIC:</strong> NAIAGB21</li>
+            <li><strong>IBAN:</strong> GB45 NAIA 0708 0620 7951 39</li>
+            <li><strong>Swift:</strong> MIDLGB22 (Bancă intermediară)</li>
+        </ul>
+        <p><em>Notă: Vă rugăm să menționați numele dvs. complet în descrierea transferului.</em></p>
+    </details>
 </div>
 """, unsafe_allow_html=True)
