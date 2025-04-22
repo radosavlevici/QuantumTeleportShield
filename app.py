@@ -47,6 +47,19 @@ def authenticate():
     st.success("Interfața în limba română este versiunea gratuită.")
     st.warning("🔒 **Versiune Premium**: Accesul la limba engleză necesită abonament")
     
+    # Legal warning
+    st.error("""
+    **⚠️ AVERTISMENT LEGAL**
+    
+    Utilizarea neautorizată a interfaței în limba engleză sau orice încercare de a accesa alte limbi fără achiziționarea abonamentului corespunzător constituie infracțiune conform legislației în vigoare și poate atrage:
+    
+    • Răspundere penală (Art. 194 Cod Penal - acces ilegal la un sistem informatic)
+    • Daune civile de minimum 100.000 EUR per incident
+    • Urmărire penală pentru piraterie și violare a drepturilor de autor
+    
+    Toate accesările sunt monitorizate, înregistrate și pot fi folosite ca probe în instanță.
+    """)
+    
     # Create three columns for pricing tiers
     col1, col2, col3 = st.columns(3)
     
@@ -190,6 +203,14 @@ def run_console():
         
         După efectuarea plății, veți primi acces imediat la interfața în limba engleză pentru perioada aleasă.
         """)
+    
+    # Legal warning in sidebar
+    st.sidebar.markdown("""
+    <div style="background-color:#ffe6e6;padding:8px;border-left:3px solid #ff0000;font-size:11px;">
+    <strong>⚠️ AVERTISMENT LEGAL</strong><br>
+    Utilizarea neautorizată a altor limbi constituie infracțiune și se pedepsește conform legii.
+    </div>
+    """, unsafe_allow_html=True)
     
     # Help toggle
     if st.sidebar.button("Comutare Ajutor"):
@@ -365,16 +386,18 @@ if st.session_state.authenticated:
 else:
     authenticate()
 
-# Footer with copyright
+# Footer with copyright and legal notice
 st.markdown("""
 <div class='footer'>
     <p>© 2023 Simulator Quantum Computing de Ervin Radosavlevici. Protejat prin tehnologie de securitate DNA.</p>
+    
     <p style="font-size:11px;color:#4a6577;">Interfața în limba română este gratuită. Pentru limba engleză, sunt disponibile următoarele planuri:</p>
     <ul style="font-size:11px;color:#4a6577;list-style-type:none;margin-left:10px;">
         <li>• 200.000 EUR - acces pentru 3 luni</li>
         <li>• 400.000 EUR - acces pentru 6 luni</li>
         <li>• 700.000 EUR - acces pentru 1 an (recomandat)</li>
     </ul>
+    
     <details style="font-size:10px;color:#4a6577;">
         <summary>Detalii de plată pentru alte limbi</summary>
         <p>Pentru a accesa interfața în limba engleză, selectați unul dintre planurile de mai sus și transferați suma corespunzătoare către:</p>
@@ -386,5 +409,16 @@ st.markdown("""
         </ul>
         <p><em>Notă: Vă rugăm să menționați numele dvs. complet și planul ales în descrierea transferului.</em></p>
     </details>
+    
+    <div style="margin-top:15px;padding:8px;border:1px solid #ff0000;background-color:#fff0f0;font-size:10px;color:#9a0000;">
+        <p><strong>AVERTISMENT LEGAL:</strong> Utilizarea neautorizată a interfaței în limba engleză sau orice altă limbă fără achiziționarea licenței corespunzătoare constituie încălcarea drepturilor de proprietate intelectuală conform Legii nr. 8/1996 privind dreptul de autor și drepturile conexe, cu modificările și completările ulterioare.</p>
+        <p>Accesul neautorizat la interfața în alte limbi poate atrage:</p>
+        <ul style="margin-left:15px;">
+            <li>Răspundere civilă cu daune de minimum 100.000 EUR per încălcare</li>
+            <li>Răspundere penală conform Art. 194 privind accesul ilegal la un sistem informatic</li>
+            <li>Acțiuni în instanță pentru încălcarea drepturilor de autor și utilizare neautorizată</li>
+        </ul>
+        <p>Toate tentativele de acces neautorizat sunt monitorizate, înregistrate și pot fi folosite ca probe în instanță.</p>
+    </div>
 </div>
 """, unsafe_allow_html=True)
