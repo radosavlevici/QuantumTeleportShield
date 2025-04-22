@@ -104,12 +104,12 @@ def authenticate():
             if is_valid:
                 custom_key = f"{prefix.upper()}-{numeric1}-{middle.upper()}-{numeric2}"
                 st.code(custom_key)
-                st.success("Custom DNA key created successfully! Use this key to log in.")
+                st.success("Custom DNA key created successfully! You can use this key to log in right away.")
                 
                 # Option to save as default for demo (normally would encrypt and store securely)
-                if st.button("Use as Default (Demo Only)"):
+                if st.button("Set as Default Key (Demo Only)"):
                     st.session_state.security_system._default_key = custom_key
-                    st.success("Default key updated for demonstration purposes.")
+                    st.success(f"Default key updated to: {custom_key}")
             else:
                 st.error(error_message)
 
@@ -133,6 +133,7 @@ def run_console():
             - `clear` - Clear console history
             - `run circuit` - Run a basic quantum circuit
             - `teleport` - Demonstrate quantum teleportation
+            - `generate dna key` - Generate a new DNA security key
             - `about` - Show information about quantum computing
             - `security` - Show DNA security information
             - `exit` - Log out of the console
