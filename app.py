@@ -8,7 +8,7 @@ from utils import display_console_text, generate_watermark
 
 # Set page configuration
 st.set_page_config(
-    page_title="Quantum Computing Simulation Console",
+    page_title="Consolă de Simulare Quantum Computing Premium",
     page_icon="🧬",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -115,28 +115,29 @@ def authenticate():
 
 def run_console():
     # Sidebar with info and controls
-    st.sidebar.title("Quantum Terminal")
-    st.sidebar.info("This is a simulation console for quantum computing with teleportation visualization.")
+    st.sidebar.title("Terminal Quantum")
+    st.sidebar.info("Aceasta este o consolă de simulare pentru computing quantum cu vizualizare de teleportare.")
+    st.sidebar.success("Versiunea română este setată ca limbă implicită pentru acest simulator.")
     
     # Help toggle
-    if st.sidebar.button("Toggle Help"):
+    if st.sidebar.button("Comutare Ajutor"):
         st.session_state.show_help = not st.session_state.show_help
     
     # Main content area
-    st.title("Quantum Computing Simulation Console")
+    st.title("Consolă de Simulare Quantum Computing")
     
     # Display help if enabled
     if st.session_state.show_help:
-        with st.expander("Available Commands", expanded=True):
+        with st.expander("Comenzi Disponibile", expanded=True):
             st.markdown("""
-            - `help` - Display this help message
-            - `clear` - Clear console history
-            - `run circuit` - Run a basic quantum circuit
-            - `teleport` - Demonstrate quantum teleportation
-            - `generate dna key` - Generate a new DNA security key
-            - `about` - Show information about quantum computing
-            - `security` - Show DNA security information
-            - `exit` - Clear the console and reset
+            - `ajutor` - Afișează acest mesaj de ajutor
+            - `șterge` - Șterge istoricul consolei
+            - `rulează circuit` - Rulează un circuit quantum de bază
+            - `teleportare` - Demonstrează teleportarea quantum
+            - `generează cheie dna` - Generează o nouă cheie de securitate DNA
+            - `despre` - Arată informații despre quantum computing
+            - `securitate` - Arată informații despre sistemul de securitate DNA
+            - `ieșire` - Șterge consola și resetează
             """)
     
     # Console output area with scrolling
@@ -151,9 +152,9 @@ def run_console():
                 st.plotly_chart(entry['chart'], use_container_width=True)
     
     # Command input
-    command = st.text_input("Enter command:", key="command_input")
+    command = st.text_input("Introduceți comanda:", key="command_input")
     
-    if st.button("Execute") or command:
+    if st.button("Execută") or command:
         if command:
             process_command(command)
             # Clear the input field after execution
@@ -168,40 +169,40 @@ def process_command(command):
     # Process command
     command = command.lower().strip()
     
-    if command == "help":
+    if command == "help" or command == "ajutor":
         help_text = """
         <div class='help-text'>
-        <h3>Available Commands:</h3>
+        <h3>Comenzi Disponibile:</h3>
         <ul>
-            <li><code>help</code> - Display this help message</li>
-            <li><code>clear</code> - Clear console history</li>
-            <li><code>run circuit</code> - Run a basic quantum circuit</li>
-            <li><code>teleport</code> - Demonstrate quantum teleportation</li>
-            <li><code>generate dna key</code> - Generate a new DNA security key</li>
-            <li><code>about</code> - Show information about quantum computing</li>
-            <li><code>security</code> - Show DNA security information</li>
-            <li><code>exit</code> - Clear the console and reset</li>
+            <li><code>ajutor</code> - Afișează acest mesaj de ajutor</li>
+            <li><code>șterge</code> - Șterge istoricul consolei</li>
+            <li><code>rulează circuit</code> - Rulează un circuit quantum de bază</li>
+            <li><code>teleportare</code> - Demonstrează teleportarea quantum</li>
+            <li><code>generează cheie dna</code> - Generează o nouă cheie de securitate DNA</li>
+            <li><code>despre</code> - Arată informații despre quantum computing</li>
+            <li><code>securitate</code> - Arată informații despre sistemul de securitate DNA</li>
+            <li><code>ieșire</code> - Șterge consola și resetează</li>
         </ul>
         </div>
         """
         st.session_state.console_history.append({'type': 'output', 'text': help_text})
     
-    elif command == "clear":
+    elif command == "clear" or command == "șterge":
         st.session_state.console_history = []
-        st.session_state.console_history.append({'type': 'output', 'text': "Console cleared."})
+        st.session_state.console_history.append({'type': 'output', 'text': "Consola a fost ștearsă."})
     
-    elif command == "run circuit":
+    elif command == "run circuit" or command == "rulează circuit":
         output, visualization = st.session_state.quantum_simulator.run_basic_circuit()
         st.session_state.console_history.append({'type': 'output', 'text': output})
         if visualization:
             st.session_state.console_history.append({'type': 'visualization', 'chart': visualization})
     
-    elif command == "teleport":
-        output = display_console_text("Initializing quantum teleportation simulation...")
+    elif command == "teleport" or command == "teleportare":
+        output = display_console_text("Se inițializează simularea teleportării quantum...")
         st.session_state.console_history.append({'type': 'output', 'text': output})
         
         # Simulate loading
-        output = display_console_text("Setting up quantum registers...")
+        output = display_console_text("Se configurează registrele quantum...")
         st.session_state.console_history.append({'type': 'output', 'text': output})
         
         # Run the teleportation simulation
@@ -210,8 +211,8 @@ def process_command(command):
         if visualization:
             st.session_state.console_history.append({'type': 'visualization', 'chart': visualization})
             
-    elif command == "generate dna key":
-        output = display_console_text("Generating secure DNA key pattern...")
+    elif command == "generate dna key" or command == "generează cheie dna":
+        output = display_console_text("Se generează model de cheie DNA securizată...")
         st.session_state.console_history.append({'type': 'output', 'text': output})
         
         # Generate a new DNA key
@@ -220,71 +221,71 @@ def process_command(command):
         # Create decorative output
         dna_key_output = f"""
         <div class='info-text'>
-        <h3>DNA Security Key Generated</h3>
-        <p>A new DNA-based security key has been generated for you:</p>
+        <h3>Cheie DNA de Securitate Generată</h3>
+        <p>O nouă cheie de securitate bazată pe DNA a fost generată pentru tine:</p>
         <div class="code-block">
             <code>{new_key}</code>
         </div>
-        <p>This key follows the pattern of DNA base pairs combined with numeric identifiers.</p>
-        <p>You can use this key to authenticate in future sessions.</p>
+        <p>Această cheie urmează modelul perechilor de baze DNA combinat cu identificatori numerici.</p>
+        <p>Poți folosi această cheie pentru autentificare în sesiunile viitoare.</p>
         
-        <h4>Key Structure:</h4>
+        <h4>Structura Cheii:</h4>
         <ul>
-            <li><strong>First segment</strong>: DNA bases (A, T, G, C)</li>
-            <li><strong>Second segment</strong>: Numeric identifier</li>
-            <li><strong>Third segment</strong>: DNA bases (A, T, G, C)</li>
-            <li><strong>Fourth segment</strong>: Numeric identifier</li>
+            <li><strong>Primul segment</strong>: Baze DNA (A, T, G, C)</li>
+            <li><strong>Al doilea segment</strong>: Identificator numeric</li>
+            <li><strong>Al treilea segment</strong>: Baze DNA (A, T, G, C)</li>
+            <li><strong>Al patrulea segment</strong>: Identificator numeric</li>
         </ul>
         
-        <p><em>Note: For demonstration purposes, you can still use the default key: ATGC-3812-TCGA-9567</em></p>
+        <p><em>Notă: Pentru demonstrație, poți folosi în continuare cheia implicită: ATGC-3812-TCGA-9567</em></p>
         </div>
         """
         st.session_state.console_history.append({'type': 'output', 'text': dna_key_output})
     
-    elif command == "about":
+    elif command == "about" or command == "despre":
         quantum_info = """
         <div class='info-text'>
-        <h3>Quantum Computing Basics</h3>
-        <p>Quantum computing uses quantum-mechanical phenomena, such as superposition and entanglement, to perform computation.</p>
+        <h3>Elemente de Bază în Quantum Computing</h3>
+        <p>Quantum computing folosește fenomene cuantice, precum superpoziția și entanglement-ul, pentru a efectua calcule.</p>
         
-        <h4>Key Concepts:</h4>
+        <h4>Concepte Cheie:</h4>
         <ul>
-            <li><strong>Qubit</strong>: The quantum equivalent of a bit, capable of existing in multiple states simultaneously.</li>
-            <li><strong>Superposition</strong>: The ability of a quantum system to be in multiple states at once.</li>
-            <li><strong>Entanglement</strong>: A quantum phenomenon where pairs of particles become connected and the state of one instantly influences the other.</li>
-            <li><strong>Quantum Teleportation</strong>: A process that transmits the quantum state of a particle over a distance using entanglement.</li>
+            <li><strong>Qubit</strong>: Echivalentul cuantic al unui bit, capabil să existe în mai multe stări simultan.</li>
+            <li><strong>Superpoziție</strong>: Abilitatea unui sistem cuantic de a fi în mai multe stări în același timp.</li>
+            <li><strong>Entanglement</strong>: Un fenomen cuantic în care perechi de particule devin conectate și starea uneia influențează instantaneu pe cealaltă.</li>
+            <li><strong>Teleportare Cuantică</strong>: Un proces care transmite starea cuantică a unei particule pe o distanță folosind entanglement-ul.</li>
         </ul>
         
-        <p>This simulator demonstrates these concepts in a simplified way for educational purposes.</p>
+        <p>Acest simulator demonstrează aceste concepte într-un mod simplificat, în scopuri educaționale.</p>
         </div>
         """
         st.session_state.console_history.append({'type': 'output', 'text': quantum_info})
     
-    elif command == "security":
+    elif command == "security" or command == "securitate":
         security_info = """
         <div class='info-text'>
-        <h3>DNA-Based Security System</h3>
-        <p>This system uses principles inspired by DNA sequences to create secure authentication.</p>
+        <h3>Sistem de Securitate Bazat pe DNA</h3>
+        <p>Acest sistem utilizează principii inspirate din secvențele DNA pentru a crea autentificare securizată.</p>
         
-        <h4>Features:</h4>
+        <h4>Caracteristici:</h4>
         <ul>
-            <li><strong>Sequence Patterns</strong>: Similar to DNA base pairs, the security system uses complex pattern matching.</li>
-            <li><strong>Mutation Resistance</strong>: The system can detect and prevent unauthorized access attempts.</li>
-            <li><strong>Cryptographic Integration</strong>: DNA patterns are combined with modern cryptography.</li>
+            <li><strong>Modele de Secvență</strong>: Similar perechilor de baze DNA, sistemul de securitate folosește potrivirea complexă de modele.</li>
+            <li><strong>Rezistență la Mutații</strong>: Sistemul poate detecta și preveni încercările neautorizate de acces.</li>
+            <li><strong>Integrare Criptografică</strong>: Modelele DNA sunt combinate cu criptografia modernă.</li>
         </ul>
         
-        <p>The DNA-based security approach offers a metaphorical representation of biological security mechanisms.</p>
+        <p>Abordarea securității bazată pe DNA oferă o reprezentare metaforică a mecanismelor biologice de securitate.</p>
         </div>
         """
         st.session_state.console_history.append({'type': 'output', 'text': security_info})
     
-    elif command == "exit":
+    elif command == "exit" or command == "ieșire":
         # Just clear the console instead of logging out
         st.session_state.console_history = []
-        st.session_state.console_history.append({'type': 'output', 'text': "Console cleared. Type 'help' for available commands."})
+        st.session_state.console_history.append({'type': 'output', 'text': "Consola a fost ștearsă. Tastează 'ajutor' pentru comenzile disponibile."})
     
     else:
-        st.session_state.console_history.append({'type': 'output', 'text': f"Command not recognized: '{command}'. Type 'help' for available commands."})
+        st.session_state.console_history.append({'type': 'output', 'text': f"Comandă nerecunoscută: '{command}'. Tastează 'ajutor' pentru comenzile disponibile."})
 
 # Main app flow
 if st.session_state.authenticated:
@@ -295,6 +296,7 @@ else:
 # Footer with copyright
 st.markdown("""
 <div class='footer'>
-    <p>© 2023 Quantum Computing Simulator by Ervin Radosavlevici. Protected by DNA-based security technology.</p>
+    <p>© 2023 Simulator Quantum Computing de Ervin Radosavlevici. Protejat prin tehnologie de securitate DNA.</p>
+    <p style="font-size:11px;color:#4a6577;">Interfața în limba română este gratuită. Pentru alte limbi, vă rugăm să contactați pentru detalii de plată.</p>
 </div>
 """, unsafe_allow_html=True)
