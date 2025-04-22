@@ -329,6 +329,7 @@ def run_console():
             - `generează cheie dna` - Generează o nouă cheie de securitate DNA
             - `despre` - Arată informații despre quantum computing
             - `securitate` - Arată informații despre sistemul de securitate DNA
+            - `datacentere` - Afișează și conectează la rețeaua globală de datacentere
             - `ieșire` - Șterge consola și resetează
             """)
     
@@ -373,6 +374,7 @@ def process_command(command):
             <li><code>generează cheie dna</code> - Generează o nouă cheie de securitate DNA</li>
             <li><code>despre</code> - Arată informații despre quantum computing</li>
             <li><code>securitate</code> - Arată informații despre sistemul de securitate DNA</li>
+            <li><code>datacentere</code> - Afișează și conectează la rețeaua globală de datacentere</li>
             <li><code>ieșire</code> - Șterge consola și resetează</li>
         </ul>
         </div>
@@ -470,6 +472,67 @@ def process_command(command):
         </div>
         """
         st.session_state.console_history.append({'type': 'output', 'text': security_info})
+    
+    elif command == "datacenter" or command == "datacentere":
+        # Afișăm informații despre rețeaua de datacentere globale
+        output = display_console_text("Se conectează la rețeaua globală de datacentere...")
+        st.session_state.console_history.append({'type': 'output', 'text': output})
+        
+        # Simulăm procesul de conectare
+        output = display_console_text("Se stabilește conexiunea securizată...")
+        st.session_state.console_history.append({'type': 'output', 'text': output})
+        
+        # Obținem status-ul curent al datacentrelor
+        status = st.session_state.global_network.check_connection_status()
+        
+        # Creăm un output detaliat cu starea datacentrelor
+        datacenters_output = f"""
+        <div class='info-text'>
+        <h3>Starea Rețelei Globale de Datacentere</h3>
+        <p>Conexiune securizată stabilită cu rețeaua globală de datacentere:</p>
+        
+        <div style="margin-top:10px;margin-bottom:15px;">
+            <span style="color:green;font-weight:bold;">✓</span> Conexiune activă
+            <span style="float:right;">Ultima sincronizare: {status['last_sync']}</span>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:8px;margin-bottom:15px;">
+        """
+        
+        # Adăugăm fiecare datacenter în grid
+        for dc_id, dc_info in status['datacenters'].items():
+            status_color = "green" if dc_info['status'] == "online" else "orange"
+            status_icon = "✓" if dc_info['status'] == "online" else "⟳"
+            
+            datacenters_output += f"""
+            <div style="border:1px solid #ddd;border-radius:4px;padding:8px;background-color:#f8f8f8;">
+                <div style="font-weight:bold;border-bottom:1px solid #eee;padding-bottom:4px;margin-bottom:4px;">
+                    {dc_id}
+                </div>
+                <div style="font-size:12px;color:#666;margin-bottom:4px;">
+                    {dc_info['location']}
+                </div>
+                <div style="color:{status_color};font-size:12px;">
+                    {status_icon} {dc_info['status'].upper()}
+                </div>
+            </div>
+            """
+        
+        datacenters_output += """
+        </div>
+        
+        <div style="background-color:#f0f9ff;border-left:3px solid #0078d4;padding:10px;margin-top:15px;">
+            <p><strong>Protecție globală activă</strong></p>
+            <p style="font-size:12px;">Toate datele și operațiunile sunt protejate și sincronizate în timp real cu rețeaua globală de datacentere. Acest lucru asigură protecție împotriva accesului neautorizat și maximizează securitatea sistemului.</p>
+        </div>
+        
+        <div style="text-align:center;margin-top:15px;font-size:11px;color:#666;">
+            Semnătură de securitate: <code>{status['signature'][:16]}...</code>
+        </div>
+        </div>
+        """
+        
+        st.session_state.console_history.append({'type': 'output', 'text': datacenters_output})
     
     elif command == "exit" or command == "ieșire":
         # Just clear the console instead of logging out
