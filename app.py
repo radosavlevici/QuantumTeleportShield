@@ -5,6 +5,16 @@ import random
 import datetime
 import hashlib
 import json
+import numpy as np
+try:
+    import qiskit
+    import qiskit_aer
+    import qiskit_ibm_provider
+    import plotly.graph_objects as go
+    import plotly.express as px
+except ImportError:
+    pass  # Vom afișa eroarea mai târziu dacă este necesar
+
 from quantum_simulator import QuantumSimulator
 from quantum_teleportation import QuantumTeleportation
 from dna_security import DNASecuritySystem
