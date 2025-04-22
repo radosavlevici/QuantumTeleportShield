@@ -397,13 +397,22 @@ def run_console():
         | 6 luni | 400.000 EUR |
         | 1 an | 700.000 EUR (recomandat) |
         
+        **Notă importantă:** Prețurile pot fi modificate oricând, fără notificare prealabilă. Suma plătită nu este rambursabilă în nicio circumstanță. După modificarea prețurilor, veți pierde accesul și va fi necesară o nouă plată conform tarifelor actualizate.
+        
         **Detalii bancare:**
         - **Beneficiar:** Ervin Radosavlevici
         - **BIC:** NAIAGB21
         - **IBAN:** GB45 NAIA 0708 0620 7951 39
         - **Swift:** MIDLGB22
         
-        După efectuarea plății, veți primi acces imediat la interfața în limba engleză pentru perioada aleasă.
+        **Termeni legali:**
+        - Prin efectuarea plății, confirmați că ați citit și ați acceptat toți termenii și condițiile.
+        - Proprietarul își rezervă dreptul exclusiv de a modifica tarifele în orice moment.
+        - Nicio plată nu va fi rambursată, indiferent de circumstanțe.
+        - Utilizarea necorespunzătoare a accesului la limba engleză va duce la pierderea imediată a accesului, fără rambursare.
+        - Orice tentativă de eludare a sistemului de protecție a limbii va fi urmărită legal.
+        
+        După efectuarea plății, veți primi acces la interfața în limba engleză pentru perioada aleasă, conform deciziei proprietarului.
         """)
     
     # Legal warning in sidebar
@@ -798,6 +807,10 @@ with st.expander("Politică de Confidențialitate și Termeni de Utilizare"):
         <p>3.1. Limba română este oferită gratuit ca interfață implicită.</p>
         <p>3.2. Accesul la limba engleză și oricare alte limbi este disponibil exclusiv prin achiziționarea unui abonament plătit, conform tarifelor afișate.</p>
         <p>3.3. Orice încercare de a accesa o limbă pentru care nu a fost achiziționată o licență corespunzătoare constituie o încălcare gravă a acestor termeni.</p>
+        <p>3.4. Proprietarul își rezervă dreptul exclusiv de a modifica tarifele pentru acces la orice limbă, în orice moment, fără notificare prealabilă sau justificare.</p>
+        <p>3.5. Plățile efectuate nu sunt rambursabile sub nicio circumstanță, inclusiv, dar nelimitat la: modificarea tarifelor, imposibilitatea utilizării, erori sau probleme tehnice, încetarea activității platformei sau orice alte motive.</p>
+        <p>3.6. În cazul modificării tarifelor, utilizatorul va pierde automat accesul la limba respectivă și va fi necesară efectuarea unei noi plăți conform noilor tarife pentru a redobândi accesul.</p>
+        <p>3.7. Utilizatorul acceptă în mod expres că toate deciziile privind tarifele, modificarea acestora și condițiile de acces sunt la discreția absolută a Proprietarului, fără posibilitatea contestării acestora.</p>
         
         <h4>4. RĂSPUNDERE LEGALĂ</h4>
         <p>4.1. Orice încălcare a acestor termeni poate atrage răspundere civilă și/sau penală.</p>
@@ -846,6 +859,10 @@ st.markdown("""
             <li><strong>Swift:</strong> MIDLGB22 (Bancă intermediară)</li>
         </ul>
         <p><em>Notă: Vă rugăm să menționați numele dvs. complet și planul ales în descrierea transferului.</em></p>
+        
+        <div style="margin-top:8px;border-top:1px dotted #ccc;padding-top:8px;">
+            <p><strong>NOTĂ PRIVIND TARIFELE:</strong> Tarifele pot fi modificate oricând, fără preaviz, conform deciziei exclusive a proprietarului. În cazul modificării tarifelor, accesul va fi anulat și va fi necesară o nouă plată conform noilor tarife. NICIO PLATĂ NU VA FI RAMBURSATĂ sub nicio circumstanță.</p>
+        </div>
     </details>
     
     <div style="margin-top:15px;padding:8px;border:1px solid #ff0000;background-color:#fff0f0;font-size:10px;color:#9a0000;">
