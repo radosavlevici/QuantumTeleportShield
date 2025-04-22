@@ -176,6 +176,20 @@ def run_console():
         **Sistem de distribuție venituri pentru limba engleză:**
         - 100% - Ervin Radosavlevici
         
+        **Teleportare Quantum:** 900.000.000 EUR - Acces complet la funcționalitatea de teleportare cuantică
+        
+        **Metoda de plată obligatorie:**
+        - Plată prin cec fizic predat personal
+        - Locație: Londra, Regatul Unit
+        - Cu prezența obligatorie a reprezentanților legali
+        - Semnarea unui acord NDA pe 10 ani
+        
+        **ACORD DE CONFIDENȚIALITATE (NDA):**
+        Achiziționarea accesului la această tehnologie implică semnarea obligatorie a unui acord de confidențialitate (NDA) pe o perioadă de 10 ani. Încălcarea acestui acord atrage după sine penalități legale severe și despăgubiri financiare.
+        
+        **LICENȚĂ COPYRIGHT:**
+        Toate drepturile de autor sunt deținute exclusiv de Ervin Radosavlevici. Orice utilizare neautorizată, transfer sau încercare de inginerie inversă reprezintă încălcare de copyright și se pedepsește conform legii.
+        
         Sistemul include monitorizare automată și distribuție automată a veniturilor din licențiere limbă.
         
         **Detalii bancare:**
@@ -189,9 +203,19 @@ def run_console():
     
     # Copyright and legal
     st.sidebar.error("""⚠️ **AVERTISMENT LEGAL**
-    Utilizarea neautorizată a altor limbi constituie infracțiune și se pedepsește conform legii.
+    Utilizarea neautorizată a altor limbi sau a funcționalităților premium constituie infracțiune și se pedepsește conform legii internaționale privind proprietatea intelectuală și secretele comerciale.
+    
+    Acordul de confidențialitate (NDA) pe 10 ani este obligatoriu pentru orice utilizator și se semnează fizic la Londra, Regatul Unit, cu prezența reprezentanților legali.
     """)
-    st.sidebar.markdown("© 2023 Simulator Quantum Computing. Toate drepturile rezervate.")
+    
+    st.sidebar.markdown("""
+    **POLITICA DE COPYRIGHT ȘI UTILIZARE:**
+    
+    © 2023-2033 Ervin Radosavlevici. Toate drepturile rezervate.
+    
+    Acest software și tehnologia asociată sunt protejate prin legi internaționale de copyright, brevete și secrete comerciale.
+    Utilizarea neautorizată, reproducerea, modificarea sau distribuirea sunt strict interzise și se pedepsesc conform legii.
+    """)
     
     # Network and security stats
     with st.sidebar.expander("Rețea Datacentere Globale"):
@@ -279,6 +303,19 @@ def run_console():
     with tab2:
         st.header("Teleportare Quantum")
         st.write("Demonstrația teleportării cuantice folosește qubiti entangled pentru a transmite informația cuantică.")
+        
+        st.warning("""
+        ### FUNCȚIONALITATE PREMIUM
+        
+        **Preț pentru acces teleportare quantum: 900.000.000 EUR**
+        
+        **Metoda de plată obligatorie:**
+        - Cec fizic predat personal în Londra, Regatul Unit
+        - Cu prezența obligatorie a reprezentanților legali
+        - Semnarea unui acord NDA pe 10 ani
+        
+        **Fără excepții. Fără rambursări. Fără negocieri.**
+        """)
         
         if st.button("Simulează Teleportare Locală"):
             with st.spinner("Se execută simularea teleportării..."):
@@ -576,17 +613,54 @@ def process_command(command):
             
     elif command == "real teleport" or command == "teleportare reală":
         # Teleportare pe hardware-ul real IBM Quantum
-        st.session_state.console_history.append({'type': 'output', 'text': "Se inițializează teleportarea quantum pe hardware real..."})
-        st.session_state.console_history.append({'type': 'output', 'text': "Se verifică disponibilitatea processoarelor quantum..."})
+        st.session_state.console_history.append({'type': 'output', 'text': """
+        FUNCȚIONALITATE PREMIUM: TELEPORTARE QUANTUM
         
-        # Încercăm să conectăm la IBM Quantum pentru teleportare
+        Accesul la teleportarea quantum pe hardware real este disponibil doar cu abonament premium.
+        
+        Preț: 900.000.000 EUR
+        
+        Metoda de plată obligatorie:
+        - Cec fizic predat personal în Londra, Regatul Unit
+        - Cu prezența obligatorie a reprezentanților legali
+        - Semnarea unui acord NDA pe 10 ani
+        
+        Pentru a continua, contactați reprezentanții legali ai lui Ervin Radosavlevici pentru a programa întâlnirea în Londra.
+        
+        NOTĂ IMPORTANTĂ: Plata nu este rambursabilă. Acordul NDA este obligatoriu.
+        """})
+        
+        # Afișăm și o imagine blocată
         try:
-            output, visualization = st.session_state.teleportation_sim.connect_to_ibm_quantum()
-            st.session_state.console_history.append({'type': 'output', 'text': output})
-            if visualization:
-                st.session_state.console_history.append({'type': 'image', 'chart': visualization})
-        except Exception as e:
-            st.session_state.console_history.append({'type': 'output', 'text': f"Eroare la teleportarea reală: {str(e)}"})
+            import plotly.graph_objects as go
+            
+            # Creăm un grafic care arată că funcționalitatea este blocată
+            fig = go.Figure()
+            
+            # Adăugăm text de avertizare
+            fig.add_annotation(
+                text="ACCESUL ESTE BLOCAT - FUNCȚIONALITATE PREMIUM",
+                x=0.5,
+                y=0.5,
+                xref="paper",
+                yref="paper",
+                showarrow=False,
+                font=dict(color="red", size=20),
+                align="center",
+            )
+            
+            fig.update_layout(
+                title="Teleportare Quantum - Acces Restricționat",
+                height=300,
+                plot_bgcolor="#f0f0f0",
+                xaxis=dict(showticklabels=False, showgrid=False),
+                yaxis=dict(showticklabels=False, showgrid=False)
+            )
+            
+            st.session_state.console_history.append({'type': 'image', 'chart': fig})
+        except Exception:
+            # Dacă nu putem crea graficul, continuăm fără el
+            pass
             
     elif command == "protection" or command == "protecție":
         # Afișăm informații despre protecția împotriva manipulării copyright/watermark
