@@ -54,7 +54,7 @@ def authenticate():
                 st.session_state.authenticated = True
                 st.success("Authentication successful!")
                 time.sleep(1)
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("Authentication failed! Invalid DNA pattern.")
     
@@ -159,7 +159,7 @@ def run_console():
             # Clear the input field after execution
             st.session_state.current_command = ""
             # Rerun to update the UI
-            st.experimental_rerun()
+            st.rerun()
 
 def process_command(command):
     # Add command to history
