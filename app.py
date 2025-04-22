@@ -43,16 +43,75 @@ def authenticate():
     st.title("DNA-Based Security Authentication")
     st.markdown("Enter your DNA security pattern to access the quantum computing console.")
     
-    dna_key = st.text_input("DNA Security Key", type="password")
+    # Add tabs for login and generate key
+    login_tab, generate_tab = st.tabs(["Login", "Generate DNA Key"])
     
-    if st.button("Authenticate"):
-        if st.session_state.security_system.authenticate(dna_key):
-            st.session_state.authenticated = True
-            st.success("Authentication successful!")
-            time.sleep(1)
-            st.experimental_rerun()
-        else:
-            st.error("Authentication failed! Invalid DNA pattern.")
+    with login_tab:
+        dna_key = st.text_input("DNA Security Key", type="password", key="login_key")
+        
+        if st.button("Authenticate"):
+            if st.session_state.security_system.authenticate(dna_key):
+                st.session_state.authenticated = True
+                st.success("Authentication successful!")
+                time.sleep(1)
+                st.experimental_rerun()
+            else:
+                st.error("Authentication failed! Invalid DNA pattern.")
+    
+    with generate_tab:
+        st.markdown("Generate a new DNA security key or use the custom form below.")
+        
+        # Option to generate a key automatically
+        if st.button("Generate Random DNA Key"):
+            new_key = st.session_state.security_system.generate_dna_key()
+            st.code(new_key)
+            st.info("Copy this key for future logins. The default key will still work for demo purposes.")
+        
+        # Or create a custom key with user input
+        st.markdown("### Create Custom DNA Key")
+        st.markdown("DNA keys must have A, T, G, C bases and can include numbers and hyphens.")
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            prefix = st.text_input("DNA Prefix (e.g., ATGC)", max_chars=4, 
+                                  placeholder="ATGC", key="prefix")
+            middle = st.text_input("DNA Middle (e.g., TCGA)", max_chars=4, 
+                                  placeholder="TCGA", key="middle")
+        
+        with col2:
+            numeric1 = st.text_input("First Number Code (e.g., 1234)", max_chars=4, 
+                                    placeholder="1234", key="num1")
+            numeric2 = st.text_input("Second Number Code (e.g., 5678)", max_chars=4, 
+                                    placeholder="5678", key="num2")
+        
+        if st.button("Create Custom Key"):
+            # Validate each part
+            is_valid = True
+            error_message = ""
+            
+            # Check prefix and middle for valid DNA bases
+            for part, name in [(prefix, "Prefix"), (middle, "Middle")]:
+                if not part or not all(base in "ATGC" for base in part):
+                    is_valid = False
+                    error_message += f"{name} must contain only A, T, G, C bases. "
+            
+            # Check numeric parts
+            for part, name in [(numeric1, "First number code"), (numeric2, "Second number code")]:
+                if not part or not part.isdigit():
+                    is_valid = False
+                    error_message += f"{name} must contain only digits. "
+            
+            if is_valid:
+                custom_key = f"{prefix.upper()}-{numeric1}-{middle.upper()}-{numeric2}"
+                st.code(custom_key)
+                st.success("Custom DNA key created successfully! Use this key to log in.")
+                
+                # Option to save as default for demo (normally would encrypt and store securely)
+                if st.button("Use as Default (Demo Only)"):
+                    st.session_state.security_system._default_key = custom_key
+                    st.success("Default key updated for demonstration purposes.")
+            else:
+                st.error(error_message)
 
 def run_console():
     # Sidebar with info and controls
@@ -117,6 +176,7 @@ def process_command(command):
             <li><code>clear</code> - Clear console history</li>
             <li><code>run circuit</code> - Run a basic quantum circuit</li>
             <li><code>teleport</code> - Demonstrate quantum teleportation</li>
+            <li><code>generate dna key</code> - Generate a new DNA security key</li>
             <li><code>about</code> - Show information about quantum computing</li>
             <li><code>security</code> - Show DNA security information</li>
             <li><code>exit</code> - Log out of the console</li>
@@ -148,6 +208,37 @@ def process_command(command):
         st.session_state.console_history.append({'type': 'output', 'text': output})
         if visualization:
             st.session_state.console_history.append({'type': 'visualization', 'chart': visualization})
+            
+    elif command == "generate dna key":
+        output = display_console_text("Generating secure DNA key pattern...")
+        st.session_state.console_history.append({'type': 'output', 'text': output})
+        
+        # Generate a new DNA key
+        new_key = st.session_state.security_system.generate_dna_key()
+        
+        # Create decorative output
+        dna_key_output = f"""
+        <div class='info-text'>
+        <h3>DNA Security Key Generated</h3>
+        <p>A new DNA-based security key has been generated for you:</p>
+        <div class="code-block">
+            <code>{new_key}</code>
+        </div>
+        <p>This key follows the pattern of DNA base pairs combined with numeric identifiers.</p>
+        <p>You can use this key to authenticate in future sessions.</p>
+        
+        <h4>Key Structure:</h4>
+        <ul>
+            <li><strong>First segment</strong>: DNA bases (A, T, G, C)</li>
+            <li><strong>Second segment</strong>: Numeric identifier</li>
+            <li><strong>Third segment</strong>: DNA bases (A, T, G, C)</li>
+            <li><strong>Fourth segment</strong>: Numeric identifier</li>
+        </ul>
+        
+        <p><em>Note: For demonstration purposes, you can still use the default key: ATGC-3812-TCGA-9567</em></p>
+        </div>
+        """
+        st.session_state.console_history.append({'type': 'output', 'text': dna_key_output})
     
     elif command == "about":
         quantum_info = """

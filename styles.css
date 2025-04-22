@@ -84,10 +84,28 @@ body {
     margin-top: 0;
 }
 
-.help-text code {
+.help-text code, .code-block code {
     background-color: #1a3c5a;
     padding: 2px 4px;
     border-radius: 3px;
+}
+
+.code-block {
+    background-color: #0f2942;
+    border: 1px solid #1e5c85;
+    border-left: 4px solid #00ff9d;
+    padding: 12px;
+    margin: 15px 0;
+    font-family: 'Courier New', monospace;
+    overflow-x: auto;
+    border-radius: 3px;
+}
+
+.code-block code {
+    color: #00ff9d;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .circuit-output, .teleportation-output {
