@@ -2,7 +2,7 @@ modules = ["python-3.11"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["catch2", "fmt", "muparserx", "nlohmann_json", "spdlog"]
+packages = ["catch2", "fmt", "glibcLocales", "muparserx", "nlohmann_json", "spdlog"]
 
 [workflows]
 runButton = "Project"
@@ -14,26 +14,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Quantum Simplified"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
 args = "Quantum Console"
-
-[[workflows.workflow]]
-name = "Quantum Simplified"
-author = "agent"
-
-[workflows.workflow.metadata]
-agentRequireRestartOnSave = false
-
-[[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "streamlit run app_simplified.py --server.port=5000"
-waitForPort = 5000
 
 [[workflows.workflow]]
 name = "Quantum Console"

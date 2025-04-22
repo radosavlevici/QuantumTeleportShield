@@ -27,6 +27,7 @@ class QuantumSimulator:
         """
         Connect to IBM Quantum hardware
         Uses IBM_QUANTUM_TOKEN for authentication
+        Provides live access to real quantum hardware
         """
         import os
         import time
