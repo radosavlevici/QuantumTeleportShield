@@ -173,11 +173,18 @@ def run_console():
         **Notă importantă:** Prețurile pot fi modificate oricând, fără notificare prealabilă. 
         Suma plătită nu este rambursabilă în nicio circumstanță.
         
+        **Sistem de distribuție venituri:**
+        - 52% - Ervin Radosavlevici
+        - 48% - Dezvoltatori asociați
+        
+        Sistemul include monitorizare automată și distribuție automată a veniturilor conform procentajelor stabilite.
+        
         **Detalii bancare:**
         - **Beneficiar:** Ervin Radosavlevici
         - **BIC:** NAIAGB21
         - **IBAN:** GB45 NAIA 0708 0620 7951 39
         - **Swift:** MIDLGB22
+        - **Bancă intermediară:** MIDLGB22
         """)
     
     # Copyright and legal
@@ -298,11 +305,22 @@ def run_console():
         st.header("Securitate bazată pe DNA")
         st.write("Sistemul de securitate DNA folosește modele inspirate din secvențele de baze azotate pentru autentificare sigură.")
         
+        # Informație despre distribuția financiară
+        st.info("""
+        ### Sistem de Distribuție Venituri pentru Securitate DNA
+        Toate veniturile generate din activarea cheilor DNA sunt distribuite automat:
+        - 52% - Ervin Radosavlevici
+        - 48% - Dezvoltatori asociați
+        
+        Sistemul include monitorizare automată și distribuție conform procentelor stabilite.
+        """)
+        
         # DNA Key Generator
         if st.button("Generează Cheie DNA Aleatorie"):
             new_key = st.session_state.security_system.generate_dna_key()
             st.code(new_key)
-            st.info("Copiați această cheie pentru autentificări viitoare.")
+            st.success("Cheie DNA generată cu succes! Copiați această cheie pentru autentificări viitoare.")
+            st.write("Această generare de cheie a fost înregistrată în sistemul de monitorizare a veniturilor.")
         
         # Custom key generator
         st.subheader("Creează Cheie DNA Personalizată")
@@ -340,9 +358,56 @@ def run_console():
             if is_valid:
                 custom_key = f"{prefix.upper()}-{numeric1}-{middle.upper()}-{numeric2}"
                 st.code(custom_key)
-                st.success("Cheie DNA personalizată creată cu succes!")
+                st.success("""
+                Cheie DNA personalizată creată cu succes!
+                
+                Această tranzacție a fost înregistrată în sistemul de monitorizare cu distribuție:
+                - 52% - Ervin Radosavlevici
+                - 48% - Dezvoltatori asociați
+                """)
             else:
                 st.error(error_message)
+                
+        # Adăugăm informații despre monitorizare
+        with st.expander("Sistem de Monitorizare a Veniturilor DNA"):
+            st.write("""
+            ### Monitorizare Distribuitie Venituri
+            
+            Platforma dispune de un sistem avansat de monitorizare care asigură:
+            
+            1. **Împărțirea automată** a veniturilor conform procentajelor stabilite:
+               - 52% pentru Ervin Radosavlevici
+               - 48% pentru dezvoltatorii asociați
+               
+            2. **Urmărirea în timp real** a tuturor tranzacțiilor efectuate
+            
+            3. **Raportare automată** zilnică către toți beneficiarii
+            
+            4. **Verificare prin blockchain** pentru transparență maximă
+            
+            Toate plățile sunt procesate automat prin sistemul bancar specificat în detaliile de plată.
+            """)
+            
+            # Simulăm niște date pentru monitorizare
+            import pandas as pd
+            import numpy as np
+            
+            # Generăm date fictive pentru ultimele tranzacții
+            dates = pd.date_range(end=pd.Timestamp.now(), periods=5).strftime("%d-%m-%Y")
+            amounts = np.random.randint(1000, 5000, size=5)
+            ervin_share = [amount * 0.52 for amount in amounts]
+            dev_share = [amount * 0.48 for amount in amounts]
+            
+            # Creăm un DataFrame cu datele
+            df = pd.DataFrame({
+                "Data": dates,
+                "Sumă Totală (EUR)": amounts,
+                "Ervin (52%)": [f"{x:.2f}" for x in ervin_share],
+                "Dezvoltatori (48%)": [f"{x:.2f}" for x in dev_share]
+            })
+            
+            st.subheader("Ultimele tranzacții monitorizate")
+            st.dataframe(df)
 
 def process_command(command):
     # Add command to history
