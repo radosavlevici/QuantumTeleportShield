@@ -28,6 +28,7 @@ class QuantumTeleportation:
         Uses IBM_QUANTUM_TOKEN for authentication
         """
         import os
+        import time
         
         # Verificăm dacă avem token IBM Quantum disponibil
         ibm_token = os.environ.get('IBM_QUANTUM_TOKEN')
@@ -37,21 +38,60 @@ class QuantumTeleportation:
             <div class='warning-text'>
             <h3>Token IBM Quantum lipsă</h3>
             <p>Nu s-a găsit token-ul IBM Quantum. Conexiunea la hardware-ul real IBM Quantum necesită un token de acces valid.</p>
-            <p>Contactați administratorul pentru configurarea token-ului.</p>
+            <p>Pentru a obține un token, creați un cont la https://quantum-computing.ibm.com/ și accesați secțiunea "My Account".</p>
+            <p>După obținerea token-ului, adăugați-l în setările secretelor Replit și reporniți aplicația.</p>
             </div>
             """
             return result_text, None
         
         try:
-            # Încercăm să ne conectăm la IBM Quantum
-            from qiskit_ibm_provider import IBMProvider
+            # Afișăm un mesaj pentru utilizator despre inițializarea procesului
+            result_text = """
+            <div class='info-text'>
+            <h3>Se inițializează conexiunea cu IBM Quantum pentru teleportare...</h3>
+            <p>Se verifică token-ul și se obține lista de procesoare quantum disponibile.</p>
+            <p>Acest proces poate dura câteva momente. Vă rugăm să așteptați.</p>
+            </div>
+            """
             
-            # Inițializăm provider-ul cu token-ul
-            provider = IBMProvider(token=ibm_token)
+            # Importăm modulele necesare
+            try:
+                from qiskit_ibm_provider import IBMProvider
+            except ImportError as e:
+                return f"""
+                <div class='error-text'>
+                <h3>Eroare la importarea modulelor IBM Quantum</h3>
+                <p>Nu s-a putut importa modulul qiskit_ibm_provider:</p>
+                <div style="margin:10px 0;padding:10px;background-color:#fff0f0;border-radius:5px;font-family:monospace;font-size:12px;">
+                    {str(e)}
+                </div>
+                <p>Verificați dacă toate pachetele necesare sunt instalate corect.</p>
+                </div>
+                """, None
             
-            # Obținem lista de backend-uri disponibile
-            backends = provider.backends()
-            backend_names = [backend.name for backend in backends]
+            # Încercăm să ne conectăm cu un timeout
+            try:
+                # Inițializăm provider-ul cu token-ul
+                provider = IBMProvider(token=ibm_token)
+                
+                # Adăugăm un delay mic pentru a evita probleme de rate limiting
+                time.sleep(1)
+                
+                # Obținem lista de backend-uri disponibile
+                backends = provider.backends()
+                backend_names = [backend.name for backend in backends]
+                
+            except Exception as conn_error:
+                return f"""
+                <div class='error-text'>
+                <h3>Eroare la conectarea cu IBM Quantum</h3>
+                <p>Nu s-a putut stabili conexiunea cu serverele IBM Quantum:</p>
+                <div style="margin:10px 0;padding:10px;background-color:#fff0f0;border-radius:5px;font-family:monospace;font-size:12px;">
+                    {str(conn_error)}
+                </div>
+                <p>Verificați conexiunea la internet și dacă token-ul IBM Quantum este valid și actualizat.</p>
+                </div>
+                """, None
             
             # Alegem backend-ul cu cele mai multe qubits disponibile pentru teleportare
             # Avem nevoie de minimum 3 qubits pentru teleportare
@@ -59,18 +99,22 @@ class QuantumTeleportation:
             max_qubit_backend = None
             
             for backend in backends:
-                # Verificăm doar backend-urile disponibile (de simulator sau hardware)
-                if not backend.operational:
-                    continue
+                try:
+                    # Verificăm doar backend-urile disponibile (de simulator sau hardware)
+                    if not backend.operational:
+                        continue
+                        
+                    # Obținem configurația backend-ului
+                    config = backend.configuration()
+                    num_qubits = config.n_qubits
                     
-                # Obținem configurația backend-ului
-                config = backend.configuration()
-                num_qubits = config.n_qubits
-                
-                # Pentru teleportare avem nevoie de minim 3 qubits
-                if num_qubits >= 3 and num_qubits > max_qubits:
-                    max_qubits = num_qubits
-                    max_qubit_backend = backend
+                    # Pentru teleportare avem nevoie de minim 3 qubits
+                    if num_qubits >= 3 and num_qubits > max_qubits:
+                        max_qubits = num_qubits
+                        max_qubit_backend = backend
+                except Exception as backend_error:
+                    # Sărim peste backend-urile care cauzează erori
+                    continue
             
             # Verificăm dacă am găsit un backend valid
             if max_qubit_backend is None:
@@ -110,64 +154,77 @@ class QuantumTeleportation:
             """
             
             # Creăm o imagine simplă pentru reprezentarea conexiunii
-            import plotly.graph_objects as go
-            import numpy as np
-            
-            # Creăm un grafic simplu care arată conectivitatea
-            fig = go.Figure()
-            
-            # Adăugăm noduri pentru utilizator și IBM Quantum
-            fig.add_trace(go.Scatter(
-                x=[0, 10], 
-                y=[5, 5],
-                mode='markers+text',
-                marker=dict(size=20, color=['#4CAF50', '#2196F3']),
-                text=['Local', 'IBM Quantum'],
-                textposition='bottom center'
-            ))
-            
-            # Adăugăm linie de conexiune
-            fig.add_trace(go.Scatter(
-                x=[0, 10],
-                y=[5, 5],
-                mode='lines',
-                line=dict(width=3, color='#4CAF50', dash='dashdot'),
-                hoverinfo='none'
-            ))
-            
-            # Adăugăm puncte intermediare pentru a sugera transferul de date
-            steps = 5
-            for i in range(steps):
-                pos = 2 + i*1.5
+            try:
+                import plotly.graph_objects as go
+                import numpy as np
+                
+                # Creăm un grafic simplu care arată conectivitatea
+                fig = go.Figure()
+                
+                # Adăugăm noduri pentru utilizator și IBM Quantum
                 fig.add_trace(go.Scatter(
-                    x=[pos],
-                    y=[5],
-                    mode='markers',
-                    marker=dict(size=8, color='#FFC107'),
+                    x=[0, 10], 
+                    y=[5, 5],
+                    mode='markers+text',
+                    marker=dict(size=20, color=['#4CAF50', '#2196F3']),
+                    text=['Local', 'IBM Quantum'],
+                    textposition='bottom center'
+                ))
+                
+                # Adăugăm linie de conexiune
+                fig.add_trace(go.Scatter(
+                    x=[0, 10],
+                    y=[5, 5],
+                    mode='lines',
+                    line=dict(width=3, color='#4CAF50', dash='dashdot'),
                     hoverinfo='none'
                 ))
-            
-            # Configurăm layout-ul
-            fig.update_layout(
-                title="Conexiune Securizată la IBM Quantum",
-                showlegend=False,
-                template="plotly_dark",
-                height=300,
-                xaxis=dict(showticklabels=False, showgrid=False, zeroline=False),
-                yaxis=dict(showticklabels=False, showgrid=False, zeroline=False)
-            )
+                
+                # Adăugăm puncte intermediare pentru a sugera transferul de date
+                steps = 5
+                for i in range(steps):
+                    pos = 2 + i*1.5
+                    fig.add_trace(go.Scatter(
+                        x=[pos],
+                        y=[5],
+                        mode='markers',
+                        marker=dict(size=8, color='#FFC107'),
+                        hoverinfo='none'
+                    ))
+                
+                # Configurăm layout-ul
+                fig.update_layout(
+                    title="Conexiune Securizată la IBM Quantum",
+                    showlegend=False,
+                    template="plotly_dark",
+                    height=300,
+                    xaxis=dict(showticklabels=False, showgrid=False, zeroline=False),
+                    yaxis=dict(showticklabels=False, showgrid=False, zeroline=False)
+                )
+            except Exception as viz_error:
+                # În caz de eroare la crearea vizualizării, continuăm fără ea
+                fig = None
             
             return result_text, fig
             
         except Exception as e:
-            # În caz de eroare la conectare
+            # În caz de eroare generală la conectare
+            import traceback
+            error_details = traceback.format_exc()
+            
             result_text = f"""
             <div class='error-text'>
             <h3>Eroare la conectarea cu IBM Quantum pentru teleportare</h3>
             <p>S-a produs o eroare în timpul conectării la serviciile IBM Quantum:</p>
-            <div style="margin:10px 0;padding:10px;background-color:#fff0f0;border-radius:5px;font-family:monospace;font-size:12px;">
+            <div style="margin:10px 0;padding:10px;background-color:#fff0f0;border-radius:5px;font-family:monospace;font-size:12px;overflow-x:auto;white-space:pre-wrap;">
                 {str(e)}
             </div>
+            <details>
+                <summary>Detalii eroare (pentru dezvoltatori)</summary>
+                <pre style="margin:10px 0;padding:10px;background-color:#fff0f0;border-radius:5px;font-family:monospace;font-size:11px;overflow-x:auto;white-space:pre-wrap;">
+                {error_details}
+                </pre>
+            </details>
             <p>Verificați dacă token-ul IBM Quantum este valid și actualizat.</p>
             </div>
             """
