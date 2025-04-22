@@ -20,7 +20,7 @@ with open("styles.css") as f:
 
 # Initialize session state
 if 'authenticated' not in st.session_state:
-    st.session_state.authenticated = False
+    st.session_state.authenticated = True  # Auto-authenticate for easy access
 if 'console_history' not in st.session_state:
     st.session_state.console_history = []
 if 'current_command' not in st.session_state:
@@ -136,7 +136,7 @@ def run_console():
             - `generate dna key` - Generate a new DNA security key
             - `about` - Show information about quantum computing
             - `security` - Show DNA security information
-            - `exit` - Log out of the console
+            - `exit` - Clear the console and reset
             """)
     
     # Console output area with scrolling
@@ -180,7 +180,7 @@ def process_command(command):
             <li><code>generate dna key</code> - Generate a new DNA security key</li>
             <li><code>about</code> - Show information about quantum computing</li>
             <li><code>security</code> - Show DNA security information</li>
-            <li><code>exit</code> - Log out of the console</li>
+            <li><code>exit</code> - Clear the console and reset</li>
         </ul>
         </div>
         """
@@ -279,9 +279,9 @@ def process_command(command):
         st.session_state.console_history.append({'type': 'output', 'text': security_info})
     
     elif command == "exit":
-        st.session_state.authenticated = False
+        # Just clear the console instead of logging out
         st.session_state.console_history = []
-        st.experimental_rerun()
+        st.session_state.console_history.append({'type': 'output', 'text': "Console cleared. Type 'help' for available commands."})
     
     else:
         st.session_state.console_history.append({'type': 'output', 'text': f"Command not recognized: '{command}'. Type 'help' for available commands."})
