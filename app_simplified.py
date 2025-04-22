@@ -274,7 +274,7 @@ def run_console():
                 # Clear the input field after execution
                 st.session_state.current_command = ""
                 # Rerun to update the UI
-                st.experimental_rerun()
+                st.rerun()
     
     with tab2:
         st.header("Teleportare Quantum")
