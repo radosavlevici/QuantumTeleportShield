@@ -29,6 +29,7 @@ try:
     from secure_backup import SecureBackupSystem
     from command_system import CommandSystem
     from global_datacenter import GlobalDatacenterConnection
+    from checkpoint_system import CheckpointRollbackSystem
 except ImportError:
     print("Modulele de protecție nu au putut fi importate. Se folosesc versiunile standard.")
 
@@ -214,11 +215,17 @@ try:
     secure_backup = SecureBackupSystem()
     command_system = CommandSystem()
     global_datacenter = GlobalDatacenterConnection()
+    checkpoint_system = CheckpointRollbackSystem()
     
     # Conectăm automat la toate datacentrele globale
     datacenter_connection_result = global_datacenter.connect_global_datacenters()
+    
+    # Creăm un checkpoint inițial pentru protecție
+    checkpoint_result = checkpoint_system.create_checkpoint("Checkpoint inițial al sistemului")
+    
     print("Sistemele avansate de protecție anti-scammer au fost inițializate cu succes.")
     print(f"Conectare la datacentere globale: {datacenter_connection_result['datacenters_connected']} datacentere conectate în {len(datacenter_connection_result['results'])} regiuni.")
+    print(f"Sistem de checkpoint și rollback anti-theft activ. Checkpoint ID: {checkpoint_result['checkpoint_id']}")
 except Exception as e:
     print(f"Eroare la inițializarea sistemelor avansate de protecție: {e}")
     workspace_protection = None
@@ -230,6 +237,7 @@ except Exception as e:
     secure_backup = None
     command_system = None
     global_datacenter = None
+    checkpoint_system = None
 
 # Implementare clasă pentru gestionarea checkpoint-urilor și rollback
 class CheckpointManager:
@@ -2313,8 +2321,8 @@ def process_command(n_clicks, command, current_output):
         ]))
     
     elif command == "checkpoint":
-        # Creează un checkpoint pentru protecție anti-scam folosind managerul de checkpoint-uri avansat
-        checkpoint_info = checkpoint_manager.create_checkpoint("Checkpoint creat manual prin consolă")
+        # Creează un checkpoint pentru protecție anti-scam folosind sistemul avansat de checkpoint
+        checkpoint_info = checkpoint_system.create_checkpoint("Checkpoint creat manual prin consolă")
         
         # Înregistrează checkpointul în istoric cu detalii complete
         system_history.add_activity("CHECKPOINT", f"Checkpoint creat manual: {checkpoint_info['id']} - {checkpoint_info['description']}")
@@ -2363,8 +2371,8 @@ def process_command(n_clicks, command, current_output):
         ]))
     
     elif command == "rollback":
-        # Efectuează un rollback avansat la ultimul checkpoint utilizând managerul de checkpoint-uri
-        rollback_info = checkpoint_manager.perform_rollback()
+        # Efectuează un rollback avansat la ultimul checkpoint utilizând sistemul avansat de checkpoint
+        rollback_info = checkpoint_system.rollback_to_checkpoint()
         
         if rollback_info["success"]:
             # Înregistrează rollback-ul în istoric cu detalii complete
@@ -2402,8 +2410,8 @@ def process_command(n_clicks, command, current_output):
     
     elif command == "checkpoint-status":
         # Afișează statusul sistemului de checkpoint-uri
-        checkpoint_status = checkpoint_manager.get_checkpoint_status()
-        last_checkpoint = checkpoint_status["last_checkpoint"]
+        checkpoint_status = checkpoint_system.get_system_status()
+        last_checkpoint = checkpoint_system.checkpoints[-1] if checkpoint_system.checkpoints else None
         
         # Formatare pentru afișare
         new_output.append(html.Div([
