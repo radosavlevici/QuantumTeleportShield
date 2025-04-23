@@ -203,12 +203,34 @@ app.layout = dbc.Container([
                     html.Li("Cu prezența obligatorie a reprezentanților legali"),
                     html.Li("Semnarea unui acord NDA pe 10 ani")
                 ]),
-                html.H5("CONTACT:", className="mt-3"),
+                html.H5("CONTACT ȘI DONAȚII:", className="mt-3"),
                 html.Ul([
                     html.Li("Email: ERVIN210@ICLOUD.COM"),
                     html.Li("Website: adobe.com"),
-                    html.Li("Ethereum: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA")
+                    html.Li([
+                        html.Span("Portofel Ethereum pentru DONAȚII: ", className="font-weight-bold"),
+                        html.Span("0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA", className="text-warning")
+                    ]),
+                    html.Li([
+                        html.Span("Depozit de garanție minim: ", className="font-weight-bold"),
+                        html.Span("50.000 EUR în ETH", className="text-danger")
+                    ])
                 ]),
+                html.Div([
+                    html.H5("DETALII PORTOFEL PENTRU DONAȚII:", className="text-warning mt-3"),
+                    html.P("Portofelul Ethereum este destinat exclusiv pentru donații și depozite de garanție.", className="font-italic"),
+                    html.Ul([
+                        html.Li("Adresă verificată și securizată la nivel mondial"),
+                        html.Li("Folosiți exclusiv pentru donații și depozite de garanție"),
+                        html.Li("Depozitul minim de garanție: 50.000 EUR în ETH"),
+                        html.Li("Toate donațiile sunt monitorizate prin sistem blockchain"),
+                        html.Li("Confirmarea donației este automată prin sistemul DNA")
+                    ], className="text-light"),
+                    html.P([
+                        html.Span("ADRESĂ DONAȚII: ", className="font-weight-bold"), 
+                        html.Span("0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA", className="text-warning font-weight-bold")
+                    ], className="mt-2")
+                ], className="p-3 bg-dark border border-warning rounded mt-3"),
                 html.H5("SISTEM DE SECURITATE MONDIAL AUTO-ADAPTIV:", className="mt-3"),
                 html.Ul([
                     html.Li("Protecție copyright cu verificare globală în timp real"),
@@ -301,14 +323,44 @@ app.layout = dbc.Container([
                 ])
             ], className="mb-3"),
             
-            # Politica de Copyright
+            # Politica de Copyright și Detalii Donații
             dbc.Card([
                 dbc.CardHeader(html.H5("Politica Globală de Copyright")),
                 dbc.CardBody([
                     html.H6("POLITICA GLOBALĂ DE COPYRIGHT ȘI WATERMARK - NIVEL MAXIM DE SECURITATE:", className="text-warning"),
                     html.P("© 2023-2033 Ervin Remus Radosavlevici (01/09/1987). Toate drepturile rezervate mondial.", className="font-weight-bold"),
-                    html.P("Email: ERVIN210@ICLOUD.COM | Website: adobe.com | Wallet: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA", 
-                           className="font-weight-bold"),
+                    html.P("Email: ERVIN210@ICLOUD.COM | Website: adobe.com", className="font-weight-bold"),
+                    
+                    # Secțiune depozit și donații cu portofel Ethereum
+                    html.Div([
+                        html.H5("WALLET ETHEREUM PENTRU DONAȚII ȘI DEPOZITE", className="text-warning"),
+                        html.P([
+                            html.Span("ADRESĂ PORTOFEL: ", className="font-weight-bold"),
+                            html.Code("0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA", className="bg-dark text-warning p-1")
+                        ], className="mt-3"),
+                        html.H6("UTILIZARE:", className="mt-3"),
+                        html.Ul([
+                            html.Li("Donații pentru dezvoltarea sistemului mondial"),
+                            html.Li("Depozite de garanție pentru acces la funcționalități avansate"),
+                            html.Li("Verificată și securizată la nivel internațional"),
+                            html.Li("Toate tranzacțiile sunt înregistrate permanent în blockchain"),
+                            html.Li("Verificare și raportare automată către sistemul de proprietate intelectuală")
+                        ]),
+                        html.H6("DEPOZITE DE GARANȚIE:", className="mt-3 text-danger"),
+                        html.Ul([
+                            html.Li("Depozit minim de garanție: 50.000 EUR în ETH"),
+                            html.Li("Perioada minimă de depozit: 1 an calendaristic"),
+                            html.Li("Numai în ETH, nicio altă criptomonedă nu este acceptată"),
+                            html.Li("Depozitele sunt verificate automat de sistemul de autentificare ADN"),
+                            html.Li("Confirmările sunt trimise automat la adresa de email specificată"),
+                            html.Li("Toate depozitele sunt înregistrate legal la Londra, UK")
+                        ]),
+                        html.P([
+                            html.Span("IMPORTANT: ", className="font-weight-bold text-danger"),
+                            "Copiere manuală EXACTĂ a adresei portofelului Ethereum pentru evitarea erorilor!"
+                        ], className="mt-3")
+                    ], className="p-3 border border-warning rounded mt-4 mb-4"),
+                    
                     html.P("Acest software și tehnologia asociată sunt protejate mondial prin:", className="mt-3"),
                     html.Ul([
                         html.Li("Legi internaționale de copyright, brevete și secrete comerciale"),
@@ -480,14 +532,26 @@ app.layout = dbc.Container([
         ], width=8)
     ]),
     
-    # Footer with copyright
+    # Footer with copyright and donation info
     dbc.Row([
         dbc.Col([
             html.Hr(),
-            html.P("© 2023-2033 Ervin Remus Radosavlevici (01/09/1987). Toate drepturile rezervate mondial. Sistem de securitate bazat pe ADN cu auto-reparare.", 
-                   className="text-center text-muted")
+            html.Div([
+                html.H5("DONAȚII ȘI DEPOZITE DE GARANȚIE", className="text-warning text-center"),
+                html.P([
+                    html.Span("Portofel Ethereum: ", className="font-weight-bold"),
+                    html.Code("0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA", className="bg-dark text-warning p-1")
+                ], className="text-center"),
+                html.P("Toate donațiile sunt monitorizate și înregistrate automat prin sistemul securizat bazat pe ADN.", 
+                       className="text-center"),
+                html.P("© 2023-2033 Ervin Remus Radosavlevici (01/09/1987). Toate drepturile rezervate mondial.", 
+                       className="text-center text-muted mt-3"),
+                html.P("WORLDWIDEE GLOBALLY LIVE COPYRIGHT SYSTEM", className="text-center text-danger"),
+                html.P("Sistem de securitate auto-reparat și auto-apărat împotriva oricărei tentative de manipulare.", 
+                       className="text-center text-muted font-italic")
+            ])
         ])
-    ], className="mt-4")
+    ], className="mt-4 mb-3 p-3 border-top")
 ], fluid=True, className="p-4 bg-dark text-light")
 
 # Callback pentru consola quantum
