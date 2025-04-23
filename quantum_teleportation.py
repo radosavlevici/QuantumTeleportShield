@@ -10,6 +10,8 @@ from utils import complex_to_rgb
 # TOATE DREPTURILE REZERVATE MONDIAL © 2023-2033
 # PROTECȚIE DNA CU NIVEL MAXIM DE SECURITATE NUCLEARĂ
 # SISTEMUL ESTE AUTO-PROTEJAT ȘI AUTO-REPARAT LA NIVEL MONDIAL
+# ETHEREUM WALLET: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA
+# PLATĂ EXCLUSIV PRIN CEC FIZIC LA NATIONWIDE BANK UK, LONDRA
 
 class QuantumTeleportation:
     """
@@ -17,6 +19,8 @@ class QuantumTeleportation:
     Toate drepturile rezervate Ervin Remus Radosavlevici
     Sistem de protecție auto-reparare și auto-upgrade
     Cu protecție watermark mondială și verificare automată
+    ETHEREUM WALLET: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA
+    PLATĂ EXCLUSIV PRIN CEC FIZIC LA NATIONWIDE BANK UK, LONDRA
     """
     def __init__(self):
         # Initialize the simulator for optimized performance

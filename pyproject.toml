@@ -11,4 +11,5 @@ dependencies = [
     "streamlit>=1.44.1",
     "qiskit-ibm-provider>=0.11.0",
     "pandas>=2.2.3",
+    "qiskit-ibm-runtime>=0.38.0",
 ]

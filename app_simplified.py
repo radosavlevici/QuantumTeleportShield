@@ -16,7 +16,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import qiskit
 import qiskit_aer
-import qiskit_ibm_provider
+import qiskit_ibm_runtime
 
 # TOATE FUNCȚIONALITĂȚILE CONȚIN COPYRIGHT ERVIN REMUS RADOSAVLEVICI
 # SISTEM DE SECURITATE BAZAT PE ADN CU AUTO-UPGRADE ȘI AUTO-REPARARE
@@ -74,6 +74,7 @@ class GlobalDatacenterNetwork:
         self.owner = "Ervin Remus Radosavlevici (01/09/1987)"
         self.owner_email = "ERVIN210@ICLOUD.COM"
         self.owner_website = "adobe.com"
+        self.owner_wallet = "0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA"
         
         # Sistem de blacklist global pentru dispozitive suspecte și atacatori
         self.blacklisted_devices = []
@@ -133,6 +134,7 @@ class GlobalDatacenterNetwork:
             "name": "Ervin Remus Radosavlevici (01/09/1987)",
             "email": "ERVIN210@ICLOUD.COM",
             "website": "adobe.com",
+            "ethereum_wallet": "0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA",
             "copyright": "© 2023-2033 Toate drepturile rezervate mondial",
             "signature": "DNA-SIGNATURE-VERIFIED",
             "immune_to_changes": True
@@ -233,6 +235,7 @@ def run_console():
     **CONTACT:**
     - Email: ERVIN210@ICLOUD.COM
     - Website: adobe.com
+    - Ethereum: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA
     
     **SISTEM DE SECURITATE MONDIAL AUTO-ADAPTIV:**
     - Protecție copyright cu verificare globală în timp real
@@ -325,7 +328,7 @@ def run_console():
     **POLITICA GLOBALĂ DE COPYRIGHT ȘI WATERMARK - NIVEL MAXIM DE SECURITATE:**
     
     © 2023-2033 Ervin Remus Radosavlevici (01/09/1987). Toate drepturile rezervate mondial.
-    **Email: ERVIN210@ICLOUD.COM | Website: adobe.com**
+    **Email: ERVIN210@ICLOUD.COM | Website: adobe.com | Wallet: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA**
     
     Acest software și tehnologia asociată sunt protejate mondial prin:
     - Legi internaționale de copyright, brevete și secrete comerciale

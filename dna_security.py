@@ -9,6 +9,8 @@ import numpy as np
 # PROTECȚIE DNA CU NIVEL MAXIM DE SECURITATE NUCLEARĂ
 # SISTEMUL ESTE AUTO-PROTEJAT ȘI AUTO-REPARAT LA NIVEL MONDIAL
 # SECURITATE BAZATĂ PE ADN CU WATERMARK ȘI VERIFICARE ÎN TIMP REAL
+# ETHEREUM WALLET: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA
+# PLATĂ EXCLUSIV PRIN CEC FIZIC LA NATIONWIDE BANK UK, LONDRA
 
 class DNASecuritySystem:
     """
@@ -16,6 +18,8 @@ class DNASecuritySystem:
     Toate drepturile rezervate © 2023-2033 Ervin Remus Radosavlevici
     Sistemul folosește secvențe inspirate din ADN pentru securitate maximă
     Cu verificare globală, auto-reparare și protecție anti-manipulare
+    ETHEREUM WALLET: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA
+    PLATĂ EXCLUSIV PRIN CEC FIZIC LA NATIONWIDE BANK UK, LONDRA
     """
     
     def __init__(self):
