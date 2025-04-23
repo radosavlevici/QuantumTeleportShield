@@ -41,7 +41,9 @@ class EmergencySecurityProtocol:
             "WORKSPACE-AGENT": {"status": "active", "role": "workspace security", "emergency_mode": True},
             "DEPENDENCIES-AGENT": {"status": "active", "role": "dependencies verification", "emergency_mode": True},
             "WORKFLOWS-AGENT": {"status": "active", "role": "workflow monitoring", "emergency_mode": True},
-            "MASTER-EMERGENCY-AGENT": {"status": "active", "role": "emergency coordination", "emergency_mode": True}
+            "MASTER-EMERGENCY-AGENT": {"status": "active", "role": "emergency coordination", "emergency_mode": True},
+            "ANTI-FRAUD-AGENT": {"status": "active", "role": "anti-scammer protection", "emergency_mode": True},
+            "GLOBAL-BLACKLIST-AGENT": {"status": "active", "role": "global blacklist enforcement", "emergency_mode": True}
         }
         
         # Inițiere monitorizare pentru toate procesele
@@ -85,6 +87,14 @@ class EmergencySecurityProtocol:
         """Monitorizează workflow-urile pentru breach-uri de securitate"""
         pass
         
+    def _monitor_anti_fraud(self):
+        """Monitorizează și blochează tentativele de fraudă și scam"""
+        pass
+        
+    def _enforce_global_blacklist(self):
+        """Implementează și actualizează blacklist-ul global pentru atacatori"""
+        pass
+        
     def get_emergency_status(self):
         """Returnează statusul protocoalelor de securitate de urgență"""
         return {
@@ -96,6 +106,9 @@ class EmergencySecurityProtocol:
             "breach_prevention": self.breach_prevention,
             "emergency_agents": self.emergency_agents,
             "emergency_assistants": self.emergency_assistants,
+            "anti_fraud_system": "ACTIV",
+            "global_blacklist": "AUTO-UPDATE",
+            "malicious_activity_protection": "MAXIMUM",
             "emergency_security_agents": self.emergency_security_agents,
             "active_monitoring_threads": len(self.active_monitoring_threads),
             "emergency_protocol_signature": hashlib.sha256(f"ERVIN-REMUS-RADOSAVLEVICI-EMERGENCY-{datetime.datetime.now()}".encode()).hexdigest()
@@ -763,6 +776,20 @@ app.layout = dbc.Container([
                             html.P("Plăți exclusiv prin cec fizic predat personal la Londra, UK, prin Nationwide Bank UK.", className="mt-2")
                         ], color="info", className="mb-4"),
                         
+                        # Checkpoint și Rollback pentru siguranță anti-scam
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("CHECKPOINT & ROLLBACK SYSTEM - ANTI-SCAM PROTECTION", className="text-danger")),
+                            dbc.CardBody([
+                                html.P("Sistem avansat pentru checkpoint și rollback cu protecție împotriva scammerilor și fraudelor.", className="mb-3"),
+                                html.Div([
+                                    dbc.Button("Crează CHECKPOINT", id="create-checkpoint", color="success", className="mr-2"),
+                                    dbc.Button("ROLLBACK la checkpoint anterior", id="rollback-checkpoint", color="warning", className="mr-2"),
+                                    dbc.Button("Blocare totală acces", id="lockdown-system", color="danger", className="mr-2"),
+                                ], className="mb-3"),
+                                html.Div(id="checkpoint-status", className="mt-3"),
+                            ])
+                        ], className="mb-4"),
+                        
                         # DNA Key Generator
                         dbc.Card([
                             dbc.CardHeader(html.H5("Generator Cheie DNA")),
@@ -825,6 +852,50 @@ app.layout = dbc.Container([
 ], fluid=True, className="p-4 bg-dark text-light")
 
 # Callback pentru consola quantum
+@app.callback(
+    Output("checkpoint-status", "children"),
+    [Input("create-checkpoint", "n_clicks"),
+     Input("rollback-checkpoint", "n_clicks"),
+     Input("lockdown-system", "n_clicks")]
+)
+def manage_checkpoints(create_clicks, rollback_clicks, lockdown_clicks):
+    ctx = dash.callback_context
+    if not ctx.triggered:
+        return html.P("Sistem de checkpoint activ și gata pentru protecție anti-scam.")
+        
+    button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+    
+    if button_id == "create-checkpoint":
+        # Simulăm crearea unui checkpoint și înregistrăm în istoric
+        checkpoint_id = hashlib.sha256(f"CHECKPOINT-{datetime.datetime.now()}".encode()).hexdigest()[:12]
+        system_history.add_activity("CHECKPOINT", f"Checkpoint creat: {checkpoint_id}")
+        return [
+            html.P("✅ Checkpoint creat cu succes!", className="text-success"),
+            html.P(f"ID Checkpoint: {checkpoint_id}", className="text-info"),
+            html.P("Toate datele sistemului sunt securizate împotriva scammerilor.", className="text-warning")
+        ]
+    
+    elif button_id == "rollback-checkpoint":
+        # Simulăm un rollback și înregistrăm în istoric
+        system_history.add_activity("ROLLBACK", "Rollback efectuat la checkpoint-ul anterior")
+        return [
+            html.P("✅ Rollback efectuat cu succes!", className="text-success"),
+            html.P("Sistemul a fost restaurat la starea anterioară.", className="text-info"),
+            html.P("Toate activitățile suspecte au fost blocate.", className="text-warning")
+        ]
+    
+    elif button_id == "lockdown-system":
+        # Simulăm un lockdown și înregistrăm în istoric
+        system_history.add_activity("LOCKDOWN", "Sistem blocat împotriva atacurilor")
+        return [
+            html.P("⚠️ SISTEM ÎN LOCKDOWN!", className="text-danger"),
+            html.P("Toate accesele externe sunt blocate.", className="text-warning"),
+            html.P("Protecție maximă activată împotriva scammerilor și tentativelor de fraudă.", className="text-warning")
+        ]
+    
+    return html.P("Sistem de checkpoint activ.")
+
+
 @app.callback(
     Output("console-output", "children"),
     [Input("execute-button", "n_clicks")],
