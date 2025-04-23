@@ -24,6 +24,11 @@ try:
     from global_blacklist import GlobalBlacklistSystem
     from legal_evidence import LegalEvidenceSystem
     from evidence_collection import EvidenceCollectionSystem
+    from real_time_monitoring import RealTimeMonitoringSystem
+    from alert_system import AlertSystem
+    from secure_backup import SecureBackupSystem
+    from command_system import CommandSystem
+    from global_datacenter import GlobalDatacenterConnection
 except ImportError:
     print("Modulele de protecție nu au putut fi importate. Se folosesc versiunile standard.")
 
@@ -204,13 +209,27 @@ try:
     global_blacklist = GlobalBlacklistSystem()
     legal_evidence = LegalEvidenceSystem()
     evidence_collection = EvidenceCollectionSystem()
+    real_time_monitoring = RealTimeMonitoringSystem()
+    alert_system = AlertSystem()
+    secure_backup = SecureBackupSystem()
+    command_system = CommandSystem()
+    global_datacenter = GlobalDatacenterConnection()
+    
+    # Conectăm automat la toate datacentrele globale
+    datacenter_connection_result = global_datacenter.connect_global_datacenters()
     print("Sistemele avansate de protecție anti-scammer au fost inițializate cu succes.")
+    print(f"Conectare la datacentere globale: {datacenter_connection_result['datacenters_connected']} datacentere conectate în {len(datacenter_connection_result['results'])} regiuni.")
 except Exception as e:
     print(f"Eroare la inițializarea sistemelor avansate de protecție: {e}")
     workspace_protection = None
     global_blacklist = None
     legal_evidence = None
     evidence_collection = None
+    real_time_monitoring = None
+    alert_system = None
+    secure_backup = None
+    command_system = None
+    global_datacenter = None
 
 # Implementare clasă pentru gestionarea checkpoint-urilor și rollback
 class CheckpointManager:
