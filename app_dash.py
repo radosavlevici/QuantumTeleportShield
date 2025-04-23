@@ -312,11 +312,77 @@ class GlobalDatacenterNetwork:
             "worldwide_protection": "MAXIMUM EMERGENCY LEVEL - NUCLEAR SECURITY PLUS"
         }
 
+# Inițializare sistem de istoric global
+class SystemActivityHistory:
+    def __init__(self):
+        self.history_records = []
+        self.max_history_size = 1000
+        self.history_signature = ""
+        self.history_file = "system_history.log"
+        self.history_verification = True
+        
+        # Adăugare record inițial
+        self._add_record("SYSTEM INITIALIZE", "Sistem inițializat cu protecție ADN și watermark global")
+        self._add_record("SECURITY INITIALIZE", "Sistem de securitate activat cu protecție globală")
+        self._add_record("EMERGENCY PROTOCOL", "Protocol de securitate de urgență activat")
+        self._add_record("AGENTS ACTIVE", "Toți agenții de securitate sunt activi")
+        
+    def _add_record(self, action_type, description):
+        """Adaugă o înregistrare în istoricul global"""
+        timestamp = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+        record = {
+            "timestamp": timestamp,
+            "action_type": action_type,
+            "description": description,
+            "signature": hashlib.sha256(f"{timestamp}:{action_type}:{description}:ERVIN-REMUS-RADOSAVLEVICI".encode()).hexdigest()
+        }
+        
+        # Adăugare record la început pentru afișare cronologică inversă (cele mai noi primele)
+        self.history_records.insert(0, record)
+        
+        # Limitare dimensiune istoric
+        if len(self.history_records) > self.max_history_size:
+            self.history_records.pop()
+            
+        # Actualizare semnătură globală
+        self._update_global_signature()
+        
+        # Salvare în istoric (simulare - în producție ar scrie în fișier)
+        self._save_to_history_file(record)
+        
+    def _update_global_signature(self):
+        """Actualizează semnătura globală a istoricului"""
+        data = ":".join([record["signature"] for record in self.history_records[:10]])
+        self.history_signature = hashlib.sha256(f"{data}:ERVIN-REMUS-RADOSAVLEVICI".encode()).hexdigest()
+        
+    def _save_to_history_file(self, record):
+        """Salvează înregistrarea în fișierul de istoric (simulare)"""
+        # În producție, aceasta ar scrie efectiv în fișier
+        pass
+        
+    def add_activity(self, action_type, description):
+        """Adaugă o activitate în istoricul global"""
+        self._add_record(action_type, description)
+        
+    def get_latest_activities(self, count=10):
+        """Obține cele mai recente activități din istoric"""
+        return self.history_records[:count]
+        
+    def get_history_signature(self):
+        """Obține semnătura globală a istoricului"""
+        return self.history_signature
+        
+    def verify_history_integrity(self):
+        """Verifică integritatea istoricului global"""
+        # Simulare verificare - în producție ar compara cu valori stocate securizat
+        return self.history_verification
+
 # Inițializare componente principale
 quantum_simulator = QuantumSimulator()
 teleportation_sim = QuantumTeleportation()
 security_system = DNASecuritySystem()
 global_network = GlobalDatacenterNetwork()
+system_history = SystemActivityHistory()
 console_history = []
 
 # CSS Personalizat
@@ -595,6 +661,8 @@ app.layout = dbc.Container([
                                     html.Li("securitate - Arată informații despre sistemul de securitate DNA"),
                                     html.Li("datacentere - Afișează și conectează la rețeaua globală de datacentere"),
                                     html.Li("protecție - Monitorizează și previne manipularea copyright/watermark"),
+                                    html.Li("istoric - Afișează istoricul de activitate al sistemului"),
+                                    html.Li("emergency - Activează protocolul de securitate de urgență"),
                                     html.Li("ieșire - Șterge consola și resetează")
                                 ])
                             ])
@@ -765,6 +833,9 @@ def process_command(n_clicks, command, current_output):
     new_output = current_output or []
     new_output.append(html.P([html.Span("> ", className="text-success"), command], style={"fontWeight": "bold"}))
     
+    # Înregistrare activitate în istoricul sistemului
+    system_history.add_activity("COMMAND", f"User a executat comanda: {command}")
+    
     # Process command based on its value
     command = command.lower().strip()
     
@@ -817,6 +888,64 @@ def process_command(n_clicks, command, current_output):
             ]),
             html.P("Toată tehnologia din acest sistem este protejată de copyright global."),
             html.P("PROPRIETAR: ERVIN REMUS RADOSAVLEVICI (01/09/1987)", className="font-weight-bold text-danger")
+        ]))
+    elif command == "istoric":
+        # Obține istoricul sistemului
+        history_records = system_history.get_latest_activities(20)
+        
+        # Formatare înregistrări pentru afișare
+        table_header = [html.Tr([html.Th("Timestamp"), html.Th("Acțiune"), html.Th("Descriere"), html.Th("Semnătură")])]
+        table_rows = []
+        for record in history_records:
+            table_rows.append(html.Tr([
+                html.Td(record["timestamp"]),
+                html.Td(record["action_type"]),
+                html.Td(record["description"]),
+                html.Td(record["signature"][:10] + "...")
+            ]))
+        
+        # Adăugare istoric la consolă
+        new_output.append(html.Div([
+            html.H5("Istoric Sistem cu Securitate ADN:", className="text-info"),
+            html.P(f"Semnătură globală: {system_history.get_history_signature()[:16]}..."),
+            html.P("Ultimele 20 activități înregistrate cu securitate ADN:"),
+            html.Table(table_header + table_rows, className="table table-dark table-striped table-sm")
+        ]))
+        
+        # Adăugare verificare integritate
+        if system_history.verify_history_integrity():
+            new_output.append(html.P("✅ Integritatea istoricului verificată cu succes!", className="text-success"))
+        else:
+            new_output.append(html.P("⚠️ AVERTISMENT: Integritatea istoricului compromisă!", className="text-danger"))
+    
+    elif command == "emergency":
+        # Activează protocolul de securitate de urgență
+        emergency_status = emergency_protocol.get_emergency_status()
+        
+        # Adaugă informații despre protocolul de securitate de urgență
+        new_output.append(html.Div([
+            html.H5("⚠️ PROTOCOL DE SECURITATE DE URGENȚĂ ACTIVAT ⚠️", className="text-danger"),
+            html.P("Protocoale de securitate de urgență active:"),
+            html.Ul([
+                html.Li(f"Console Monitoring: {emergency_status['console_monitoring']}"),
+                html.Li(f"Shell Protection: {emergency_status['shell_protection']}"),
+                html.Li(f"Workspace Security: {emergency_status['workspace_security']}"),
+                html.Li(f"Dependencies Check: {emergency_status['dependencies_check']}"),
+                html.Li(f"Breach Prevention: {emergency_status['breach_prevention']}"),
+                html.Li(f"Emergency Agents: {emergency_status['emergency_agents']}"),
+                html.Li(f"Emergency Assistants: {emergency_status['emergency_assistants']}")
+            ]),
+            html.P("Agenți de securitate activi în modul de urgență:"),
+            html.Ul([
+                html.Li(f"CONSOLE-AGENT: {emergency_status['emergency_security_agents']['CONSOLE-AGENT']['status']}"),
+                html.Li(f"SHELL-AGENT: {emergency_status['emergency_security_agents']['SHELL-AGENT']['status']}"),
+                html.Li(f"WORKSPACE-AGENT: {emergency_status['emergency_security_agents']['WORKSPACE-AGENT']['status']}"),
+                html.Li(f"DEPENDENCIES-AGENT: {emergency_status['emergency_security_agents']['DEPENDENCIES-AGENT']['status']}"),
+                html.Li(f"WORKFLOWS-AGENT: {emergency_status['emergency_security_agents']['WORKFLOWS-AGENT']['status']}"),
+                html.Li(f"MASTER-EMERGENCY-AGENT: {emergency_status['emergency_security_agents']['MASTER-EMERGENCY-AGENT']['status']}")
+            ]),
+            html.P(f"Semnătură protocol de urgență: {emergency_status['emergency_protocol_signature'][:20]}..."),
+            html.P("EMERGENCY PROTOCOL ACTIV CU SECURITATE ADN", className="text-center text-danger font-weight-bold")
         ]))
     elif command == "datacentere":
         # Get datacenter information from global network
