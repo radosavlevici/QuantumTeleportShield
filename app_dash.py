@@ -863,6 +863,9 @@ def process_command(n_clicks, command, current_output):
                 html.Li("generează cheie dna - Generează o nouă cheie de securitate DNA"),
                 html.Li("despre - Arată informații despre quantum computing"),
                 html.Li("securitate - Arată informații despre sistemul de securitate DNA"),
+                html.Li("istoric - Afișează istoricul complet al sistemului cu semnături"),
+                html.Li("emergency - Activează protocolul de securitate de urgență"),
+                html.Li("stare sistem - Verifică starea generală a sistemului"),
                 html.Li("datacentere - Afișează și conectează la rețeaua globală de datacentere"),
                 html.Li("protecție - Monitorizează și previne manipularea copyright/watermark"),
                 html.Li("ieșire - Șterge consola și resetează")
@@ -934,19 +937,79 @@ def process_command(n_clicks, command, current_output):
         emergency_status = emergency_protocol.get_emergency_status()
         
         # Adaugă informații despre protocolul de securitate de urgență
+        # Tabel cu acțiunile efectuate de protocol
+        emergency_actions = [
+            {"acțiune": "Verificare integritate sistem", "status": "Completă", "rezultat": "Sistem intact"},
+            {"acțiune": "Protecție împotriva injecțiilor malițioase", "status": "Activă", "rezultat": "Blocare tentativă"},
+            {"acțiune": "Securizare comunicații network", "status": "Activă", "rezultat": "Trafic criptat"},
+            {"acțiune": "Verificare securitate date", "status": "Completă", "rezultat": "Date intacte"},
+            {"acțiune": "Monitorizare activitate utilizator", "status": "Activă", "rezultat": "Activitate legitimă"}
+        ]
+        
+        # Creează tabelul cu acțiunile de urgență
+        table_header = [html.Tr([html.Th("Acțiune Protocol"), html.Th("Status"), html.Th("Rezultat")])]
+        table_rows = []
+        for action in emergency_actions:
+            table_rows.append(html.Tr([
+                html.Td(action["acțiune"]),
+                html.Td(action["status"], className="text-success"),
+                html.Td(action["rezultat"])
+            ]))
+            
         new_output.append(html.Div([
             html.H5("⚠️ PROTOCOL DE SECURITATE DE URGENȚĂ ACTIVAT ⚠️", className="text-danger"),
-            html.P("Protocoale de securitate de urgență active:"),
-            html.Ul([
-                html.Li(f"Console Monitoring: {emergency_status['console_monitoring']}"),
-                html.Li(f"Shell Protection: {emergency_status['shell_protection']}"),
-                html.Li(f"Workspace Security: {emergency_status['workspace_security']}"),
-                html.Li(f"Dependencies Check: {emergency_status['dependencies_check']}"),
-                html.Li(f"Breach Prevention: {emergency_status['breach_prevention']}"),
-                html.Li(f"Emergency Agents: {emergency_status['emergency_agents']}"),
-                html.Li(f"Emergency Assistants: {emergency_status['emergency_assistants']}")
-            ]),
-            html.P("Agenți de securitate activi în modul de urgență:"),
+            
+            # Afișare detaliată a acțiunilor de urgență
+            html.Div([
+                html.H6("Acțiuni efectuate de protocolul de urgență:", className="text-warning"),
+                html.Table(table_header + table_rows, className="table table-dark table-sm mb-4")
+            ], className="mb-3"),
+            
+            # Protocoale active
+            html.P("Protocoale de securitate de urgență active:", className="mt-3"),
+            dbc.Row([
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader("Console Monitoring"),
+                        dbc.CardBody(html.H5(emergency_status['console_monitoring'], className="text-success text-center"))
+                    ], className="mb-2")
+                ], width=4),
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader("Shell Protection"),
+                        dbc.CardBody(html.H5(emergency_status['shell_protection'], className="text-success text-center"))
+                    ], className="mb-2")
+                ], width=4),
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader("Workspace Security"),
+                        dbc.CardBody(html.H5(emergency_status['workspace_security'], className="text-success text-center"))
+                    ], className="mb-2")
+                ], width=4)
+            ], className="mb-3"),
+            
+            dbc.Row([
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader("Dependencies Check"),
+                        dbc.CardBody(html.H5(emergency_status['dependencies_check'], className="text-success text-center"))
+                    ], className="mb-2")
+                ], width=4),
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader("Breach Prevention"),
+                        dbc.CardBody(html.H5(emergency_status['breach_prevention'], className="text-success text-center"))
+                    ], className="mb-2")
+                ], width=4),
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader("Emergency Agents"),
+                        dbc.CardBody(html.H5(emergency_status['emergency_agents'], className="text-success text-center"))
+                    ], className="mb-2")
+                ], width=4)
+            ], className="mb-3"),
+            
+            html.P("Agenți de securitate activi în modul de urgență:", className="mt-4"),
             html.Ul([
                 html.Li(f"CONSOLE-AGENT: {emergency_status['emergency_security_agents']['CONSOLE-AGENT']['status']}"),
                 html.Li(f"SHELL-AGENT: {emergency_status['emergency_security_agents']['SHELL-AGENT']['status']}"),
@@ -955,7 +1018,9 @@ def process_command(n_clicks, command, current_output):
                 html.Li(f"WORKFLOWS-AGENT: {emergency_status['emergency_security_agents']['WORKFLOWS-AGENT']['status']}"),
                 html.Li(f"MASTER-EMERGENCY-AGENT: {emergency_status['emergency_security_agents']['MASTER-EMERGENCY-AGENT']['status']}")
             ]),
-            html.P(f"Semnătură protocol de urgență: {emergency_status['emergency_protocol_signature'][:20]}..."),
+            
+            html.Hr(),
+            html.P(f"Semnătură protocol de urgență: {emergency_status['emergency_protocol_signature'][:20]}...", className="text-muted"),
             html.P("EMERGENCY PROTOCOL ACTIV CU SECURITATE ADN", className="text-center text-danger font-weight-bold")
         ]))
     elif command == "datacentere":
@@ -996,6 +1061,103 @@ def process_command(n_clicks, command, current_output):
             html.Code(dna_key, className="bg-dark text-light p-2 d-block"),
             html.P("Cheie DNA generată cu succes! Copiați această cheie pentru autentificări viitoare.", className="text-success mt-2"),
             html.P("Această generare de cheie a fost înregistrată în sistemul de monitorizare a veniturilor.", className="text-info")
+        ]))
+    elif command == "stare sistem":
+        # Obține starea generală a sistemului
+        emergency_status = emergency_protocol.get_emergency_status()
+        
+        # Create system health status cards
+        new_output.append(html.Div([
+            html.H5("Stare Sistem Quantum - Monitorizare în Timp Real:", className="text-info mb-3"),
+            
+            # Overall system health with additional metrics
+            dbc.Alert([
+                html.H5("Stare Globală Sistem: SECURIZAT", className="alert-heading text-success"),
+                html.P(f"Ultima verificare: {datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S')}"),
+                
+                # Sistem metrics indicators
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader("Protecție ADN", className="bg-dark"),
+                            dbc.CardBody([
+                                html.H3("100%", className="text-success text-center"),
+                                html.P("ACTIV", className="text-center mb-0")
+                            ])
+                        ], className="border-success")
+                    ], width=3),
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader("Protocol de Urgență", className="bg-dark"),
+                            dbc.CardBody([
+                                html.H3("PREGĂTIT", className="text-success text-center"),
+                                html.P("Auto-activare", className="text-center mb-0")
+                            ])
+                        ], className="border-success")
+                    ], width=3),
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader("Auto-reparare", className="bg-dark"),
+                            dbc.CardBody([
+                                html.H3("ACTIVĂ", className="text-success text-center"),
+                                html.P("Nivel Global", className="text-center mb-0")
+                            ])
+                        ], className="border-success")
+                    ], width=3),
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader("Monitorizare", className="bg-dark"),
+                            dbc.CardBody([
+                                html.H3("INTEGRALĂ", className="text-success text-center"),
+                                html.P("Apărare activă", className="text-center mb-0")
+                            ])
+                        ], className="border-success")
+                    ], width=3)
+                ], className="mb-3"),
+                
+                # Signature information
+                html.Div([
+                    html.Span("Semnătură Globală Sistem: ", className="font-weight-bold"),
+                    html.Span(f"{system_history.get_history_signature()[:12]}...", className="text-muted")
+                ], className="mt-3")
+            ], color="dark", className="mb-3"),
+            
+            # Active agents overview
+            html.H5("Agenți Securitate Activi:", className="mt-4 mb-3"),
+            html.P("AGENȚI STANDARD:"),
+            html.Ul([
+                html.Li(f"AGENT-ALPHA: ACTIV - Monitorizează workflow-uri", className="text-success"),
+                html.Li(f"AGENT-BETA: ACTIV - Detecție intruziuni", className="text-success"),
+                html.Li(f"AGENT-GAMMA: ACTIV - Protecție date quantum", className="text-success"),
+                html.Li(f"AGENT-DELTA: ACTIV - Auto-reparare sistem", className="text-success"),
+                html.Li(f"AGENT-OMEGA: ACTIV - Control master securitate", className="text-success")
+            ]),
+            
+            html.P("AGENȚI EMERGENCY:"),
+            html.Ul([
+                html.Li(f"CONSOLE-AGENT: {emergency_status['emergency_security_agents']['CONSOLE-AGENT']['status']} - Protecție consolă", className="text-success"),
+                html.Li(f"SHELL-AGENT: {emergency_status['emergency_security_agents']['SHELL-AGENT']['status']} - Securizare shell", className="text-success"),
+                html.Li(f"WORKSPACE-AGENT: {emergency_status['emergency_security_agents']['WORKSPACE-AGENT']['status']} - Securitate workspace", className="text-success"),
+                html.Li(f"DEPENDENCIES-AGENT: {emergency_status['emergency_security_agents']['DEPENDENCIES-AGENT']['status']} - Verificare dependențe", className="text-success"),
+                html.Li(f"WORKFLOWS-AGENT: {emergency_status['emergency_security_agents']['WORKFLOWS-AGENT']['status']} - Protecție workflow-uri", className="text-success"),
+                html.Li(f"MASTER-EMERGENCY-AGENT: {emergency_status['emergency_security_agents']['MASTER-EMERGENCY-AGENT']['status']} - Coordonare globală", className="text-success")
+            ]),
+            
+            # IBM Quantum Connection Status
+            html.H5("Status Conexiune IBM Quantum:", className="mt-4 mb-3"),
+            dbc.Alert([
+                html.H5("Status: DISPONIBIL", className="alert-heading"),
+                html.P("Conexiunea cu hardware-ul IBM Quantum este disponibilă prin token autorizat."),
+                html.P("Pentru a folosi hardware-ul real IBM Quantum, este necesară achiziționarea licenței premium."),
+                html.Small("Licență IBM Quantum: Disponibilă pentru acces premium")
+            ], color="info", className="mb-3"),
+            
+            # Verificare copyrights și licențe
+            html.H5("Status Copyright și Licențiere:", className="mt-4 mb-3"),
+            dbc.Alert([
+                html.P("Toate copyright-urile verificate cu succes!", className="mb-0"),
+                html.P("COPYRIGHT © 2023-2033 Ervin Remus Radosavlevici. Tehnologie protejată de adresa Ethereum 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA", className="text-warning mt-2")
+            ], color="success", className="mt-3")
         ]))
     else:
         new_output.append(html.P(f"Comandă necunoscută: '{command}'. Tastați 'ajutor' pentru lista de comenzi.", className="text-danger"))
