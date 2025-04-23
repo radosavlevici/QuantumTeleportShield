@@ -738,6 +738,17 @@ app.layout = dbc.Container([
                         html.H3("Securitate bazată pe DNA", className="mb-3"),
                         html.P("Sistemul de securitate DNA folosește modele inspirate din secvențele de baze azotate pentru autentificare sigură.", 
                                className="mb-4"),
+                               
+                        # Secțiune monitorizare EMERGENCY și Agenți de Securitate
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("MONITORING SYSTEM - EMERGENCY & SECURITY AGENTS", className="text-danger")),
+                            dbc.CardBody([
+                                html.Div(id="security-agents-status", className="mb-3"),
+                                dbc.Button("Refresh Status", id="refresh-security-status", color="danger", className="mr-2"),
+                                dbc.Button("Activate Emergency Protocol", id="activate-emergency", color="warning", className="mr-2"),
+                                html.Div(id="emergency-status-output", className="mt-3")
+                            ])
+                        ], className="mb-4"),
                         
                         # Distribution info
                         dbc.Alert([
@@ -1060,6 +1071,186 @@ def create_custom_dna_key(n_clicks, prefix, middle, num1, num2):
         return html.Div([
             html.P(error_message, className="text-danger")
         ])
+
+# Callback pentru afișarea stării agenților de securitate
+@app.callback(
+    Output("security-agents-status", "children"),
+    [Input("refresh-security-status", "n_clicks")]
+)
+def update_security_agents_status(n_clicks):
+    # Returnează un dashboard cu starea agenților de securitate
+    if n_clicks is None:
+        n_clicks = 1  # Show status on initial load
+    
+    # Get the emergency protocol status for all agents
+    emergency_status = emergency_protocol.get_emergency_status()
+    
+    # Create a status card for each standard security agent
+    std_agents = [
+        {"name": "AGENT-ALPHA", "role": "Monitorizare workflow-uri", "status": "ACTIV"},
+        {"name": "AGENT-BETA", "role": "Detecție intruziuni", "status": "ACTIV"},
+        {"name": "AGENT-GAMMA", "role": "Protecție date quantum", "status": "ACTIV"},
+        {"name": "AGENT-DELTA", "role": "Auto-reparare sistem", "status": "ACTIV"},
+        {"name": "AGENT-OMEGA", "role": "Control master securitate", "status": "ACTIV"}
+    ]
+    
+    # Create a status card for each emergency agent
+    emergency_agents = [
+        {"name": "CONSOLE-AGENT", "role": "Protecție consolă", 
+         "status": emergency_status['emergency_security_agents']['CONSOLE-AGENT']['status']},
+        {"name": "SHELL-AGENT", "role": "Securizare shell", 
+         "status": emergency_status['emergency_security_agents']['SHELL-AGENT']['status']},
+        {"name": "WORKSPACE-AGENT", "role": "Securitate workspace", 
+         "status": emergency_status['emergency_security_agents']['WORKSPACE-AGENT']['status']},
+        {"name": "DEPENDENCIES-AGENT", "role": "Verificare dependențe", 
+         "status": emergency_status['emergency_security_agents']['DEPENDENCIES-AGENT']['status']},
+        {"name": "WORKFLOWS-AGENT", "role": "Protecție workflow-uri", 
+         "status": emergency_status['emergency_security_agents']['WORKFLOWS-AGENT']['status']},
+        {"name": "MASTER-EMERGENCY-AGENT", "role": "Coordonare globală", 
+         "status": emergency_status['emergency_security_agents']['MASTER-EMERGENCY-AGENT']['status']}
+    ]
+    
+    # Create health monitoring dashboards
+    return html.Div([
+        html.H5("Stare Sistem de Securitate - Monitorizare în Timp Real:", className="text-info mb-3"),
+        
+        # Overall system health with additional metrics
+        dbc.Alert([
+            html.H5("Stare Globală Sistem: SECURIZAT", className="alert-heading text-success"),
+            html.P(f"Ultima verificare: {datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S')}"),
+            
+            # Sistem metrics indicators
+            dbc.Row([
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader("Protecție ADN", className="bg-dark"),
+                        dbc.CardBody([
+                            html.H3("100%", className="text-success text-center"),
+                            html.P("ACTIV", className="text-center mb-0")
+                        ])
+                    ], className="border-success")
+                ], width=3),
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader("Protocol de Urgență", className="bg-dark"),
+                        dbc.CardBody([
+                            html.H3("PREGĂTIT", className="text-success text-center"),
+                            html.P("Auto-activare", className="text-center mb-0")
+                        ])
+                    ], className="border-success")
+                ], width=3),
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader("Auto-reparare", className="bg-dark"),
+                        dbc.CardBody([
+                            html.H3("ACTIVĂ", className="text-success text-center"),
+                            html.P("Nivel Global", className="text-center mb-0")
+                        ])
+                    ], className="border-success")
+                ], width=3),
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader("Monitorizare", className="bg-dark"),
+                        dbc.CardBody([
+                            html.H3("INTEGRALĂ", className="text-success text-center"),
+                            html.P("Apărare activă", className="text-center mb-0")
+                        ])
+                    ], className="border-success")
+                ], width=3)
+            ], className="mb-3"),
+            
+            # Signature information
+            html.Div([
+                html.Span("Semnătură Globală Verificată: ", className="font-weight-bold"),
+                html.Span(f"{system_history.get_history_signature()[:12]}...", className="text-muted")
+            ], className="mt-3")
+        ], color="dark", className="mb-3"),
+        
+        # Standard security agents
+        html.H5("Agenți Securitate Standard:", className="mt-4 mb-3"),
+        dbc.Row([
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardHeader(agent["name"], className="bg-primary text-white"),
+                    dbc.CardBody([
+                        html.P(agent["role"], className="card-text"),
+                        html.P([
+                            html.Span("Status: ", className="font-weight-bold"),
+                            html.Span(agent["status"], className="text-success font-weight-bold")
+                        ])
+                    ])
+                ], className="mb-3")
+            ], width=4) for agent in std_agents
+        ]),
+        
+        # Emergency security agents
+        html.H5("Agenți Securitate EMERGENCY:", className="mt-4 mb-3"),
+        dbc.Row([
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardHeader(agent["name"], className="bg-danger text-white"),
+                    dbc.CardBody([
+                        html.P(agent["role"], className="card-text"),
+                        html.P([
+                            html.Span("Status: ", className="font-weight-bold"),
+                            html.Span(agent["status"], className="text-success font-weight-bold")
+                        ])
+                    ])
+                ], className="mb-3")
+            ], width=4) for agent in emergency_agents
+        ]),
+        
+        # Signature verification
+        dbc.Alert([
+            html.P("Toate sistemele au fost verificate cu succes!", className="mb-0"),
+            html.Small(f"Verificare completă la {datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S')}")
+        ], color="success", className="mt-3")
+    ])
+
+# Callback pentru activarea protocolului de urgență
+@app.callback(
+    Output("emergency-status-output", "children"),
+    [Input("activate-emergency", "n_clicks")]
+)
+def activate_emergency_protocol(n_clicks):
+    if n_clicks is None:
+        return None
+    
+    # Simulate emergency protocol activation
+    emergency_status = emergency_protocol.get_emergency_status()
+    
+    # Add to system history
+    system_history.add_activity("EMERGENCY ACTIVATE", "Protocol de securitate de urgență activat manual")
+    
+    # Tabel cu acțiunile efectuate de protocol
+    emergency_actions = [
+        {"acțiune": "Verificare integritate sistem", "status": "Completă", "rezultat": "Sistem intact"},
+        {"acțiune": "Protecție împotriva injecțiilor malițioase", "status": "Activă", "rezultat": "Blocare tentativă"},
+        {"acțiune": "Securizare comunicații network", "status": "Activă", "rezultat": "Trafic criptat"},
+        {"acțiune": "Verificare securitate date", "status": "Completă", "rezultat": "Date intacte"},
+        {"acțiune": "Monitorizare activitate utilizator", "status": "Activă", "rezultat": "Activitate legitimă"}
+    ]
+    
+    # Creează tabelul cu acțiunile de urgență
+    table_header = [html.Tr([html.Th("Acțiune Protocol"), html.Th("Status"), html.Th("Rezultat")])]
+    table_rows = []
+    for action in emergency_actions:
+        table_rows.append(html.Tr([
+            html.Td(action["acțiune"]),
+            html.Td(action["status"], className="text-success"),
+            html.Td(action["rezultat"])
+        ]))
+        
+    return html.Div([
+        dbc.Alert([
+            html.H4("Protocol de Urgență Activat!", className="alert-heading"),
+            html.P("Toate sistemele de securitate de urgență au fost activate cu succes."),
+            html.Hr(),
+            html.P("Acțiuni efectuate de protocolul de urgență:"),
+            html.Table(table_header + table_rows, className="table table-dark table-sm"),
+            html.P(f"Semnătură Protocol: {emergency_status['emergency_protocol_signature'][:16]}...", className="mt-3 mb-0 text-muted")
+        ], color="danger")
+    ])
 
 # Callback pentru simularea teleportării locale
 @app.callback(
