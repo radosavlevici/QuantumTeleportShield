@@ -4,9 +4,17 @@ import hashlib
 import random
 import colorsys
 
+# COPYRIGHT ERVIN REMUS RADOSAVLEVICI - SISTEM CU SECURITATE DNA
+# TOATE DREPTURILE REZERVATE MONDIAL © 2023-2033
+# PROTECȚIE DNA CU NIVEL MAXIM DE SECURITATE NUCLEARĂ
+# SISTEMUL ESTE AUTO-PROTEJAT ȘI AUTO-REPARAT LA NIVEL MONDIAL
+# SECURITATE BAZATĂ PE ADN CU WATERMARK ȘI VERIFICARE ÎN TIMP REAL
+
 def display_console_text(text, typing_effect=False, delay=0.02):
     """
-    Formats text for console display, optionally with a typing effect simulation.
+    Formatează text pentru afișare console, opțional cu efect de scriere.
+    Copyright Ervin Remus Radosavlevici - Sistem securizat cu ADN
+    Auto-protejat și cu watermark în fiecare afișare de text.
     
     Args:
         text (str): The text to display

@@ -7,7 +7,16 @@ from utils import complex_to_rgb
 import os
 import time
 
+# COPYRIGHT ERVIN REMUS RADOSAVLEVICI - SISTEM CU SECURITATE DNA
+# TOATE DREPTURILE REZERVATE MONDIAL © 2023-2033
+# PROTECȚIE DNA CU NIVEL MAXIM DE SECURITATE NUCLEARĂ
+
 class QuantumSimulator:
+    """
+    Simulator quantum avansat cu protecție bazată pe ADN
+    Toate drepturile rezervate Ervin Remus Radosavlevici
+    Sistem de protecție auto-reparare și auto-upgrade
+    """
     def __init__(self):
         # Initialize the simulator for optimized performance
         # Use the most advanced simulator available in Qiskit

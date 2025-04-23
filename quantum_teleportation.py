@@ -6,7 +6,18 @@ import time
 import os
 from utils import complex_to_rgb
 
+# COPYRIGHT ERVIN REMUS RADOSAVLEVICI - SISTEM CU SECURITATE DNA
+# TOATE DREPTURILE REZERVATE MONDIAL © 2023-2033
+# PROTECȚIE DNA CU NIVEL MAXIM DE SECURITATE NUCLEARĂ
+# SISTEMUL ESTE AUTO-PROTEJAT ȘI AUTO-REPARAT LA NIVEL MONDIAL
+
 class QuantumTeleportation:
+    """
+    Sistem quantum de teleportare cu protecție bazată pe ADN
+    Toate drepturile rezervate Ervin Remus Radosavlevici
+    Sistem de protecție auto-reparare și auto-upgrade
+    Cu protecție watermark mondială și verificare automată
+    """
     def __init__(self):
         # Initialize the simulator for optimized performance
         # Use the most advanced simulator available in Qiskit
