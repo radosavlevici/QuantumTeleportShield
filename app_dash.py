@@ -17,6 +17,14 @@ import pandas as pd
 import qiskit
 import qiskit_aer
 import qiskit_ibm_runtime
+from interface_updates import (
+    create_main_dashboard_card,
+    create_checkpoint_card,
+    create_datacenters_card,
+    create_command_card,
+    create_protection_card,
+    update_layout
+)
 
 # Importăm modulele noi pentru protecție și securitate
 try:
