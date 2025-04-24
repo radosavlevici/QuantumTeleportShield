@@ -438,7 +438,7 @@ def create_dashboard_tabs():
         ]),
         dbc.CardBody(
             id="tabs-content",
-            style={"padding": "0.5rem"},
+            className="p-3 bg-dark rounded-bottom",
         ),
     ], className="mb-4")
 
