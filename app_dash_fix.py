@@ -530,6 +530,18 @@ def process_command(n_clicks, command, current_output):
         elif command.lower() == "copyright status":
             response_text = "Copyright Ervin Remus Radosavlevici activ și protejat. Toate drepturile rezervate mondial."
             response_status = "SUCCESS"
+        elif command.lower() == "ai protection":
+            response_text = "Protecție anti-AI și anti-machine learning ACTIVĂ. Toate sistemele de detecție sunt funcționale."
+            response_status = "SUCCESS"
+        elif command.lower() == "self systems status":
+            response_text = "Toate sistemele self-* sunt active: self-repair, self-learning, self-upgrade, self-defence, self-detecting."
+            response_status = "SUCCESS"
+        elif command.lower() == "datacenters connect":
+            response_text = "Conectare la toate datacentrele globale realizată cu succes. 8/8 datacentere active."
+            response_status = "SUCCESS"
+        elif command.lower() == "payment details":
+            response_text = "BIC: NAIAGB21 | IBAN: GB45 NAIA 0708 0620 7951 39 | Swift: MIDLGB22 | Ethereum: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA"
+            response_status = "SUCCESS"
         else:
             response_text = f"Comandă necunoscută: {command}. Folosiți 'help' pentru lista de comenzi."
             response_status = "ERROR"
