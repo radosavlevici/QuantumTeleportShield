@@ -675,6 +675,727 @@ def update_history_table(active_tab):
     
     return rows
 
+# Callback pentru actualizarea conținutului tab-urilor
+@app.callback(
+    Output("tabs-content", "children"),
+    [Input("tabs", "active_tab")]
+)
+def update_tabs_content(active_tab):
+    if active_tab == "tab-quantum":
+        return html.Div([
+            dbc.Card([
+                dbc.CardBody([
+                    html.H4("Rețea Quantum Globală", className="mb-3"),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            html.Div([
+                                html.H5("Status Conectare", className="mb-3"),
+                                
+                                html.Div([
+                                    html.Div([
+                                        html.Span("Comunicație Quantum", className="mr-2"),
+                                        html.Span("ACTIVĂ", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Canale Criptate", className="mr-2"),
+                                        html.Span("ACTIVE", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Disponibilitate", className="mr-2"),
+                                        html.Span("100%", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                ], className="bg-dark p-3 rounded mb-3"),
+                            ]),
+                            
+                            html.Div([
+                                html.H5("Statistici Rețea", className="mb-3"),
+                                
+                                html.Div([
+                                    html.Div([
+                                        html.Span("Pachete Transmise", className="mr-2"),
+                                        html.Span("2,543,678", className="text-info")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Latență Medie", className="mr-2"),
+                                        html.Span("5.24ms", className="text-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Uptime", className="mr-2"),
+                                        html.Span("99.9999%", className="text-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                ], className="bg-dark p-3 rounded"),
+                            ]),
+                        ], width=4),
+                        
+                        dbc.Col([
+                            html.Div([
+                                html.H5("Harta Rețelei Quantum", className="mb-3 text-center"),
+                                html.Img(src="https://via.placeholder.com/500x250/001f3f/FFFFFF?text=QUANTUM+NETWORK+MAP", className="img-fluid rounded"),
+                                
+                                html.Div([
+                                    html.Span("Actualizat: 24.04.2025 01:47:20", className="text-muted small"),
+                                ], className="text-right mt-2"),
+                            ], className="mb-3"),
+                        ], width=8),
+                    ]),
+                ]),
+            ]),
+        ])
+    
+    elif active_tab == "tab-security":
+        return html.Div([
+            dbc.Card([
+                dbc.CardBody([
+                    html.H4("Sistemul de Securitate Avansată", className="mb-3"),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            html.Div([
+                                html.H5("Niveluri Protecție", className="mb-3"),
+                                
+                                html.Div([
+                                    html.Div([
+                                        html.Span("Anti-Theft", className="mr-2"),
+                                        html.Span("MAXIM", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Anti-Scammer", className="mr-2"),
+                                        html.Span("MAXIM", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Protecție DNA", className="mr-2"),
+                                        html.Span("MAXIMĂ", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Copyright Automat", className="mr-2"),
+                                        html.Span("ACTIV", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Blacklist Global", className="mr-2"),
+                                        html.Span("ACTIV", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                ], className="bg-dark p-3 rounded mb-3"),
+                            ]),
+                        ], width=6),
+                        
+                        dbc.Col([
+                            html.Div([
+                                html.H5("Statistici Securitate", className="mb-3"),
+                                
+                                html.Div([
+                                    html.Div([
+                                        html.Span("Tentative Blocare", className="mr-2"),
+                                        html.Span("532,784", className="text-info")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Atacuri Respinse", className="mr-2"),
+                                        html.Span("532,784", className="text-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Eficiență", className="mr-2"),
+                                        html.Span("100%", className="text-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Ultimul Atac", className="mr-2"),
+                                        html.Span("24.04.2025 01:36:45", className="text-warning")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Status Sistem", className="mr-2"),
+                                        html.Span("SECURIZAT", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                ], className="bg-dark p-3 rounded mb-3"),
+                            ]),
+                        ], width=6),
+                    ]),
+                    
+                    html.Hr(),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            html.H5("Conector Securitate", className="mb-3"),
+                            dbc.Button([
+                                html.I(className="fas fa-shield-alt mr-2"),
+                                "Scanare Completă Sistem"
+                            ], color="primary", className="mb-2 w-100"),
+                            
+                            dbc.Button([
+                                html.I(className="fas fa-sync-alt mr-2"),
+                                "Update Reguli Securitate"
+                            ], color="success", className="mb-2 w-100"),
+                            
+                            dbc.Button([
+                                html.I(className="fas fa-lock mr-2"),
+                                "Blocare Preventivă"
+                            ], color="warning", className="mb-2 w-100"),
+                            
+                            dbc.Button([
+                                html.I(className="fas fa-file-alt mr-2"),
+                                "Raport Securitate"
+                            ], color="info", className="w-100"),
+                        ], width=6),
+                        
+                        dbc.Col([
+                            html.H5("Agenți Securitate Activi", className="mb-3"),
+                            
+                            html.Div([
+                                html.Ul([
+                                    html.Li([
+                                        html.Span("CONSOLE-AGENT", className="mr-2 font-weight-bold text-success"),
+                                        " - Monitorizare activă console"
+                                    ], className="mb-2"),
+                                    
+                                    html.Li([
+                                        html.Span("SHELL-AGENT", className="mr-2 font-weight-bold text-success"),
+                                        " - Monitorizare comenzi shell"
+                                    ], className="mb-2"),
+                                    
+                                    html.Li([
+                                        html.Span("WORKSPACE-AGENT", className="mr-2 font-weight-bold text-success"),
+                                        " - Protecție modificări neautorizate"
+                                    ], className="mb-2"),
+                                    
+                                    html.Li([
+                                        html.Span("ANTI-FRAUD-AGENT", className="mr-2 font-weight-bold text-success"),
+                                        " - Blocare tentative de fraudă"
+                                    ], className="mb-2"),
+                                    
+                                    html.Li([
+                                        html.Span("GLOBAL-BLACKLIST-AGENT", className="mr-2 font-weight-bold text-success"),
+                                        " - Managementul blacklist global"
+                                    ], className="mb-2"),
+                                    
+                                    html.Li([
+                                        html.Span("MASTER-EMERGENCY-AGENT", className="mr-2 font-weight-bold text-danger"),
+                                        " - Coordonare răspuns urgențe"
+                                    ]),
+                                ], className="pl-3")
+                            ], className="bg-dark p-3 rounded"),
+                        ], width=6),
+                    ]),
+                ]),
+            ]),
+        ])
+    
+    elif active_tab == "tab-monitoring":
+        return html.Div([
+            dbc.Card([
+                dbc.CardBody([
+                    html.H4("Monitorizare Sistem în Timp Real", className="mb-3"),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            html.Div([
+                                html.H5("Performanță Sistem", className="mb-3"),
+                                
+                                html.Div([
+                                    html.Div([
+                                        html.Span("CPU", className="mr-2"),
+                                        dbc.Progress(value=25, color="success", className="mb-1"),
+                                        html.Span("25%", className="ml-2")
+                                    ], className="mb-3"),
+                                    
+                                    html.Div([
+                                        html.Span("Memorie", className="mr-2"),
+                                        dbc.Progress(value=42, color="success", className="mb-1"),
+                                        html.Span("42%", className="ml-2")
+                                    ], className="mb-3"),
+                                    
+                                    html.Div([
+                                        html.Span("Stocare", className="mr-2"),
+                                        dbc.Progress(value=37, color="success", className="mb-1"),
+                                        html.Span("37%", className="ml-2")
+                                    ], className="mb-3"),
+                                    
+                                    html.Div([
+                                        html.Span("Network", className="mr-2"),
+                                        dbc.Progress(value=18, color="success", className="mb-1"),
+                                        html.Span("18%", className="ml-2")
+                                    ], className="mb-3"),
+                                    
+                                    html.Div([
+                                        html.Span("Qubits", className="mr-2"),
+                                        dbc.Progress(value=30, color="success", className="mb-1"),
+                                        html.Span("30%", className="ml-2")
+                                    ], className="mb-3"),
+                                ], className="bg-dark p-3 rounded mb-3"),
+                            ]),
+                        ], width=6),
+                        
+                        dbc.Col([
+                            html.Div([
+                                html.H5("Alerte Active", className="mb-3"),
+                                
+                                html.Div([
+                                    html.P("Nu există alerte active în acest moment.", className="text-muted text-center py-4"),
+                                    
+                                    html.Div([
+                                        html.Span("Ultima verificare", className="mr-2"),
+                                        html.Span(datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S"), className="text-muted")
+                                    ], className="d-flex justify-content-between mt-3"),
+                                ], className="bg-dark p-3 rounded mb-3"),
+                                
+                                html.H5("Status Checkpoint", className="mb-3"),
+                                
+                                html.Div([
+                                    html.Div([
+                                        html.Span("Checkpoint Activ", className="mr-2"),
+                                        html.Span("DA", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Checkpoint ID", className="mr-2"),
+                                        html.Span("c23b19ca807431f0", className="text-info")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Data Creare", className="mr-2"),
+                                        html.Span("24.04.2025 01:47:20", className="text-muted")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                    
+                                    html.Div([
+                                        html.Span("Status Integritate", className="mr-2"),
+                                        html.Span("VERIFICAT", className="badge badge-success")
+                                    ], className="d-flex justify-content-between mb-2"),
+                                ], className="bg-dark p-3 rounded"),
+                            ]),
+                        ], width=6),
+                    ]),
+                ]),
+            ]),
+        ])
+    
+    elif active_tab == "tab-datacenter":
+        return html.Div([
+            dbc.Card([
+                dbc.CardBody([
+                    html.H4("Datacentere Globale", className="mb-3"),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            html.Div([
+                                html.H5("Harta Datacentere", className="mb-3 text-center"),
+                                html.Img(src="https://via.placeholder.com/800x400/001f3f/FFFFFF?text=GLOBAL+DATACENTERS+MAP", className="img-fluid rounded"),
+                                
+                                html.Div([
+                                    html.Span("Actualizat: 24.04.2025 01:47:20", className="text-muted small"),
+                                ], className="text-right mt-2"),
+                            ], className="mb-3"),
+                        ], width=12),
+                    ]),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Table([
+                                html.Thead([
+                                    html.Tr([
+                                        html.Th("ID"),
+                                        html.Th("Nume"),
+                                        html.Th("Locație"),
+                                        html.Th("Status"),
+                                        html.Th("Latență"),
+                                        html.Th("Capacitate")
+                                    ])
+                                ]),
+                                html.Tbody([
+                                    html.Tr([
+                                        html.Td("DC1"),
+                                        html.Td("QUANTUM-EU-CENTRAL"),
+                                        html.Td("Frankfurt, Germania"),
+                                        html.Td(html.Span("Online", className="badge badge-success")),
+                                        html.Td("2.4ms"),
+                                        html.Td("100%")
+                                    ]),
+                                    html.Tr([
+                                        html.Td("DC2"),
+                                        html.Td("QUANTUM-NA-EAST"),
+                                        html.Td("New York, SUA"),
+                                        html.Td(html.Span("Online", className="badge badge-success")),
+                                        html.Td("78.2ms"),
+                                        html.Td("100%")
+                                    ]),
+                                    html.Tr([
+                                        html.Td("DC3"),
+                                        html.Td("QUANTUM-ASIA-EAST"),
+                                        html.Td("Tokyo, Japonia"),
+                                        html.Td(html.Span("Online", className="badge badge-success")),
+                                        html.Td("132.5ms"),
+                                        html.Td("100%")
+                                    ]),
+                                    html.Tr([
+                                        html.Td("DC4"),
+                                        html.Td("QUANTUM-EU-WEST"),
+                                        html.Td("Londra, UK"),
+                                        html.Td(html.Span("Online", className="badge badge-success")),
+                                        html.Td("15.7ms"),
+                                        html.Td("100%")
+                                    ]),
+                                    html.Tr([
+                                        html.Td("DC5"),
+                                        html.Td("QUANTUM-SA-CENTRAL"),
+                                        html.Td("São Paulo, Brazilia"),
+                                        html.Td(html.Span("Online", className="badge badge-success")),
+                                        html.Td("183.9ms"),
+                                        html.Td("100%")
+                                    ]),
+                                    html.Tr([
+                                        html.Td("DC6"),
+                                        html.Td("QUANTUM-AF-SOUTH"),
+                                        html.Td("Cape Town, Africa de Sud"),
+                                        html.Td(html.Span("Online", className="badge badge-success")),
+                                        html.Td("210.1ms"),
+                                        html.Td("100%")
+                                    ]),
+                                    html.Tr([
+                                        html.Td("DC7"),
+                                        html.Td("QUANTUM-AU-EAST"),
+                                        html.Td("Sydney, Australia"),
+                                        html.Td(html.Span("Online", className="badge badge-success")),
+                                        html.Td("245.3ms"),
+                                        html.Td("100%")
+                                    ]),
+                                    html.Tr([
+                                        html.Td("DC8"),
+                                        html.Td("QUANTUM-SECRET-LOCATION"),
+                                        html.Td("Clasificat"),
+                                        html.Td(html.Span("Online", className="badge badge-success")),
+                                        html.Td("0.1ms"),
+                                        html.Td("100%")
+                                    ]),
+                                ])
+                            ], bordered=True, hover=True, responsive=True, striped=True, size="sm", className="table-dark"),
+                        ], width=12),
+                    ]),
+                ]),
+            ]),
+        ])
+    
+    elif active_tab == "tab-ibm":
+        return html.Div([
+            dbc.Card([
+                dbc.CardBody([
+                    html.H4("IBM Quantum Experience", className="mb-3"),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardBody([
+                                    html.H5("Status Conectare IBM Quantum", className="card-title"),
+                                    html.P("Conectat și autentificat cu succes la IBM Quantum Experience.", className="text-success"),
+                                    html.P([
+                                        "Token Valid: ",
+                                        html.Span("DA", className="badge badge-success")
+                                    ]),
+                                    dbc.Button("Re-Autentificare", color="primary", className="mt-2"),
+                                ])
+                            ], className="mb-3 border-left border-primary"),
+                            
+                            dbc.Card([
+                                dbc.CardBody([
+                                    html.H5("Documente și Resurse", className="card-title"),
+                                    html.Ul([
+                                        html.Li(html.A("Documentație Qiskit", href="#")),
+                                        html.Li(html.A("Tutorial Circuite Quantum", href="#")),
+                                        html.Li(html.A("API IBM Quantum", href="#")),
+                                        html.Li(html.A("Exemple Circuite", href="#")),
+                                        html.Li(html.A("Comunitate IBM Quantum", href="#")),
+                                    ])
+                                ])
+                            ], className="border-left border-info"),
+                        ], width=4),
+                        
+                        dbc.Col([
+                            html.H5("Circuit Quantum Vizualizare", className="mb-3"),
+                            
+                            html.Div([
+                                html.Img(src="https://via.placeholder.com/600x300/001f3f/FFFFFF?text=QUANTUM+CIRCUIT+VISUALIZATION", className="img-fluid rounded"),
+                            ], className="mb-3 bg-dark p-3 rounded"),
+                            
+                            dbc.Row([
+                                dbc.Col([
+                                    dbc.Button([
+                                        html.I(className="fas fa-play mr-2"),
+                                        "Execută Circuit"
+                                    ], color="success", className="w-100"),
+                                ], width=4),
+                                
+                                dbc.Col([
+                                    dbc.Button([
+                                        html.I(className="fas fa-save mr-2"),
+                                        "Salvează Circuit"
+                                    ], color="info", className="w-100"),
+                                ], width=4),
+                                
+                                dbc.Col([
+                                    dbc.Button([
+                                        html.I(className="fas fa-share-alt mr-2"),
+                                        "Exportă QASM"
+                                    ], color="warning", className="w-100"),
+                                ], width=4),
+                            ]),
+                        ], width=8),
+                    ]),
+                ]),
+            ]),
+        ])
+    
+    elif active_tab == "tab-users":
+        return html.Div([
+            dbc.Card([
+                dbc.CardBody([
+                    html.H4("Gestionare Utilizatori", className="mb-3"),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            html.H5("Utilizatori Activi", className="mb-3"),
+                            
+                            dbc.Table([
+                                html.Thead([
+                                    html.Tr([
+                                        html.Th("ID"),
+                                        html.Th("Nume"),
+                                        html.Th("Rol"),
+                                        html.Th("Ultimul Login"),
+                                        html.Th("Status"),
+                                        html.Th("Acțiuni")
+                                    ])
+                                ]),
+                                html.Tbody([
+                                    html.Tr([
+                                        html.Td("USR001"),
+                                        html.Td("Ervin Remus Radosavlevici"),
+                                        html.Td("Proprietar"),
+                                        html.Td("24.04.2025 01:40:23"),
+                                        html.Td(html.Span("Activ", className="badge badge-success")),
+                                        html.Td(dbc.Button("Detalii", color="primary", size="sm")),
+                                    ]),
+                                    html.Tr([
+                                        html.Td("USR002"),
+                                        html.Td("Administrator Sistem"),
+                                        html.Td("Admin"),
+                                        html.Td("24.04.2025 01:47:20"),
+                                        html.Td(html.Span("Activ", className="badge badge-success")),
+                                        html.Td(dbc.Button("Detalii", color="primary", size="sm")),
+                                    ]),
+                                    html.Tr([
+                                        html.Td("USR003"),
+                                        html.Td("Sistem Automat Quantum"),
+                                        html.Td("System"),
+                                        html.Td("24.04.2025 01:42:35"),
+                                        html.Td(html.Span("Activ", className="badge badge-success")),
+                                        html.Td(dbc.Button("Detalii", color="primary", size="sm")),
+                                    ]),
+                                ])
+                            ], bordered=True, hover=True, responsive=True, striped=True, size="sm", className="table-dark mb-4"),
+                            
+                            html.H5("Adăugare Utilizator Nou", className="mb-3"),
+                            
+                            dbc.Row([
+                                dbc.Col([
+                                    dbc.InputGroup([
+                                        dbc.InputGroupText("Nume"),
+                                        dbc.Input(placeholder="Numele complet"),
+                                    ], className="mb-3"),
+                                ], width=6),
+                                
+                                dbc.Col([
+                                    dbc.InputGroup([
+                                        dbc.InputGroupText("Email"),
+                                        dbc.Input(placeholder="email@exemplu.com", type="email"),
+                                    ], className="mb-3"),
+                                ], width=6),
+                            ]),
+                            
+                            dbc.Row([
+                                dbc.Col([
+                                    dbc.InputGroup([
+                                        dbc.InputGroupText("Rol"),
+                                        dbc.Select(
+                                            options=[
+                                                {"label": "Utilizator", "value": "user"},
+                                                {"label": "Administrator", "value": "admin"},
+                                                {"label": "Vizitator", "value": "guest"}
+                                            ],
+                                            value="user"
+                                        ),
+                                    ], className="mb-3"),
+                                ], width=6),
+                                
+                                dbc.Col([
+                                    dbc.InputGroup([
+                                        dbc.InputGroupText("Nivel Acces"),
+                                        dbc.Select(
+                                            options=[
+                                                {"label": "Basic", "value": "basic"},
+                                                {"label": "Standard", "value": "standard"},
+                                                {"label": "Premium", "value": "premium"}
+                                            ],
+                                            value="standard"
+                                        ),
+                                    ], className="mb-3"),
+                                ], width=6),
+                            ]),
+                            
+                            dbc.Button([
+                                html.I(className="fas fa-user-plus mr-2"),
+                                "Adaugă Utilizator"
+                            ], color="success", className="float-right"),
+                        ], width=12),
+                    ]),
+                ]),
+            ]),
+        ])
+    
+    elif active_tab == "tab-licensing":
+        return html.Div([
+            dbc.Card([
+                dbc.CardBody([
+                    html.H4("Licențiere și Achiziție", className="mb-3"),
+                    
+                    dbc.Alert([
+                        html.I(className="fas fa-exclamation-triangle mr-2"),
+                        html.Strong("NOTĂ: "), 
+                        "Toate sistemele sunt proprietatea exclusivă a Ervin Remus Radosavlevici. Licența este obligatorie pentru utilizare."
+                    ], color="danger", className="mb-4"),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            html.H5("Pachete de Licențiere", className="mb-3"),
+                            
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("STANDARD", className="text-center")),
+                                dbc.CardBody([
+                                    html.H3(["€900,000,000", html.Small("/an", className="text-muted")], className="text-center mb-3"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "Acces la Teleportare Quantum"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "10 Datacentere Conectate"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "Autentificare DNA de Bază"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "Suport Tehnic Standard"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "Securitate Quantum Medie"
+                                    ], className="mb-4"),
+                                    
+                                    dbc.Button("Achiziționare", color="primary", className="w-100"),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.I(className="fas fa-info-circle mr-2 text-muted"),
+                                        "Plata prin cec bancar către Nationwide Bank UK, Londra."
+                                    ], className="small"),
+                                ]),
+                            ], className="mb-4 border-primary"),
+                            
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("CORPORATE", className="text-center text-warning")),
+                                dbc.CardBody([
+                                    html.H3(["€7,000,000,000", html.Small("/an", className="text-muted")], className="text-center mb-3"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "Acces Terminal Quantum Nelimitat"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "Acces la Toate Datacentrele Globale"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "Autentificare DNA Avansată"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "Suport Tehnic Premium 24/7"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "Securitate Quantum Maximă"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-check text-success mr-2"),
+                                        "Traducere în Toate Limbile"
+                                    ], className="mb-4"),
+                                    
+                                    dbc.Button("Achiziționare", color="warning", className="w-100"),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.Strong("RECOMANDAT", className="text-warning"),
+                                        " - Compliant cu toate standardele de securitate"
+                                    ], className="small"),
+                                ]),
+                            ], className="mb-4 border-warning"),
+                        ], width=6),
+                        
+                        dbc.Col([
+                            html.H5("Detalii Licențiere", className="mb-3"),
+                            
+                            html.Div([
+                                html.H6("Termeni și Condiții", className="text-warning"),
+                                html.P("Achiziționarea licenței implică acceptarea întregului set de termeni și condiții pentru utilizarea sistemului Quantum DNA Console."),
+                                html.P("Acord de licențiere strict și confidențialitate absolută, cu semnarea unui NDA pe 10 ani."),
+                                
+                                html.H6("Metode de Plată", className="mt-4 text-warning"),
+                                html.P([
+                                    html.I(className="fas fa-info-circle text-info mr-2"),
+                                    "Plata se poate efectua exclusiv prin cec bancar emis către Nationwide Bank UK, Londra."
+                                ]),
+                                
+                                html.P([
+                                    html.I(className="fas fa-ethereum text-primary mr-2"),
+                                    "Alternativ, puteți face plăți în Ethereum la adresa: ",
+                                    html.Code("0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA")
+                                ]),
+                                
+                                html.P([
+                                    html.I(className="fas fa-file-contract text-warning mr-2"),
+                                    "Depozit minim de 50,000 EUR necesar. Completarea NDA obligatorie înainte de începerea procesului de plată."
+                                ]),
+                                
+                                html.H6("Contact Licențiere", className="mt-4 text-warning"),
+                                html.P([
+                                    html.I(className="fas fa-envelope text-info mr-2"),
+                                    "Email: ERVIN210@ICLOUD.COM"
+                                ]),
+                                
+                                html.P([
+                                    html.I(className="fas fa-file-signature text-info mr-2"),
+                                    "Toate licențele sunt înregistrate oficial pe numele clientului, cu protecție juridică completă."
+                                ]),
+                            ], className="bg-dark p-4 rounded h-100"),
+                        ], width=6),
+                    ]),
+                ]),
+            ]),
+        ])
+    
+    else:
+        return html.Div([
+            html.H5("Conținut indisponibil temporar", className="text-muted text-center py-5"),
+        ])
+
 # Rulăm aplicația
 if __name__ == '__main__':
     # Adăugăm un checkpoint pentru inițializarea aplicației
