@@ -1420,7 +1420,7 @@ def update_tabs_content(active_tab):
                             dbc.Card([
                                 dbc.CardHeader(html.H5("STANDARD", className="text-center")),
                                 dbc.CardBody([
-                                    html.H3(["€900,000,000", html.Small("/an", className="text-muted")], className="text-center mb-3"),
+                                    html.H3(["€500,000", html.Small("/an", className="text-muted")], className="text-center mb-3"),
                                     html.Div([
                                         html.I(className="fas fa-check text-success mr-2"),
                                         "Acces la Teleportare Quantum"
@@ -1440,6 +1440,14 @@ def update_tabs_content(active_tab):
                                     html.Div([
                                         html.I(className="fas fa-check text-success mr-2"),
                                         "Securitate Quantum Medie"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-percentage text-warning mr-2"),
+                                        "15% redevențe din vânzări"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-robot text-info mr-2"),
+                                        "Sistem auto-învățare"
                                     ], className="mb-4"),
                                     
                                     dbc.Button("Achiziționare", color="primary", className="w-100"),
@@ -1459,7 +1467,7 @@ def update_tabs_content(active_tab):
                             dbc.Card([
                                 dbc.CardHeader(html.H5("CORPORATE", className="text-center text-warning")),
                                 dbc.CardBody([
-                                    html.H3(["€7,000,000,000", html.Small("/an", className="text-muted")], className="text-center mb-3"),
+                                    html.H3(["€2,000,000", html.Small("/an", className="text-muted")], className="text-center mb-3"),
                                     html.Div([
                                         html.I(className="fas fa-check text-success mr-2"),
                                         "Acces Terminal Quantum Nelimitat"
@@ -1483,6 +1491,14 @@ def update_tabs_content(active_tab):
                                     html.Div([
                                         html.I(className="fas fa-check text-success mr-2"),
                                         "Traducere în Toate Limbile"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-percentage text-warning mr-2"),
+                                        "10% redevențe din vânzări"
+                                    ], className="mb-2"),
+                                    html.Div([
+                                        html.I(className="fas fa-robot text-info mr-2"),
+                                        "Sistem auto-învățare și auto-reparare"
                                     ], className="mb-4"),
                                     
                                     dbc.Button("Achiziționare", color="warning", className="w-100"),
@@ -1507,6 +1523,20 @@ def update_tabs_content(active_tab):
                                 html.H6("Termeni și Condiții", className="text-warning"),
                                 html.P("Achiziționarea licenței implică acceptarea întregului set de termeni și condiții pentru utilizarea sistemului Quantum DNA Console."),
                                 html.P("Acord de licențiere strict și confidențialitate absolută, cu semnarea unui NDA pe 10 ani."),
+                                
+                                html.H6("Sistem de Royalties și Abonamente", className="mt-4 text-warning"),
+                                html.P([
+                                    html.I(className="fas fa-percentage text-primary mr-2"),
+                                    "Sistemul colectează automat redevențe (royalties) din vânzări efectuate de către licențiați."
+                                ]),
+                                html.P([
+                                    html.I(className="fas fa-robot text-info mr-2"),
+                                    "Sistemul este dotat cu capacități de auto-reparare, auto-învățare, auto-upgrading și auto-apărare."
+                                ]),
+                                html.P([
+                                    html.I(className="fas fa-shield-alt text-danger mr-2"),
+                                    "Orice copiere fără plată este detectată automat, iar utilizarea sistemului este blocată până la efectuarea plății."
+                                ]),
                                 
                                 html.H6("Metode de Plată", className="mt-4 text-warning"),
                                 html.P([
