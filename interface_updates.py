@@ -1,6 +1,11 @@
 import dash
 import dash_bootstrap_components as dbc
 from dash import html, dcc
+import datetime
+import hashlib
+import random
+import numpy as np
+import pandas as pd
 
 # COPYRIGHT ERVIN REMUS RADOSAVLEVICI - SISTEM CU SECURITATE DNA
 # TOATE DREPTURILE REZERVATE MONDIAL © 2023-2033
@@ -625,6 +630,399 @@ def create_protection_card():
         ]),
     ], className="mb-4")
 
+def create_ibm_quantum_card():
+    """Creează cardul pentru IBM Quantum Integration"""
+    return dbc.Card([
+        dbc.CardHeader([
+            html.H4([
+                html.I(className="fas fa-atom text-primary mr-2"),
+                "IBM Quantum Integration"
+            ], className="mb-0"),
+        ]),
+        dbc.CardBody([
+            dbc.Row([
+                dbc.Col([
+                    html.H5("Status Conexiune IBM Quantum", className="mb-3"),
+                    
+                    html.Div([
+                        html.Div([
+                            html.Span("Status Conexiune", className="mr-2"),
+                            html.Span("CONECTAT", className="badge badge-success")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
+                            html.Span("Nivel Acces", className="mr-2"),
+                            html.Span("PREMIUM", className="badge badge-warning")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
+                            html.Span("Disponibilitate API", className="mr-2"),
+                            html.Span("100%", className="badge badge-success")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
+                            html.Span("Qubits Disponibili", className="mr-2"),
+                            html.Span("127", className="badge badge-info")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
+                            html.Span("Token Valid", className="mr-2"),
+                            html.Span("DA", className="badge badge-success")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
+                            html.Span("Data Expirare Token", className="mr-2"),
+                            html.Span("01.09.2030", className="text-warning")
+                        ], className="d-flex justify-content-between mb-2"),
+                    ], className="bg-dark p-3 rounded mb-3"),
+                    
+                    dbc.Button([
+                        html.I(className="fas fa-sync-alt mr-2"),
+                        "Reînnoire Token IBM Quantum"
+                    ], color="primary", className="w-100"),
+                    
+                ], width=6),
+                
+                dbc.Col([
+                    html.H5("Calculatoare Quantum Disponibile", className="mb-3"),
+                    
+                    html.Div([
+                        dbc.Table([
+                            html.Thead([
+                                html.Tr([
+                                    html.Th("Nume"),
+                                    html.Th("Qubits"),
+                                    html.Th("Status"),
+                                    html.Th("Acțiuni")
+                                ])
+                            ]),
+                            html.Tbody([
+                                html.Tr([
+                                    html.Td("IBM Quantum System One"),
+                                    html.Td("127"),
+                                    html.Td(html.Span("Online", className="badge badge-success")),
+                                    html.Td(dbc.Button("Conectare", color="primary", size="sm"))
+                                ]),
+                                html.Tr([
+                                    html.Td("IBM Eagle"),
+                                    html.Td("433"),
+                                    html.Td(html.Span("Online", className="badge badge-success")),
+                                    html.Td(dbc.Button("Conectare", color="primary", size="sm"))
+                                ]),
+                                html.Tr([
+                                    html.Td("IBM Quantum Heron"),
+                                    html.Td("156"),
+                                    html.Td(html.Span("Online", className="badge badge-success")),
+                                    html.Td(dbc.Button("Conectare", color="primary", size="sm"))
+                                ]),
+                                html.Tr([
+                                    html.Td("IBM Osprey"),
+                                    html.Td("433"),
+                                    html.Td(html.Span("Mentenanță", className="badge badge-warning")),
+                                    html.Td(dbc.Button("Indisponibil", color="secondary", size="sm", disabled=True))
+                                ]),
+                            ])
+                        ], bordered=True, hover=True, responsive=True, striped=True, size="sm", className="table-dark"),
+                    ], className="bg-dark p-3 rounded mb-3"),
+                    
+                    dbc.Button([
+                        html.I(className="fas fa-tachometer-alt mr-2"),
+                        "Accesare IBM Quantum Experience"
+                    ], color="info", className="w-100 mb-2"),
+                    
+                    dbc.Button([
+                        html.I(className="fas fa-code mr-2"),
+                        "Editor Circuite Quantum"
+                    ], color="success", className="w-100"),
+                ], width=6),
+            ]),
+        ]),
+    ], className="mb-4")
+
+def create_licensing_card():
+    """Creează cardul pentru opțiuni de licențiere"""
+    return dbc.Card([
+        dbc.CardHeader([
+            html.H4([
+                html.I(className="fas fa-certificate text-warning mr-2"),
+                "Licențiere și Achiziție"
+            ], className="mb-0"),
+        ]),
+        dbc.CardBody([
+            dbc.Alert([
+                html.I(className="fas fa-exclamation-triangle mr-2"),
+                html.Strong("Atenție: "), 
+                "Toate sistemele sunt proprietatea exclusivă a Ervin Remus Radosavlevici. Licența este obligatorie pentru utilizare."
+            ], color="danger", className="mb-4"),
+            
+            dbc.Row([
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader(html.H5("Standard", className="text-center")),
+                        dbc.CardBody([
+                            html.H3(["€900,000,000", html.Small("/an", className="text-muted")], className="text-center mb-3"),
+                            
+                            html.Ul([
+                                html.Li("Acces la Teleportare Quantum"),
+                                html.Li("10 Datacentere Conectate"),
+                                html.Li("Autentificare DNA de Bază"),
+                                html.Li("Suport Tehnic Standard"),
+                                html.Li("Securitate Quantum Medie"),
+                            ], className="mb-4"),
+                            
+                            dbc.Button("Achiziționare", color="primary", className="w-100"),
+                        ]),
+                    ], className="h-100 border-primary"),
+                ], width=4),
+                
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader(html.H5("Corporate", className="text-center text-warning")),
+                        dbc.CardBody([
+                            html.H3(["€7,000,000,000", html.Small("/an", className="text-muted")], className="text-center mb-3"),
+                            
+                            html.Ul([
+                                html.Li("Acces Terminal Quantum Nelimitat"),
+                                html.Li("Acces la Toate Datacentrele Globale"),
+                                html.Li("Autentificare DNA Avansată"),
+                                html.Li("Suport Tehnic Premium 24/7"),
+                                html.Li("Securitate Quantum Maximă"),
+                                html.Li("Traducere în Toate Limbile"),
+                            ], className="mb-4"),
+                            
+                            dbc.Button("Achiziționare", color="warning", className="w-100"),
+                        ]),
+                        dbc.CardFooter(html.Div("RECOMANDAT", className="text-warning text-center font-weight-bold")),
+                    ], className="h-100 border-warning"),
+                ], width=4),
+                
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader(html.H5("Enterprise", className="text-center")),
+                        dbc.CardBody([
+                            html.H3(["Contact", html.Small(" pentru preț", className="text-muted")], className="text-center mb-3"),
+                            
+                            html.Ul([
+                                html.Li("Acces Complet la Toate Sistemele"),
+                                html.Li("Infrastructură DNA Dedicată"),
+                                html.Li("Protecție Anti-Theft Personalizată"),
+                                html.Li("Securitate Quantum Personalizată"),
+                                html.Li("Dezvoltare la Comandă"),
+                                html.Li("Acces la Codul Sursă"),
+                            ], className="mb-4"),
+                            
+                            dbc.Button([
+                                html.I(className="fas fa-envelope mr-2"),
+                                "Contactați ERVIN210@ICLOUD.COM"
+                            ], color="info", className="w-100"),
+                        ]),
+                    ], className="h-100 border-info"),
+                ], width=4),
+            ]),
+            
+            html.Hr(),
+            
+            dbc.Row([
+                dbc.Col([
+                    html.H5("Informații Plată", className="mb-3"),
+                    
+                    html.P([
+                        html.I(className="fas fa-info-circle text-info mr-2"),
+                        "Plata se poate efectua exclusiv prin cec bancar emis către Nationwide Bank UK, Londra."
+                    ]),
+                    
+                    html.P([
+                        html.I(className="fas fa-ethereum text-primary mr-2"),
+                        "Alternativ, puteți face plăți în Ethereum la adresa: ",
+                        html.Code("0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA")
+                    ]),
+                    
+                    html.P([
+                        html.I(className="fas fa-file-contract text-warning mr-2"),
+                        "Depozit minim de 50,000 EUR necesar. Completarea NDA obligatorie înainte de începerea procesului de plată."
+                    ]),
+                ], width=6),
+                
+                dbc.Col([
+                    html.H5("Acces Limbă", className="mb-3"),
+                    
+                    html.P([
+                        html.I(className="fas fa-language text-success mr-2"),
+                        "Limba standard (gratuită): Română"
+                    ]),
+                    
+                    html.P([
+                        html.I(className="fas fa-lock text-danger mr-2"),
+                        "Limba engleză și alte limbi sunt disponibile doar cu licența Corporate sau Enterprise."
+                    ]),
+                    
+                    dbc.InputGroup([
+                        dbc.InputGroupText("Limbă Curentă"),
+                        dbc.Select(
+                            options=[
+                                {"label": "Română (Gratuită)", "value": "ro"},
+                                {"label": "Engleză (Premium)", "value": "en", "disabled": True},
+                                {"label": "Franceză (Premium)", "value": "fr", "disabled": True},
+                                {"label": "Germană (Premium)", "value": "de", "disabled": True},
+                                {"label": "Spaniolă (Premium)", "value": "es", "disabled": True},
+                            ],
+                            value="ro"
+                        ),
+                    ], className="mb-3"),
+                    
+                ], width=6),
+            ]),
+        ]),
+    ], className="mb-4")
+
+def create_user_settings_card():
+    """Creează cardul pentru setările utilizatorului"""
+    return dbc.Card([
+        dbc.CardHeader([
+            html.H4([
+                html.I(className="fas fa-user-cog text-info mr-2"),
+                "Setări Utilizator"
+            ], className="mb-0"),
+        ]),
+        dbc.CardBody([
+            dbc.Row([
+                dbc.Col([
+                    html.H5("Profilul Meu", className="mb-3"),
+                    
+                    html.Div([
+                        html.Div([
+                            html.Span("Nume Complet", className="mr-2"),
+                            html.Span("Administrator Sistem", className="text-info")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
+                            html.Span("Nivel Acces", className="mr-2"),
+                            html.Span("ADMIN", className="badge badge-danger")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
+                            html.Span("Ultimul Login", className="mr-2"),
+                            html.Span(datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S"), className="text-muted")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
+                            html.Span("2FA", className="mr-2"),
+                            html.Span("ACTIVAT", className="badge badge-success")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
+                            html.Span("Status Cont", className="mr-2"),
+                            html.Span("ACTIV", className="badge badge-success")
+                        ], className="d-flex justify-content-between mb-2"),
+                    ], className="bg-dark p-3 rounded mb-3"),
+                    
+                ], width=4),
+                
+                dbc.Col([
+                    html.H5("Preferințe Sistem", className="mb-3"),
+                    
+                    dbc.InputGroup([
+                        dbc.InputGroupText("Temă Interfață"),
+                        dbc.Select(
+                            options=[
+                                {"label": "Dark (Default)", "value": "dark"},
+                                {"label": "Quantum Blue", "value": "quantum_blue"},
+                                {"label": "Matrix Green", "value": "matrix_green"},
+                                {"label": "Midnight", "value": "midnight"},
+                            ],
+                            value="dark"
+                        ),
+                    ], className="mb-3"),
+                    
+                    dbc.InputGroup([
+                        dbc.InputGroupText("Update-uri"),
+                        dbc.Select(
+                            options=[
+                                {"label": "Timp Real", "value": "realtime"},
+                                {"label": "La fiecare 5 minute", "value": "5min"},
+                                {"label": "La fiecare 15 minute", "value": "15min"},
+                                {"label": "Manual", "value": "manual"},
+                            ],
+                            value="realtime"
+                        ),
+                    ], className="mb-3"),
+                    
+                    dbc.InputGroup([
+                        dbc.InputGroupText("Alerte"),
+                        dbc.Select(
+                            options=[
+                                {"label": "Toate", "value": "all"},
+                                {"label": "Critice", "value": "critical"},
+                                {"label": "Importante", "value": "important"},
+                                {"label": "Niciuna", "value": "none"},
+                            ],
+                            value="all"
+                        ),
+                    ], className="mb-3"),
+                    
+                    dbc.InputGroup([
+                        dbc.InputGroupText("Afinitate Quantum"),
+                        dbc.Select(
+                            options=[
+                                {"label": "Auto", "value": "auto"},
+                                {"label": "IBM Quantum", "value": "ibm"},
+                                {"label": "Universal Quantum", "value": "universal"},
+                                {"label": "Quantum Cloud", "value": "cloud"},
+                            ],
+                            value="auto"
+                        ),
+                    ], className="mb-3"),
+                    
+                    dbc.Button([
+                        html.I(className="fas fa-save mr-2"),
+                        "Salvează Setări"
+                    ], color="primary", className="w-100"),
+                    
+                ], width=4),
+                
+                dbc.Col([
+                    html.H5("Securitate Contul Meu", className="mb-3"),
+                    
+                    dbc.InputGroup([
+                        dbc.InputGroupText("Autentificare"),
+                        dbc.Select(
+                            options=[
+                                {"label": "DNA + Multi-Factor", "value": "dna_mfa"},
+                                {"label": "Quantum + DNA", "value": "quantum_dna"},
+                                {"label": "Standard", "value": "standard"},
+                            ],
+                            value="dna_mfa"
+                        ),
+                    ], className="mb-3"),
+                    
+                    html.Div([
+                        dbc.Label("Email Notificări"),
+                        dbc.Input(placeholder="email@example.com", type="email"),
+                    ], className="mb-3"),
+                    
+                    html.Div([
+                        dbc.Label("Telefon Alerte (SMS)"),
+                        dbc.Input(placeholder="+40.7xx.xxx.xxx", type="tel"),
+                    ], className="mb-3"),
+                    
+                    html.Div([
+                        dbc.Checkbox(id="agreement-checkbox", className="mr-2"),
+                        dbc.Label(
+                            "Sunt de acord cu termenii și condițiile, inclusiv protecția DNA și transferul quantum",
+                            html_for="agreement-checkbox",
+                        ),
+                    ], className="form-check mb-3"),
+                    
+                    dbc.Button([
+                        html.I(className="fas fa-user-shield mr-2"),
+                        "Actualizare Securitate"
+                    ], color="success", className="w-100"),
+                    
+                ], width=4),
+            ]),
+        ]),
+    ], className="mb-4")
+
 def update_layout(app):
     """Actualizează layout-ul aplicației pentru a include toate cardurile noi"""
     app.layout = html.Div([
@@ -656,8 +1054,17 @@ def update_layout(app):
                     # Card pentru verificare DNA
                     create_dna_verification_card(),
                     
+                    # Card pentru IBM Quantum Integration
+                    create_ibm_quantum_card(),
+                    
                     # Card pentru consolă comandă
                     create_command_card(),
+                    
+                    # Card pentru licențiere
+                    create_licensing_card(),
+                    
+                    # Card pentru setări utilizator
+                    create_user_settings_card(),
                     
                     # Card pentru istoric activitate
                     create_activity_history_card(),
