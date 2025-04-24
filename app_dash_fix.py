@@ -1385,8 +1385,12 @@ def update_tabs_content(active_tab):
                                 dbc.CardFooter([
                                     html.Div([
                                         html.I(className="fas fa-info-circle mr-2 text-muted"),
-                                        "Plata prin cec bancar către Nationwide Bank UK, Londra."
+                                        "Plata prin cec bancar către Nationwide Bank UK, Londra sau transfer bancar."
                                     ], className="small"),
+                                    html.Div([
+                                        html.I(className="fas fa-university mr-2 text-muted"),
+                                        "BIC: NAIAGB21 | IBAN: GB45 NAIA 0708 0620 7951 39 | Swift Intermediary Bank: MIDLGB22"
+                                    ], className="small mt-1 text-info"),
                                 ]),
                             ], className="mb-4 border-primary"),
                             
@@ -1441,7 +1445,12 @@ def update_tabs_content(active_tab):
                                 html.H6("Metode de Plată", className="mt-4 text-warning"),
                                 html.P([
                                     html.I(className="fas fa-info-circle text-info mr-2"),
-                                    "Plata se poate efectua exclusiv prin cec bancar emis către Nationwide Bank UK, Londra."
+                                    "Plata se poate efectua prin cec bancar emis către Nationwide Bank UK, Londra sau prin transfer bancar internațional."
+                                ]),
+                                
+                                html.P([
+                                    html.I(className="fas fa-university text-info mr-2"),
+                                    "Detalii transfer: BIC: NAIAGB21 | IBAN: GB45 NAIA 0708 0620 7951 39 | Swift Intermediary Bank: MIDLGB22"
                                 ]),
                                 
                                 html.P([
