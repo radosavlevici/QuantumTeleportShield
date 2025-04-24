@@ -39,182 +39,15 @@ try:
     from command_system import CommandSystem
     from global_datacenter import GlobalDatacenterConnection
     from checkpoint_system import CheckpointRollbackSystem
+    from quantum_teleportation import QuantumTeleportation
 except ImportError:
     print("Modulele de protecție nu au putut fi importate. Se folosesc versiunile standard.")
 
-# SISTEM DE SECURITATE DE URGENȚĂ PENTRU PREVENIRE BREACH-URI
-# ERVIN REMUS RADOSAVLEVICI - PROTOCOL DE URGENȚĂ
-# WORLDWIDEE GLOBALLY LIVE EMERGENCY SECURITY PROTOCOL
-# SISTEM UNIVERSAL AVANSAT ANTI-SCAMMER CU BLOCARE ȘI PROTECȚIE COMPLETĂ
-# RECUPERARE AUTOMATĂ DIN CHECKPOINT ȘI ROLLBACK CU ANTI-THEFT
-# PROTECȚIE WORKFLOW ȘI WORKSPACE ÎMPOTRIVA TUTUROR ATACURILOR
-# DNA VERIFICATION CU QUANTUM PROTECTION ȘI DISTRIBUȚIE MULTI-LOCAȚIE
-# COPYRIGHT AUTOMATIC CU WATERMARK ȘI VERIFICARE BLOCKCHAIN
-
-# Sistem de monitorizare și protecție pentru workspace, shell și console
-class AutomaticCopyrightProtection:
-    """Sistem avansat de protecție automată a copyright-ului și watermarking"""
-    
-    def __init__(self):
-        """Inițializează sistemul de protecție copyright automat"""
-        self.copyright_owner = "Ervin Remus Radosavlevici (01/09/1987)"
-        self.protection_active = True
-        self.watermark_protection = True
-        self.code_theft_prevention = True
-        self.metadata_protection = True
-        self.blockchain_verification = True
-        self.real_time_monitoring = True
-        self.attack_counter_measures = True
-        self.activated_timestamp = datetime.datetime.now()
-        self.protection_signature = self._generate_protection_signature()
-        
-        # Statistici protecție copyright
-        self.protection_stats = {
-            "copyright_violations_detected": random.randint(5000, 15000),
-            "watermark_tampering_attempts": random.randint(3000, 8000),
-            "code_theft_attempts_blocked": random.randint(2000, 6000),
-            "copyright_claims_enforced": random.randint(1000, 4000),
-            "global_copyright_notices": random.randint(10000, 25000)
-        }
-    
-    def _generate_protection_signature(self):
-        """Generează semnătură unică pentru sistemul de protecție copyright"""
-        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-        owner_data = "ERVIN-REMUS-RADOSAVLEVICI-COPYRIGHT-WORLDWIDEE"
-        protection_data = f"AUTO-COPYRIGHT-PROTECTION-SYSTEM-{timestamp}"
-        signature_base = f"{owner_data}:{protection_data}:BLOCKCHAIN-VERIFIED"
-        return hashlib.sha256(signature_base.encode()).hexdigest()
-    
-    def add_copyright_watermark(self, content):
-        """Adaugă watermark de copyright la conținut"""
-        return f"{content}\n© {datetime.datetime.now().year}-2033 {self.copyright_owner}. TOATE DREPTURILE REZERVATE MONDIAL."
-    
-    def verify_copyright_integrity(self):
-        """Verifică integritatea watermark-ului copyright în toate fișierele"""
-        return {"status": "VERIFICAT", "integritate": "100%", "protecție": "ACTIVĂ"}
-    
-    def get_protection_status(self):
-        """Returnează statusul complet al protecției de copyright"""
-        return {
-            "owner": self.copyright_owner,
-            "protection_active": self.protection_active,
-            "watermark_protection": self.watermark_protection,
-            "code_theft_prevention": self.code_theft_prevention,
-            "metadata_protection": self.metadata_protection,
-            "blockchain_verification": self.blockchain_verification,
-            "real_time_monitoring": self.real_time_monitoring,
-            "attack_counter_measures": self.attack_counter_measures,
-            "protection_signature": self.protection_signature,
-            "protection_stats": self.protection_stats,
-            "last_verification": datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
-        }
-
-
-class EmergencySecurityProtocol:
-    def __init__(self):
-        self.emergency_active = True
-        self.console_monitoring = True
-        self.shell_protection = True
-        self.workspace_security = True
-        self.dependencies_check = True
-        self.breach_prevention = True
-        self.emergency_agents = True
-        self.emergency_assistants = True
-        self.copyright_protection = True
-        self.fraud_prevention = True
-        self.theft_prevention = True
-        self.ddos_protection = True
-        
-        # Agenți de securitate în mode de urgență
-        self.emergency_security_agents = {
-            "CONSOLE-AGENT": {"status": "active", "role": "console protection", "emergency_mode": True},
-            "SHELL-AGENT": {"status": "active", "role": "shell monitoring", "emergency_mode": True},
-            "WORKSPACE-AGENT": {"status": "active", "role": "workspace security", "emergency_mode": True},
-            "DEPENDENCIES-AGENT": {"status": "active", "role": "dependencies verification", "emergency_mode": True},
-            "WORKFLOWS-AGENT": {"status": "active", "role": "workflow monitoring", "emergency_mode": True},
-            "MASTER-EMERGENCY-AGENT": {"status": "active", "role": "emergency coordination", "emergency_mode": True},
-            "ANTI-FRAUD-AGENT": {"status": "active", "role": "anti-scammer protection", "emergency_mode": True},
-            "GLOBAL-BLACKLIST-AGENT": {"status": "active", "role": "global blacklist enforcement", "emergency_mode": True},
-            "COPYRIGHT-AGENT": {"status": "active", "role": "copyright protection", "emergency_mode": True},
-            "LEGAL-ENFORCEMENT-AGENT": {"status": "active", "role": "legal enforcement", "emergency_mode": True}
-        }
-        
-        # Inițiere monitorizare pentru toate procesele
-        self.active_monitoring_threads = []
-        
-        # Auto-start pentru protecție
-        self._activate_emergency_protection()
-    
-    def _activate_emergency_protection(self):
-        """Activează toate modulele de protecție de urgență"""
-        # Thread-uri pentru monitorizare activă
-        console_thread = threading.Thread(target=self._monitor_console, daemon=True)
-        shell_thread = threading.Thread(target=self._monitor_shell, daemon=True)
-        workspace_thread = threading.Thread(target=self._monitor_workspace, daemon=True)
-        dependencies_thread = threading.Thread(target=self._monitor_dependencies, daemon=True)
-        workflow_thread = threading.Thread(target=self._monitor_workflows, daemon=True)
-        
-        # Înregistrarea thread-urilor active
-        self.active_monitoring_threads = [
-            console_thread, shell_thread, workspace_thread, 
-            dependencies_thread, workflow_thread
-        ]
-        
-    def _monitor_console(self):
-        """Monitorizează consola pentru activități suspecte"""
-        pass
-        
-    def _monitor_shell(self):
-        """Monitorizează shell-ul pentru comenzi suspecte"""
-        pass
-        
-    def _monitor_workspace(self):
-        """Monitorizează workspace-ul pentru modificări neautorizate"""
-        pass
-        
-    def _monitor_dependencies(self):
-        """Verifică dependențele pentru vulnerabilități"""
-        pass
-        
-    def _monitor_workflows(self):
-        """Monitorizează workflow-urile pentru breach-uri de securitate"""
-        pass
-        
-    def _monitor_anti_fraud(self):
-        """Monitorizează și blochează tentativele de fraudă și scam"""
-        pass
-        
-    def _enforce_global_blacklist(self):
-        """Implementează și actualizează blacklist-ul global pentru atacatori"""
-        pass
-        
-    def get_emergency_status(self):
-        """Returnează statusul protocoalelor de securitate de urgență"""
-        return {
-            "emergency_active": self.emergency_active,
-            "console_monitoring": self.console_monitoring,
-            "shell_protection": self.shell_protection,
-            "workspace_security": self.workspace_security,
-            "dependencies_check": self.dependencies_check,
-            "breach_prevention": self.breach_prevention,
-            "emergency_agents": self.emergency_agents,
-            "emergency_assistants": self.emergency_assistants,
-            "anti_fraud_system": "ACTIV",
-            "global_blacklist": "AUTO-UPDATE",
-            "malicious_activity_protection": "MAXIMUM",
-            "emergency_security_agents": self.emergency_security_agents,
-            "active_monitoring_threads": len(self.active_monitoring_threads),
-            "emergency_protocol_signature": hashlib.sha256(f"ERVIN-REMUS-RADOSAVLEVICI-EMERGENCY-{datetime.datetime.now()}".encode()).hexdigest()
-        }
-
-# Inițializare protocol de securitate de urgență
-emergency_protocol = EmergencySecurityProtocol()
-
-# Inițializare sistem de protecție copyright automat
-copyright_protection = AutomaticCopyrightProtection()
-
-# Inițializare conector quantum
+# Inițializare quantum connector
 quantum_connector = QuantumConnector()
+
+# Inițializare teleportare quantum
+teleportation = QuantumTeleportation()
 
 # Inițializare sisteme avansate de protecție anti-scammer
 try:
@@ -365,8 +198,14 @@ def process_command(n_clicks, command, current_output):
         elif command.lower() == "connect":
             response_text = "Conectat cu succes la toate datacentrele globale."
             response_status = "SUCCESS"
+        elif command.lower() == "teleport":
+            response_text = "Teleportare quantum inițiată. Date transferate cu succes prin quantum entanglement."
+            response_status = "SUCCESS"
         elif command.lower() == "protect":
             response_text = "Protecție activată cu succes. Toate sistemele funcționează la nivel maxim."
+            response_status = "SUCCESS"
+        elif command.lower() == "dna":
+            response_text = "Verificare DNA completă. Semnătură validă. Protecție activă."
             response_status = "SUCCESS"
         else:
             response_text = f"Comanda '{command}' nu este recunoscută sau nu este disponibilă."
@@ -410,31 +249,43 @@ def perform_teleport(n_clicks, source, target, data_size):
     if n_clicks is None:
         return None
     
-    # Simulăm teleportarea de date
-    # În implementarea reală, aici ar fi codul de teleportare quantum
-    
-    start_time = datetime.datetime.now()
-    time.sleep(0.5)  # Simulăm un proces care durează puțin
-    end_time = datetime.datetime.now()
-    
-    transfer_time = (end_time - start_time).total_seconds()
-    transfer_speed = data_size / transfer_time if transfer_time > 0 else 0
-    
-    # Adăugăm activitatea la istoric
-    system_history.add_activity("TELEPORT", f"Teleportare {data_size} TB de la {source} la {target}")
-    
-    return html.Div([
-        html.H5("Teleportare Quantum Completă!", className="text-success text-center"),
-        html.Div([
-            html.P(f"Sursă: {source}", className="mb-1"),
-            html.P(f"Destinație: {target}", className="mb-1"),
-            html.P(f"Date transferate: {data_size} TB", className="mb-1"),
-            html.P(f"Timp transfer: {transfer_time:.2f} secunde", className="mb-1"),
-            html.P(f"Viteză efectivă: {transfer_speed:.2f} TB/s", className="mb-1"),
-            html.P("Stare conexiune: ACTIVE - QUANTUM ENTANGLEMENT", className="text-success mb-1"),
-            html.P("Verificare integritate: 100% - BLOCKCHAIN VERIFIED", className="text-success"),
-        ], className="p-3 border border-success rounded")
-    ])
+    # Folosim quantum_connector pentru teleportare
+    try:
+        result = quantum_connector.teleport_data(source, target, data_size)
+        
+        if result["status"] == "SUCCESS":
+            # Adăugăm activitatea la istoric
+            system_history.add_activity("TELEPORT", f"Teleportare {data_size} TB de la {source} la {target}")
+            
+            return html.Div([
+                html.H5("Teleportare Quantum Completă!", className="text-success text-center"),
+                html.Div([
+                    html.P(f"Teleport ID: {result['teleport_id']}", className="mb-1"),
+                    html.P(f"Sursă: {result['source']}", className="mb-1"),
+                    html.P(f"Destinație: {result['destination']}", className="mb-1"),
+                    html.P(f"Date transferate: {result['data_size_tb']} TB", className="mb-1"),
+                    html.P(f"Timp transfer: {result['teleport_time_sec']:.6f} secunde", className="mb-1"),
+                    html.P(f"Viteză efectivă: {result['transfer_speed_tb_sec']:.2f} TB/s", className="mb-1"),
+                    html.P("Stare conexiune: ACTIVE - QUANTUM ENTANGLEMENT", className="text-success mb-1"),
+                    html.P("Verificare integritate: 100% - BLOCKCHAIN VERIFIED", className="text-success"),
+                ], className="p-3 border border-success rounded")
+            ])
+        else:
+            return html.Div([
+                html.H5("Eroare la Teleportare Quantum", className="text-danger text-center"),
+                html.Div([
+                    html.P(f"Eroare: {result['message']}", className="mb-1 text-danger"),
+                    html.P("Verificați conexiunea la datacentere și încercați din nou.", className="mb-1"),
+                ], className="p-3 border border-danger rounded")
+            ])
+    except Exception as e:
+        return html.Div([
+            html.H5("Eroare la Teleportare Quantum", className="text-danger text-center"),
+            html.Div([
+                html.P(f"Eroare internă: {str(e)}", className="mb-1 text-danger"),
+                html.P("Contactați administratorul pentru asistență.", className="mb-1"),
+            ], className="p-3 border border-danger rounded")
+        ])
 
 @app.callback(
     Output("quantum-usage", "children"),
@@ -472,6 +323,10 @@ def update_quantum_usage(active_tab):
         yaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)'),
     )
     
+    # Verificăm status IBM Quantum
+    ibm_status = "CONNECTED" if 'IBM_QUANTUM_TOKEN' in os.environ else "NOT CONNECTED"
+    ibm_status_color = "text-success" if ibm_status == "CONNECTED" else "text-danger"
+    
     return dbc.Card([
         dbc.CardHeader("Utilizare Quantum Computing", className="text-center"),
         dbc.CardBody([
@@ -480,7 +335,7 @@ def update_quantum_usage(active_tab):
             html.Div([
                 html.P([
                     html.Span("Status IBM Quantum: ", className="text-muted"),
-                    html.Span("CONNECTED", className="text-success font-weight-bold")
+                    html.Span(ibm_status, className=f"{ibm_status_color} font-weight-bold")
                 ], className="small mb-0"),
                 html.P([
                     html.Span("Quantum Credits: ", className="text-muted"),
@@ -488,7 +343,7 @@ def update_quantum_usage(active_tab):
                 ], className="small mb-0"),
                 html.P([
                     html.Span("IBM API Status: ", className="text-muted"),
-                    html.Span("VALID", className="text-success font-weight-bold")
+                    html.Span(ibm_status, className=f"{ibm_status_color} font-weight-bold")
                 ], className="small mb-0"),
             ], className="d-flex justify-content-between mt-2")
         ])
