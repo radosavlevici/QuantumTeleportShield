@@ -306,7 +306,7 @@ def create_dna_verification_card():
                     html.Div(
                         id="dna-key-visualization",
                         className="p-3 bg-dark text-light rounded font-monospace",
-                        style={"height": "300px", "overflow": "auto", "font-family": "monospace"}
+                        style={"height": "300px", "overflow": "auto"}
                     ),
                     
                     dbc.ButtonGroup([
@@ -400,7 +400,7 @@ def create_command_card():
             html.Div(
                 id="command-output",
                 className="bg-dark text-light p-3 rounded mb-3",
-                style={"height": "250px", "overflow": "auto", "font-family": "monospace"}
+                style={"height": "250px", "overflow": "auto"}
             ),
             
             dbc.InputGroup([
@@ -408,7 +408,7 @@ def create_command_card():
                     id="command-input",
                     placeholder="Introduceți o comandă (help pentru ajutor)",
                     className="bg-dark text-light border-dark",
-                    style={"font-family": "monospace"}
+                    style={"fontFamily": "monospace"}
                 ),
                 dbc.Button(
                     "Execută", id="execute-command", color="primary"
