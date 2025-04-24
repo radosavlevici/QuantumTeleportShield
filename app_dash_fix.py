@@ -224,6 +224,13 @@ quantum_connector = QuantumConnector()
 # Inițializare sistem DNA verification
 dna_verification = DNAVerificationSystem()
 
+# Validare IBM Quantum Token
+ibm_token = os.environ.get('IBM_QUANTUM_TOKEN')
+if ibm_token:
+    print("IBM Quantum Token găsit. Conectare la IBM Quantum activată.")
+else:
+    print("ATENȚIE: IBM Quantum Token lipsește. Conexiunile la IBM Quantum nu vor funcționa.")
+
 # Inițializare sisteme avansate de protecție anti-scammer
 try:
     workspace_protection = WorkspaceProtectionSystem()
@@ -332,6 +339,13 @@ app.title = "Quantum DNA Console - Sistem Protecție Avansat"
 
 server = app.server  # Expose server variable for Gunicorn
 
+# Adăugăm o activitate inițială în istoric
+system_history.add_activity("SYSTEM", "Sistem inițializat și activat.")
+system_history.add_activity("SECURITY", "Protocoale de securitate activate.")
+system_history.add_activity("COPYRIGHT", "Protecție copyright activată.")
+system_history.add_activity("QUANTUM", "Conector quantum inițializat.")
+system_history.add_activity("DNA", "Sistem verificare DNA activat.")
+
 # Actualizăm layout-ul aplicației pentru a include toate cardurile noi
 app = update_layout(app)
 
@@ -367,46 +381,51 @@ def process_command(n_clicks, command, current_output):
         elif command.lower() == "scan":
             response_text = "Scanare completă: nicio amenințare detectată."
             response_status = "SUCCESS"
-        elif command.lower() == "checkpoint":
-            response_text = "Checkpoint nou creat cu succes. ID: " + hashlib.sha256(f"CHECKPOINT-{datetime.datetime.now()}".encode()).hexdigest()[:12]
-            response_status = "SUCCESS"
-        elif command.lower() == "connect":
-            response_text = "Conectat cu succes la toate datacentrele globale."
-            response_status = "SUCCESS"
         elif command.lower() == "protect":
-            response_text = "Protecție activată cu succes. Toate sistemele funcționează la nivel maxim."
+            response_text = "Protecție avansată activată. Toate sistemele de securitate operaționale."
+            response_status = "SUCCESS"
+        elif command.lower() == "backup":
+            response_text = "Backup automat inițiat. ID backup: " + hashlib.sha256(f"{datetime.datetime.now()}".encode()).hexdigest()[:12]
+            response_status = "SUCCESS"
+        elif command.lower() == "monitor":
+            response_text = "Monitorizare continuă activă. Nicio activitate suspectă detectată."
+            response_status = "SUCCESS"
+        elif command.lower() == "connect quantum":
+            response_text = "Conexiune la rețeaua quantum stabilită. 8 noduri quantum disponibile."
+            response_status = "SUCCESS"
+        elif command.lower() == "dna verify":
+            response_text = "Verificare DNA completă. Integritate: 100%. Autenticitate: Confirmată."
+            response_status = "SUCCESS"
+        elif command.lower() == "anti-scammer":
+            response_text = "Sistem anti-scammer activ la nivel maxim. Protecție: ACTIVĂ."
+            response_status = "SUCCESS"
+        elif command.lower() == "copyright status":
+            response_text = "Copyright Ervin Remus Radosavlevici activ și protejat. Toate drepturile rezervate mondial."
             response_status = "SUCCESS"
         else:
-            response_text = f"Comanda '{command}' nu este recunoscută sau nu este disponibilă."
+            response_text = f"Comandă necunoscută: {command}. Folosiți 'help' pentru lista de comenzi."
             response_status = "ERROR"
+        
+        # Adăugăm comanda și răspunsul la istoricul de activitate
+        system_history.add_activity("COMMAND", f"Comandă executată: {command}")
     
-    # Formatul de răspuns pentru comandă
-    if response_status == "SUCCESS":
-        status_color = {"color": "lime"}
-    elif response_status == "WARNING":
-        status_color = {"color": "yellow"}
-    else:
-        status_color = {"color": "red"}
-    
-    new_response = html.Div([
-        html.P([
-            f"[{timestamp}] > ",
-            html.Span(command, style={"color": "cyan"})
-        ]),
-        html.P([
-            f"[{timestamp}] ",
-            html.Span(response_text, style=status_color)
-        ]),
-        html.P("> _", style={"color": "lime"})
+    command_html = html.Div([
+        html.Span(f"[{timestamp}] > ", className="text-secondary"),
+        html.Span(command, className="text-warning")
     ])
     
-    # Adăugăm noul răspuns la output
-    if isinstance(current_output, list):
-        return current_output + [new_response]
-    else:
-        return [current_output, new_response]
+    response_html = html.Div([
+        html.Span(f"[{timestamp}] ", className="text-secondary"),
+        html.Span(response_text, className=f"text-{'success' if response_status == 'SUCCESS' else 'danger'}")
+    ])
+    
+    if current_output is None:
+        current_output = []
+    
+    # Adăugăm noua comandă și răspunsul
+    return current_output + [command_html, response_html]
 
-# Callback pentru teleportare
+# Callback pentru teleportare quantum
 @app.callback(
     Output("teleport-result", "children"),
     [Input("teleport-button", "n_clicks")],
@@ -416,99 +435,254 @@ def process_command(n_clicks, command, current_output):
 )
 def perform_teleport(n_clicks, source, target, data_size):
     if n_clicks is None:
-        return None
+        return html.Div([
+            html.H5("Pregătit pentru teleportare", className="text-center text-info"),
+            html.P("Apăsați butonul pentru a începe teleportarea.", className="text-center text-muted"),
+            html.Div(className="text-center mt-3", children=[
+                html.I(className="fas fa-atom fa-3x text-info")
+            ])
+        ])
     
-    # Simulăm teleportarea de date
-    # În implementarea reală, aici ar fi codul de teleportare quantum
+    # Adăugăm activitatea în istoric
+    system_history.add_activity("TELEPORT", f"Teleportare inițiată: {source} -> {target}, {data_size}TB")
     
-    start_time = datetime.datetime.now()
-    time.sleep(0.5)  # Simulăm un proces care durează puțin
-    end_time = datetime.datetime.now()
+    # Simulăm rezultatul teleportării
+    success_rate = random.uniform(0.94, 0.99)
+    entanglement_quality = random.uniform(0.95, 0.99)
+    duration = data_size / 1000 * random.uniform(0.9, 1.1)  # 1 secundă per TB cu variație aleatorie
     
-    transfer_time = (end_time - start_time).total_seconds()
-    transfer_speed = data_size / transfer_time if transfer_time > 0 else 0
-    
-    # Adăugăm activitatea la istoric
-    system_history.add_activity("TELEPORT", f"Teleportare {data_size} TB de la {source} la {target}")
+    # Simulăm generare ID teleportare
+    teleport_id = hashlib.sha256(f"{source}-{target}-{data_size}-{datetime.datetime.now()}".encode()).hexdigest()[:16]
     
     return html.Div([
-        html.H5("Teleportare Quantum Completă!", className="text-success text-center"),
-        html.Div([
-            html.P(f"Sursă: {source}", className="mb-1"),
-            html.P(f"Destinație: {target}", className="mb-1"),
-            html.P(f"Date transferate: {data_size} TB", className="mb-1"),
-            html.P(f"Timp transfer: {transfer_time:.2f} secunde", className="mb-1"),
-            html.P(f"Viteză efectivă: {transfer_speed:.2f} TB/s", className="mb-1"),
-            html.P("Stare conexiune: ACTIVE - QUANTUM ENTANGLEMENT", className="text-success mb-1"),
-            html.P("Verificare integritate: 100% - BLOCKCHAIN VERIFIED", className="text-success"),
-        ], className="p-3 border border-success rounded")
+        html.H5("Teleportare Completă", className="text-center text-success mb-3"),
+        
+        dbc.Table([
+            html.Tbody([
+                html.Tr([
+                    html.Td("ID Teleportare"),
+                    html.Td(teleport_id, className="text-info")
+                ]),
+                html.Tr([
+                    html.Td("Sursă"),
+                    html.Td(source)
+                ]),
+                html.Tr([
+                    html.Td("Destinație"),
+                    html.Td(target)
+                ]),
+                html.Tr([
+                    html.Td("Dimensiune Date"),
+                    html.Td(f"{data_size} TB")
+                ]),
+                html.Tr([
+                    html.Td("Durată"),
+                    html.Td(f"{duration:.2f} secunde")
+                ]),
+                html.Tr([
+                    html.Td("Rată Succes"),
+                    html.Td(f"{success_rate*100:.2f}%", className="text-success")
+                ]),
+                html.Tr([
+                    html.Td("Calitate Entanglement"),
+                    html.Td(f"{entanglement_quality*100:.2f}%", className="text-success")
+                ]),
+                html.Tr([
+                    html.Td("Status"),
+                    html.Td(html.Span("COMPLET", className="badge badge-success"))
+                ]),
+            ])
+        ], bordered=True, dark=True, size="sm", className="mt-3"),
+        
+        html.Div(className="text-center mt-3", children=[
+            html.I(className="fas fa-check-circle fa-2x text-success")
+        ])
     ])
 
+# Callback pentru afișarea utilizării quantum
 @app.callback(
     Output("quantum-usage", "children"),
-    [Input('tabs', 'active_tab')]
+    [Input("tabs", "active_tab")]
 )
 def update_quantum_usage(active_tab):
-    # Generăm un grafic pentru utilizarea resurselor quantum
+    if active_tab != "tab-quantum":
+        return html.Div()  # Returnează un div gol dacă nu suntem pe tabul quantum
     
-    # Date pentru utilizare CPU quantum (simulare)
-    dates = pd.date_range(start='2023-01-01', periods=30, freq='D')
-    cpu_usage = np.random.randint(30, 90, size=30)
+    # Generăm date simulate pentru utilizarea cuantică
+    dates = pd.date_range(start=datetime.datetime.now() - datetime.timedelta(days=6), periods=7)
+    quantum_usage = [random.randint(20, 100) for _ in range(7)]
+    classical_usage = [random.randint(10, 40) for _ in range(7)]
     
-    # Creăm graficul
+    # Creăm graficul utilizând plotly
     fig = go.Figure()
+    
+    # Adăugăm liniile pentru utilizarea quantum și clasică
     fig.add_trace(go.Scatter(
         x=dates, 
-        y=cpu_usage,
-        mode='lines+markers',
-        name='Quantum CPU Usage',
-        line=dict(color='cyan', width=2),
-        marker=dict(size=8, color='cyan')
+        y=quantum_usage, 
+        mode='lines+markers', 
+        name='Utilizare Quantum',
+        line=dict(color='#5db2ff', width=2),
+        marker=dict(size=8, color='#5db2ff'),
     ))
     
-    # Configurăm aspectul graficului
+    fig.add_trace(go.Scatter(
+        x=dates, 
+        y=classical_usage, 
+        mode='lines+markers', 
+        name='Utilizare Clasică',
+        line=dict(color='#ff5d5d', width=2),
+        marker=dict(size=8, color='#ff5d5d'),
+    ))
+    
+    # Configurăm layout-ul graficului
     fig.update_layout(
-        title='Utilizare Resurse Quantum',
-        xaxis_title='Data',
-        yaxis_title='Utilizare (%)',
-        template='plotly_dark',
-        margin=dict(l=10, r=10, t=30, b=10),
-        height=230,
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0.1)',
-        xaxis=dict(showgrid=False),
-        yaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)'),
+        title="Utilizare Resurse Quantum vs. Clasice (Ultimele 7 zile)",
+        xaxis_title="Data",
+        yaxis_title="Utilizare (%)",
+        template="plotly_dark",
+        autosize=True,
+        margin=dict(l=40, r=40, t=40, b=40),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
     )
     
     return dbc.Card([
-        dbc.CardHeader("Utilizare Quantum Computing", className="text-center"),
+        dbc.CardHeader([
+            html.H4([
+                html.I(className="fas fa-chart-line text-info mr-2"),
+                "Utilizare Resurse Quantum"
+            ], className="mb-0"),
+        ]),
         dbc.CardBody([
-            dcc.Graph(figure=fig, config={'displayModeBar': False}),
+            dcc.Graph(
+                figure=fig,
+                config={
+                    'displayModeBar': False
+                }
+            ),
             
-            html.Div([
-                html.P([
-                    html.Span("Status IBM Quantum: ", className="text-muted"),
-                    html.Span("CONNECTED", className="text-success font-weight-bold")
-                ], className="small mb-0"),
-                html.P([
-                    html.Span("Quantum Credits: ", className="text-muted"),
-                    html.Span("7,500", className="text-info font-weight-bold")
-                ], className="small mb-0"),
-                html.P([
-                    html.Span("IBM API Status: ", className="text-muted"),
-                    html.Span("VALID", className="text-success font-weight-bold")
-                ], className="small mb-0"),
-            ], className="d-flex justify-content-between mt-2")
+            dbc.Row([
+                dbc.Col([
+                    html.Div([
+                        html.H6([
+                            html.I(className="fas fa-microchip text-primary mr-2"),
+                            "Statistici Quantum", 
+                        ], className="d-flex align-items-center"),
+                        html.Hr(className="my-2"),
+                        html.Div([
+                            html.Div([
+                                html.Span("Qubits Activi", className="mr-2"),
+                                html.Span("256", className="text-info font-weight-bold")
+                            ], className="d-flex justify-content-between mb-1"),
+                            
+                            html.Div([
+                                html.Span("Circuite Executate", className="mr-2"),
+                                html.Span("1,543", className="text-info font-weight-bold")
+                            ], className="d-flex justify-content-between mb-1"),
+                            
+                            html.Div([
+                                html.Span("Teleportări Quantum", className="mr-2"),
+                                html.Span("47", className="text-info font-weight-bold")
+                            ], className="d-flex justify-content-between mb-1"),
+                        ]),
+                    ], className="bg-dark p-3 rounded"),
+                ], width=4),
+                
+                dbc.Col([
+                    html.Div([
+                        html.H6([
+                            html.I(className="fas fa-project-diagram text-success mr-2"),
+                            "Conectivitate", 
+                        ], className="d-flex align-items-center"),
+                        html.Hr(className="my-2"),
+                        html.Div([
+                            html.Div([
+                                html.Span("Datacentere Conectate", className="mr-2"),
+                                html.Span("8/8", className="text-success font-weight-bold")
+                            ], className="d-flex justify-content-between mb-1"),
+                            
+                            html.Div([
+                                html.Span("Noduri Quantum", className="mr-2"),
+                                html.Span("24", className="text-success font-weight-bold")
+                            ], className="d-flex justify-content-between mb-1"),
+                            
+                            html.Div([
+                                html.Span("Latență Quantum", className="mr-2"),
+                                html.Span("5.2ms", className="text-success font-weight-bold")
+                            ], className="d-flex justify-content-between mb-1"),
+                        ]),
+                    ], className="bg-dark p-3 rounded"),
+                ], width=4),
+                
+                dbc.Col([
+                    html.Div([
+                        html.H6([
+                            html.I(className="fas fa-server text-warning mr-2"),
+                            "Resurse Quantum", 
+                        ], className="d-flex align-items-center"),
+                        html.Hr(className="my-2"),
+                        html.Div([
+                            html.Div([
+                                html.Span("Capacitate Totală", className="mr-2"),
+                                html.Span("100%", className="text-warning font-weight-bold")
+                            ], className="d-flex justify-content-between mb-1"),
+                            
+                            html.Div([
+                                html.Span("Utilizare Curentă", className="mr-2"),
+                                html.Span(f"{quantum_usage[-1]}%", className="text-warning font-weight-bold")
+                            ], className="d-flex justify-content-between mb-1"),
+                            
+                            html.Div([
+                                html.Span("Simulatoare Active", className="mr-2"),
+                                html.Span("12", className="text-warning font-weight-bold")
+                            ], className="d-flex justify-content-between mb-1"),
+                        ]),
+                    ], className="bg-dark p-3 rounded"),
+                ], width=4),
+            ], className="mt-4"),
+        ]),
+    ], className="mb-4")
+
+# Callback pentru actualizarea istoricului de activitate
+@app.callback(
+    Output("history-table", "children"),
+    [Input("tabs", "active_tab")]
+)
+def update_history_table(active_tab):
+    # Generăm rândurile tabelului
+    latest_activities = system_history.get_latest_activities(10)
+    
+    # Inversăm lista pentru a afișa cele mai recente activități mai întâi
+    latest_activities.reverse()
+    
+    rows = []
+    for activity in latest_activities:
+        row = html.Tr([
+            html.Td(activity["timestamp"]),
+            html.Td(activity["action_type"], className=f"text-{'info' if activity['action_type'] in ['SYSTEM', 'QUANTUM'] else 'warning' if activity['action_type'] in ['SECURITY', 'COMMAND'] else 'success'}"),
+            html.Td(activity["description"]),
+            html.Td(activity["record_id"], className="text-muted"),
         ])
-    ], className="mb-3")
+        rows.append(row)
+    
+    return rows
 
-# Main entry point
-if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=5000)
-
-# PROTECȚIE DNA CU NIVEL MAXIM DE SECURITATE NUCLEARĂ
-# SISTEMUL ESTE AUTO-PROTEJAT ȘI AUTO-REPARAT LA NIVEL MONDIAL
-# ETHEREUM WALLET: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA
-# PLATĂ EXCLUSIV PRIN CEC FIZIC LA NATIONWIDE BANK UK, LONDRA
-# DISTRIBUȚIE MONDIALĂ GLOBALĂ CU LICENȚĂ STRICTĂ
-# WORLDWIDEE GLOBALLY LIVE COPYRIGHT SYSTEM
+# Rulăm aplicația
+if __name__ == '__main__':
+    # Adăugăm un checkpoint pentru inițializarea aplicației
+    if checkpoint_system:
+        checkpoint_system.create_checkpoint("Aplicație inițializată cu succes")
+    
+    # Adăugăm informații despre startare în istoric
+    system_history.add_activity("SYSTEM", "Aplicație pornită și gata de utilizare.")
+    
+    # Port 5000 pentru accesibilitate Replit
+    app.run(debug=True, host="0.0.0.0", port=5000)

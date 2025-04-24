@@ -28,7 +28,7 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python app_dash.py"
+args = "python app_dash_fix.py"
 waitForPort = 5000
 
 [deployment]
