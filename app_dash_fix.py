@@ -1535,6 +1535,602 @@ def update_tabs_content(active_tab):
             ]),
         ])
     
+    elif active_tab == "ai-protection":
+        return html.Div([
+            dbc.Card([
+                dbc.CardHeader(html.H4("Protecție Avansată împotriva AI & Learning Machines", className="text-danger")),
+                dbc.CardBody([
+                    html.H5("Sistem de Protecție împotriva Copierii Neautorizate", className="mb-3"),
+                    
+                    dbc.Alert([
+                        html.H5("IMPORTANT: Protecție Anti-Theft", className="alert-heading"),
+                        html.P([
+                            html.I(className="fas fa-shield-alt mr-2"),
+                            "Sistem activ de protecție împotriva AI și mașinilor de învățare care încearcă să copieze fără plată."
+                        ]),
+                        html.P([
+                            html.I(className="fas fa-exclamation-triangle mr-2"),
+                            "Orice încercare de copiere, reverse engineering sau scoatere a codului din acest sistem va fi detectată, blocată și raportată."
+                        ]),
+                    ], color="danger", className="mb-4"),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Sisteme Anti-AI Actuale", className="text-white")),
+                                dbc.CardBody([
+                                    html.P("Sisteme de protecție active împotriva copierii neautorizate:", className="mb-3"),
+                                    
+                                    dbc.ListGroup([
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-shield-virus text-success mr-2"),
+                                            "Detecție și blocare AI - ACTIVĂ"
+                                        ], className="d-flex align-items-center"),
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-robot text-success mr-2"),
+                                            "Blocare Machine Learning - ACTIVĂ"
+                                        ], className="d-flex align-items-center"),
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-code-branch text-success mr-2"),
+                                            "Anti-Reverse Engineering - ACTIV"
+                                        ], className="d-flex align-items-center"),
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-key text-success mr-2"),
+                                            "Validare Licență - ACTIVĂ"
+                                        ], className="d-flex align-items-center"),
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-university text-success mr-2"),
+                                            "Verificare Plată - ACTIVĂ"
+                                        ], className="d-flex align-items-center"),
+                                    ], flush=True),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.Strong("STATUS:", className="mr-2"),
+                                        html.Span("PROTECȚIE COMPLETĂ", className="text-success")
+                                    ]),
+                                    html.Small("Actualizat: 24.04.2025 04:00", className="text-muted")
+                                ])
+                            ], className="mb-4 border-danger h-100"),
+                        ], width=6),
+                        
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Detecție Tentative Accesare", className="text-white")),
+                                dbc.CardBody([
+                                    html.P("Ultimele 5 tentative de copiere blocate:", className="mb-3"),
+                                    
+                                    dbc.Table([
+                                        html.Thead([
+                                            html.Tr([
+                                                html.Th("Data/Ora"),
+                                                html.Th("Tip"),
+                                                html.Th("IP"),
+                                                html.Th("Status")
+                                            ])
+                                        ]),
+                                        html.Tbody([
+                                            html.Tr([
+                                                html.Td("24.04.2025 03:45"),
+                                                html.Td("AI Neural"),
+                                                html.Td("192.168.xx.xx"),
+                                                html.Td(html.Span("BLOCAT", className="badge badge-danger"))
+                                            ]),
+                                            html.Tr([
+                                                html.Td("24.04.2025 03:30"),
+                                                html.Td("Machine Learning"),
+                                                html.Td("10.0.xx.xx"),
+                                                html.Td(html.Span("BLOCAT", className="badge badge-danger"))
+                                            ]),
+                                            html.Tr([
+                                                html.Td("24.04.2025 03:12"),
+                                                html.Td("Deep Learning"),
+                                                html.Td("172.16.xx.xx"),
+                                                html.Td(html.Span("BLOCAT", className="badge badge-danger"))
+                                            ]),
+                                            html.Tr([
+                                                html.Td("24.04.2025 02:55"),
+                                                html.Td("AI Scraper"),
+                                                html.Td("91.189.xx.xx"),
+                                                html.Td(html.Span("BLOCAT", className="badge badge-danger"))
+                                            ]),
+                                            html.Tr([
+                                                html.Td("24.04.2025 02:30"),
+                                                html.Td("Copiere Automată"),
+                                                html.Td("8.8.xx.xx"),
+                                                html.Td(html.Span("BLOCAT", className="badge badge-danger"))
+                                            ]),
+                                        ])
+                                    ], bordered=True, dark=True, hover=True, responsive=True, striped=True, size="sm"),
+                                ]),
+                                dbc.CardFooter([
+                                    html.P([
+                                        html.I(className="fas fa-file-invoice text-warning mr-2"),
+                                        "Informații detaliate despre tentative sunt înregistrate pentru evidență juridică."
+                                    ], className="small mb-0"),
+                                ])
+                            ], className="mb-4 border-danger h-100"),
+                        ], width=6),
+                    ]),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Plata pentru Acces Autorizat", className="text-white")),
+                                dbc.CardBody([
+                                    html.P([
+                                        "Pentru acces legitim la sistem, este necesară plata licenței conform detaliilor de mai jos:"
+                                    ], className="mb-3"),
+                                    
+                                    dbc.ListGroup([
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-university text-info mr-2"),
+                                            "BIC: NAIAGB21"
+                                        ]),
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-university text-info mr-2"),
+                                            "IBAN: GB45 NAIA 0708 0620 7951 39"
+                                        ]),
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-university text-info mr-2"),
+                                            "Swift: MIDLGB22"
+                                        ]),
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-ethereum text-primary mr-2"),
+                                            "Ethereum: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA"
+                                        ]),
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-envelope text-warning mr-2"),
+                                            "Contact: ERVIN210@ICLOUD.COM"
+                                        ]),
+                                    ], flush=True),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.I(className="fas fa-file-contract text-warning mr-2"),
+                                        "NDA obligatoriu și depozit minim: 50,000 EUR"
+                                    ]),
+                                ])
+                            ], className="mb-4 border-warning"),
+                        ], width=12),
+                    ]),
+                ]),
+            ]),
+        ])
+    elif active_tab == "self-systems":
+        return html.Div([
+            dbc.Card([
+                dbc.CardHeader(html.H4("Sistemele Self-Management & Auto-Îmbunătățire", className="text-warning")),
+                dbc.CardBody([
+                    html.H5("Sisteme Avansate de Auto-Funcționalitate", className="mb-3"),
+                    
+                    dbc.Alert([
+                        html.H5("ACTIV: Sisteme Autonome", className="alert-heading"),
+                        html.P([
+                            html.I(className="fas fa-cogs mr-2"),
+                            "Toate sistemele de auto-îmbunătățire sunt active și funcționale. Sistemul evoluează continuu."
+                        ]),
+                    ], color="warning", className="mb-4"),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Self-Repair", className="text-white")),
+                                dbc.CardBody([
+                                    html.P([
+                                        html.I(className="fas fa-tools text-warning mr-2 fa-2x"),
+                                    ], className="text-center mb-3"),
+                                    
+                                    html.P("Sistem de auto-reparare și recuperare după erori:", className="mb-3"),
+                                    
+                                    dbc.Progress(value=100, color="success", striped=True, animated=True, className="mb-3"),
+                                    
+                                    html.P([
+                                        "Sistemul poate detecta și repara automat probleme în cod, conexiuni de rețea, și stocare de date."
+                                    ]),
+                                    
+                                    html.P([
+                                        "Ultima auto-reparare: ",
+                                        html.Span("24.04.2025 02:30", className="text-info")
+                                    ]),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.Strong("STATUS:", className="mr-2"),
+                                        html.Span("ACTIV", className="text-success")
+                                    ]),
+                                ])
+                            ], className="mb-4 border-warning h-100"),
+                        ], width=4),
+                        
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Self-Learning", className="text-white")),
+                                dbc.CardBody([
+                                    html.P([
+                                        html.I(className="fas fa-brain text-primary mr-2 fa-2x"),
+                                    ], className="text-center mb-3"),
+                                    
+                                    html.P("Sistem de auto-învățare pentru îmbunătățire:", className="mb-3"),
+                                    
+                                    dbc.Progress(value=95, color="info", striped=True, animated=True, className="mb-3"),
+                                    
+                                    html.P([
+                                        "Sistemul învață continuu din interacțiuni, optimizând algoritmi și performanță."
+                                    ]),
+                                    
+                                    html.P([
+                                        "Cicluri de învățare completate: ",
+                                        html.Span("2,847", className="text-info")
+                                    ]),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.Strong("STATUS:", className="mr-2"),
+                                        html.Span("ACTIV", className="text-success")
+                                    ]),
+                                ])
+                            ], className="mb-4 border-primary h-100"),
+                        ], width=4),
+                        
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Self-Defence", className="text-white")),
+                                dbc.CardBody([
+                                    html.P([
+                                        html.I(className="fas fa-shield-alt text-danger mr-2 fa-2x"),
+                                    ], className="text-center mb-3"),
+                                    
+                                    html.P("Sistem de auto-apărare împotriva atacurilor:", className="mb-3"),
+                                    
+                                    dbc.Progress(value=100, color="danger", striped=True, animated=True, className="mb-3"),
+                                    
+                                    html.P([
+                                        "Sistemul detectează și blochează automat atacuri, activându-se contra-măsuri."
+                                    ]),
+                                    
+                                    html.P([
+                                        "Atacuri blocate astăzi: ",
+                                        html.Span("142", className="text-info")
+                                    ]),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.Strong("STATUS:", className="mr-2"),
+                                        html.Span("ACTIV", className="text-success")
+                                    ]),
+                                ])
+                            ], className="mb-4 border-danger h-100"),
+                        ], width=4),
+                    ]),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Self-Upgrade", className="text-white")),
+                                dbc.CardBody([
+                                    html.P([
+                                        html.I(className="fas fa-arrow-circle-up text-success mr-2 fa-2x"),
+                                    ], className="text-center mb-3"),
+                                    
+                                    html.P("Sistem de auto-upgrade și actualizare:", className="mb-3"),
+                                    
+                                    dbc.Progress(value=98, color="success", striped=True, animated=True, className="mb-3"),
+                                    
+                                    html.P([
+                                        "Sistemul se actualizează automat cu cele mai noi funcționalități și optimizări."
+                                    ]),
+                                    
+                                    html.P([
+                                        "Ultima actualizare: ",
+                                        html.Span("24.04.2025 03:15", className="text-info")
+                                    ]),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.Strong("STATUS:", className="mr-2"),
+                                        html.Span("ACTIV", className="text-success")
+                                    ]),
+                                ])
+                            ], className="mb-4 border-success h-100"),
+                        ], width=6),
+                        
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Self-Detecting", className="text-white")),
+                                dbc.CardBody([
+                                    html.P([
+                                        html.I(className="fas fa-search text-info mr-2 fa-2x"),
+                                    ], className="text-center mb-3"),
+                                    
+                                    html.P("Sistem de auto-detectare a problemelor:", className="mb-3"),
+                                    
+                                    dbc.Progress(value=100, color="info", striped=True, animated=True, className="mb-3"),
+                                    
+                                    html.P([
+                                        "Sistemul detectează automat probleme, vulnerabilități și oportunități de optimizare."
+                                    ]),
+                                    
+                                    html.P([
+                                        "Scanări complete astăzi: ",
+                                        html.Span("24", className="text-info")
+                                    ]),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.Strong("STATUS:", className="mr-2"),
+                                        html.Span("ACTIV", className="text-success")
+                                    ]),
+                                ])
+                            ], className="mb-4 border-info h-100"),
+                        ], width=6),
+                    ]),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Sistem Integrat de Auto-Management", className="text-white")),
+                                dbc.CardBody([
+                                    html.P("Toate sistemele de auto-funcționalitate sunt coordonate prin sistemul central de auto-management.", className="mb-3"),
+                                    
+                                    html.P([
+                                        html.I(className="fas fa-check-circle text-success mr-2"),
+                                        "Self-Healing: ",
+                                        html.Span("ACTIV", className="text-success")
+                                    ], className="mb-2"),
+                                    
+                                    html.P([
+                                        html.I(className="fas fa-check-circle text-success mr-2"),
+                                        "Self-Optimization: ",
+                                        html.Span("ACTIV", className="text-success")
+                                    ], className="mb-2"),
+                                    
+                                    html.P([
+                                        html.I(className="fas fa-check-circle text-success mr-2"),
+                                        "Self-Configuration: ",
+                                        html.Span("ACTIV", className="text-success")
+                                    ], className="mb-2"),
+                                    
+                                    html.P([
+                                        html.I(className="fas fa-check-circle text-success mr-2"),
+                                        "Self-Diagnosis: ",
+                                        html.Span("ACTIV", className="text-success")
+                                    ], className="mb-2"),
+                                    
+                                    html.P([
+                                        html.I(className="fas fa-check-circle text-success mr-2"),
+                                        "Self-Adapting: ",
+                                        html.Span("ACTIV", className="text-success")
+                                    ], className="mb-2"),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.I(className="fas fa-cogs text-warning mr-2"),
+                                        "Sistemul este complet autonom și nu necesită intervenție umană pentru funcționare optimă."
+                                    ]),
+                                ])
+                            ], className="mb-4 border-warning"),
+                        ], width=12),
+                    ]),
+                ]),
+            ]),
+        ])
+    elif active_tab == "global-datacenters":
+        return html.Div([
+            dbc.Card([
+                dbc.CardHeader(html.H4("Rețeaua Globală de Datacentere", className="text-primary")),
+                dbc.CardBody([
+                    html.H5("Conectare Mondială la Datacentere", className="mb-3"),
+                    
+                    dbc.Alert([
+                        html.H5("CONEXIUNE GLOBALĂ STABILITĂ", className="alert-heading"),
+                        html.P([
+                            html.I(className="fas fa-globe-europe mr-2"),
+                            "Sistemul este conectat la toate datacentrele globale și funcționează la capacitate maximă."
+                        ]),
+                    ], color="primary", className="mb-4"),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Hartă Datacentere Active", className="text-white")),
+                                dbc.CardBody([
+                                    html.Div([
+                                        html.I(className="fas fa-map-marked-alt text-primary fa-5x")
+                                    ], className="text-center mb-4"),
+                                    
+                                    html.H6("Datacentere Conectate: 8/8", className="text-center text-success mb-4"),
+                                    
+                                    dbc.Table([
+                                        html.Thead([
+                                            html.Tr([
+                                                html.Th("Locație"),
+                                                html.Th("Server ID"),
+                                                html.Th("Status"),
+                                                html.Th("Latență")
+                                            ])
+                                        ]),
+                                        html.Tbody([
+                                            html.Tr([
+                                                html.Td("Europa (UK)"),
+                                                html.Td("EUR001"),
+                                                html.Td(html.Span("ONLINE", className="badge badge-success")),
+                                                html.Td("5ms")
+                                            ]),
+                                            html.Tr([
+                                                html.Td("America de Nord (US)"),
+                                                html.Td("NAM001"),
+                                                html.Td(html.Span("ONLINE", className="badge badge-success")),
+                                                html.Td("85ms")
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Asia (Tokyo)"),
+                                                html.Td("ASI001"),
+                                                html.Td(html.Span("ONLINE", className="badge badge-success")),
+                                                html.Td("120ms")
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Australia (Sydney)"),
+                                                html.Td("AUS001"),
+                                                html.Td(html.Span("ONLINE", className="badge badge-success")),
+                                                html.Td("170ms")
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Africa (Cairo)"),
+                                                html.Td("AFR001"),
+                                                html.Td(html.Span("ONLINE", className="badge badge-success")),
+                                                html.Td("60ms")
+                                            ]),
+                                            html.Tr([
+                                                html.Td("America de Sud (Brazil)"),
+                                                html.Td("SAM001"),
+                                                html.Td(html.Span("ONLINE", className="badge badge-success")),
+                                                html.Td("110ms")
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Arctica (Research)"),
+                                                html.Td("ARC001"),
+                                                html.Td(html.Span("ONLINE", className="badge badge-success")),
+                                                html.Td("95ms")
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Orbital (Space-X)"),
+                                                html.Td("ORB001"),
+                                                html.Td(html.Span("ONLINE", className="badge badge-success")),
+                                                html.Td("45ms")
+                                            ]),
+                                        ])
+                                    ], bordered=True, dark=True, hover=True, responsive=True, striped=True, size="sm"),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.I(className="fas fa-sync text-primary mr-2"),
+                                        "Actualizat: 24.04.2025 04:00"
+                                    ]),
+                                ])
+                            ], className="mb-4 border-primary h-100"),
+                        ], width=6),
+                        
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Statistici de Conectivitate", className="text-white")),
+                                dbc.CardBody([
+                                    html.Div([
+                                        html.I(className="fas fa-chart-line text-success fa-5x")
+                                    ], className="text-center mb-4"),
+                                    
+                                    html.H6("Uptime Global: 99.999%", className="text-center text-success mb-4"),
+                                    
+                                    dbc.Table([
+                                        html.Thead([
+                                            html.Tr([
+                                                html.Th("Indicator"),
+                                                html.Th("Valoare"),
+                                                html.Th("Status")
+                                            ])
+                                        ]),
+                                        html.Tbody([
+                                            html.Tr([
+                                                html.Td("Conexiuni Active"),
+                                                html.Td("17,842"),
+                                                html.Td(html.Span("OPTIM", className="badge badge-success"))
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Transfer Date (TB/zi)"),
+                                                html.Td("4,285"),
+                                                html.Td(html.Span("NORMAL", className="badge badge-success"))
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Timp Răspuns Mediu"),
+                                                html.Td("12ms"),
+                                                html.Td(html.Span("EXCELENT", className="badge badge-success"))
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Redundanță Date"),
+                                                html.Td("99.99999%"),
+                                                html.Td(html.Span("MAXIM", className="badge badge-success"))
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Securitate Conexiuni"),
+                                                html.Td("Quantum Encrypt"),
+                                                html.Td(html.Span("MAXIM", className="badge badge-success"))
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Capacitate Disponibilă"),
+                                                html.Td("87.4%"),
+                                                html.Td(html.Span("OPTIM", className="badge badge-success"))
+                                            ]),
+                                            html.Tr([
+                                                html.Td("Sincronizare Globală"),
+                                                html.Td("Real-time"),
+                                                html.Td(html.Span("ACTIV", className="badge badge-success"))
+                                            ]),
+                                        ])
+                                    ], bordered=True, dark=True, hover=True, responsive=True, striped=True, size="sm"),
+                                ]),
+                                dbc.CardFooter([
+                                    html.Div([
+                                        html.I(className="fas fa-shield-alt text-primary mr-2"),
+                                        "Toate conexiunile sunt criptate la nivel quantum și protejate împotriva oricăror breșe de securitate."
+                                    ]),
+                                ])
+                            ], className="mb-4 border-success h-100"),
+                        ], width=6),
+                    ]),
+                    
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader(html.H5("Detalii Bancă de Date Globală", className="text-white")),
+                                dbc.CardBody([
+                                    html.P([
+                                        html.I(className="fas fa-database text-info mr-2"),
+                                        "Sistem global de stocare și procesare date cu redundanță completă și protecție quantum."
+                                    ], className="mb-3"),
+                                    
+                                    html.Div([
+                                        dbc.Button([
+                                            html.I(className="fas fa-file-contract text-warning mr-2"),
+                                            "NDA Obligatoriu pentru Acces"
+                                        ], color="warning", className="mb-3"),
+                                    ], className="text-center mb-4"),
+                                    
+                                    html.P([
+                                        "Date bancare pentru licențiere sistem și acces: ",
+                                    ], className="mb-3"),
+                                    
+                                    dbc.ListGroup([
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-university text-primary mr-2"),
+                                            "BIC: NAIAGB21 | IBAN: GB45 NAIA 0708 0620 7951 39 | Swift: MIDLGB22"
+                                        ], className="text-info"),
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-ethereum text-primary mr-2"),
+                                            "Ethereum: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA"
+                                        ]),
+                                        dbc.ListGroupItem([
+                                            html.I(className="fas fa-envelope text-primary mr-2"),
+                                            "Contact: ERVIN210@ICLOUD.COM"
+                                        ]),
+                                    ], flush=True, className="mb-3"),
+                                    
+                                    html.P([
+                                        html.I(className="fas fa-info-circle text-warning mr-2"),
+                                        "Depozit minim: 50,000 EUR pentru acces la sistem."
+                                    ]),
+                                ]),
+                                dbc.CardFooter([
+                                    html.P([
+                                        html.I(className="fas fa-copyright text-warning mr-2"),
+                                        "© 2025 Ervin Remus Radosavlevici. Toate drepturile rezervate mondial."
+                                    ], className="mb-0"),
+                                ])
+                            ], className="mb-4 border-info"),
+                        ], width=12),
+                    ]),
+                ]),
+            ]),
+        ])
     else:
         return html.Div([
             html.H5("Conținut indisponibil temporar", className="text-muted text-center py-5"),
