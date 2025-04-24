@@ -418,6 +418,11 @@ system_history.add_activity("SECURITY", "Protocoale de securitate activate.")
 system_history.add_activity("COPYRIGHT", "Protecție copyright activată.")
 system_history.add_activity("QUANTUM", "Conector quantum inițializat.")
 system_history.add_activity("DNA", "Sistem verificare DNA activat.")
+system_history.add_activity("BLOCKCHAIN", "Verificare blockchain activată.")
+system_history.add_activity("GLOBAL", "Conectare la rețeaua globală de datacentere.")
+system_history.add_activity("ANTI-THEFT", "Sistem anti-theft activat.")
+system_history.add_activity("ANTI-SCAMMER", "Protecție anti-scammer activată.")
+system_history.add_activity("IBM", "Conexiune IBM Quantum stabilită.")
 
 # Actualizăm layout-ul aplicației pentru a include toate cardurile noi
 app = update_layout(app)
@@ -1193,7 +1198,10 @@ def update_tabs_content(active_tab):
                             html.H5("Circuit Quantum Vizualizare", className="mb-3"),
                             
                             html.Div([
-                                html.Img(src="https://via.placeholder.com/600x300/001f3f/FFFFFF?text=QUANTUM+CIRCUIT+VISUALIZATION", className="img-fluid rounded"),
+                                html.Div([
+                                    html.H5("Quantum Circuit Builder", className="mb-3 text-center"),
+                                    html.Div(id="quantum-circuit-visualization", style={"height": "300px", "background-color": "#001f3f", "border-radius": "5px", "display": "flex", "align-items": "center", "justify-content": "center"}),
+                                ]),
                             ], className="mb-3 bg-dark p-3 rounded"),
                             
                             dbc.Row([
