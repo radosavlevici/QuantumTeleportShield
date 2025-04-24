@@ -12,7 +12,9 @@ import pandas as pd
 # PROTECȚIE DNA CU NIVEL MAXIM DE SECURITATE NUCLEARĂ
 # SISTEMUL ESTE AUTO-PROTEJAT ȘI AUTO-REPARAT LA NIVEL MONDIAL
 # ETHEREUM WALLET: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA
-# PLATĂ EXCLUSIV PRIN CEC FIZIC LA NATIONWIDE BANK UK, LONDRA
+# PLATĂ PRIN CEC FIZIC LA NATIONWIDE BANK UK, LONDRA SAU TRANSFER BANCAR INTERNAȚIONAL
+# BIC: NAIAGB21 | IBAN: GB45 NAIA 0708 0620 7951 39 | Swift Intermediary Bank: MIDLGB22
+# EMAIL: ERVIN210@ICLOUD.COM
 
 def create_header():
     """Creează header-ul aplicației"""
@@ -671,6 +673,16 @@ def create_ibm_quantum_card():
                         ], className="d-flex justify-content-between mb-2"),
                         
                         html.Div([
+                            html.Span("Autentificare Protejată", className="mr-2"),
+                            html.Span("ACTIVĂ", className="badge badge-success")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
+                            html.Span("Proprietar Token", className="mr-2"),
+                            html.Span("Ervin Remus Radosavlevici", className="text-warning")
+                        ], className="d-flex justify-content-between mb-2"),
+                        
+                        html.Div([
                             html.Span("Data Expirare Token", className="mr-2"),
                             html.Span("01.09.2030", className="text-warning")
                         ], className="d-flex justify-content-between mb-2"),
@@ -828,7 +840,12 @@ def create_licensing_card():
                     
                     html.P([
                         html.I(className="fas fa-info-circle text-info mr-2"),
-                        "Plata se poate efectua exclusiv prin cec bancar emis către Nationwide Bank UK, Londra."
+                        "Plata se poate efectua prin cec bancar emis către Nationwide Bank UK, Londra sau prin transfer bancar internațional."
+                    ]),
+                    
+                    html.P([
+                        html.I(className="fas fa-university text-info mr-2"),
+                        "Detalii transfer: BIC: NAIAGB21 | IBAN: GB45 NAIA 0708 0620 7951 39 | Swift Intermediary Bank: MIDLGB22"
                     ]),
                     
                     html.P([
