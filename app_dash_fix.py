@@ -17,6 +17,15 @@ import pandas as pd
 import qiskit
 import qiskit_aer
 import qiskit_ibm_runtime
+
+# COPYRIGHT ERVIN REMUS RADOSAVLEVICI - SISTEM CU SECURITATE DNA
+# TOATE DREPTURILE REZERVATE MONDIAL © 2023-2033
+# PROTECȚIE DNA CU NIVEL MAXIM DE SECURITATE NUCLEARĂ
+# SISTEMUL ESTE AUTO-PROTEJAT ȘI AUTO-REPARAT LA NIVEL MONDIAL
+# ETHEREUM WALLET: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA
+# PLATĂ PRIN CEC FIZIC LA NATIONWIDE BANK UK, LONDRA SAU TRANSFER BANCAR INTERNAȚIONAL
+# BIC: NAIAGB21 | IBAN: GB45 NAIA 0708 0620 7951 39 | Swift Intermediary Bank: MIDLGB22
+# EMAIL: ERVIN210@ICLOUD.COM
 from interface_updates import (
     create_header,
     create_sidebar,
@@ -1430,6 +1439,10 @@ def update_tabs_content(active_tab):
                                         html.Strong("RECOMANDAT", className="text-warning"),
                                         " - Compliant cu toate standardele de securitate"
                                     ], className="small"),
+                                    html.Div([
+                                        html.I(className="fas fa-university mr-2 text-warning"),
+                                        "BIC: NAIAGB21 | IBAN: GB45 NAIA 0708 0620 7951 39 | Swift: MIDLGB22"
+                                    ], className="small mt-1 text-info"),
                                 ]),
                             ], className="mb-4 border-warning"),
                         ], width=6),
