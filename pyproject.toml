@@ -13,4 +13,5 @@ dependencies = [
     "qiskit-ibm-runtime>=0.38.0",
     "dash>=3.0.3",
     "dash-bootstrap-components>=2.0.2",
+    "streamlit>=1.44.1",
 ]
