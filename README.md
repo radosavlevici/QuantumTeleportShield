@@ -38,6 +38,8 @@ Acest software este oferit sub un model de licențiere cu redevențe:
 
 Sistemul include verificare automată a licențelor și blocarea utilizării până la efectuarea plății.
 
+**IMPORTANT**: Toate vânzările, acordurile de licențiere și distribuirea oficială a software-ului necesită aprobarea explicită a lui Ervin Remus Radosavlevici sau a reprezentanților săi legali desemnați. Orice acord fără această aprobare nu este valid.
+
 ## Metode de Plată
 
 - **Transfer Bancar**:

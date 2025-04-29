@@ -85,7 +85,16 @@ Contributors must:
 - The CLA establishes the legal framework for intellectual property transfer and potential royalty arrangements
 - This project's unique open source model operates under the "Royal License" which preserves strong copyright protection while enabling open collaboration
 
-### 10. Contact Information
+### 10. Sales and Distribution Approval
+
+All sales, licensing, distribution, or monetization of the software or derivatives must be explicitly approved by:
+
+- **Primary Authority**: Ervin Remus Radosavlevici (Creator and Copyright Holder)
+- **Secondary Authority**: Legal representatives designated in writing by Ervin Remus Radosavlevici
+
+No commercial agreements related to this software shall be considered valid without written approval from the above authorities.
+
+### 11. Contact Information
 
 For contribution inquiries:
 - Email: ERVIN210@ICLOUD.COM

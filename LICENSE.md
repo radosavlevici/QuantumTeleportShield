@@ -86,11 +86,20 @@ Payments shall be made via:
 - Physical check to Nationwide Bank UK, London
 - Ethereum wallet: 0x3C143E98bE8986eDe8FAc9F674103c933B68B9BA
 
-### 12. Governing Law
+### 12. Sales and Licensing Approval
+
+All sales, licensing agreements, and official distribution of the Software must be explicitly approved by:
+
+- **Primary Authority**: Ervin Remus Radosavlevici (Creator and Copyright Holder)
+- **Secondary Authority**: Legal representatives designated in writing by Ervin Remus Radosavlevici
+
+No sales, licensing, or distribution agreements shall be considered valid without written approval from the above authorities. Approval must be documented with official signatures and legal authentication.
+
+### 13. Governing Law
 
 This License shall be governed by and construed in accordance with the laws of the European Union, without regard to its conflict of law provisions.
 
-### 13. Contact Information
+### 14. Contact Information
 
 For licensing inquiries, please contact:
 - Email: ERVIN210@ICLOUD.COM
